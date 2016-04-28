@@ -1,0 +1,19 @@
+{
+  "name": "personalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donovanhiland/personalproject.git"
+  },
+  "author": "donovanhiland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donovanhiland/personalproject/issues"
+  },
+  "homepage": "https://github.com/donovanhiland/personalproject#readme"
+}
