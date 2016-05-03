@@ -1,0 +1,65 @@
+// start body styles
+
+.mid-page-links-container {
+  width: 100%;
+  height: 25vh;
+  margin-top: 400px;
+  margin-bottom: 50px;
+  text-align: center;
+
+  p {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 44px;
+    margin-bottom: 40px;
+    color: #333333;
+  }
+}
+
+.mid-page-links-wrapper {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mid-page-links {
+  width: 20%;
+  height: 40px;
+  border: 1px solid black;
+
+  p {
+    @extend .vertical-center;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
+.home-practice-info-container {
+  width: 100%;
+  height: 320px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: $blue;
+
+  img {
+    @extend .vertical-center;
+  }
+}
+
+.company-info {
+  width: 50%;
+  height: 100px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 22px;
+  color: white;
+  text-align: center;
+}
+
+
+
+// end body styles

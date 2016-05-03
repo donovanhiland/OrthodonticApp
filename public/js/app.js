@@ -3,7 +3,7 @@ angular.module('orthoApp', ['ui.router'])
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('home', {
+      .state('main', {
         url: '/',
         templateUrl: 'templates/mainTmpl.html'
       })

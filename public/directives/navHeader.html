@@ -1,26 +1,33 @@
-<header>
-<div class="nav-bar">
-  <div class="nav-links-wrapper">
-    <div class="nav-link">HOME</div>
-    <div class="nav-link">PATIENT <br/> INFORMATION</div>
-    <div class="nav-link">ABOUT <br/> ORTHODONTICS</div>
-    <div class="nav-link">SERVICES</div>
-    <div class="nav-link">MEET US</div>
-    <div class="nav-link">REGISTER</div>
-    <div class="nav-link">SIGN IN</div>
-  </div>
-</div>
-<div class="header-banner-wrapper">
-  <div class="header-contact-wrapper">
-    <div class="phone">CALL TODAY: 555-555-5555</div>
-    <div class="social">
-      <div class="social-icon"></div>
-      <div class="social-icon"></div>
-      <div class="social-icon"></div>
+<header class="header">
+  <div class="nav-bar">
+    <div class="nav-links-wrapper">
+      <div class="nav-link">HOME</div>
+      <div class="nav-link">PATIENT <br/> INFORMATION</div>
+      <div class="nav-link">ABOUT <br/> ORTHODONTICS</div>
+      <div class="nav-link">SERVICES</div>
+      <div class="nav-link">MEET US</div>
+      <div class="nav-link">REGISTER</div>
+      <div class="nav-link">SIGN IN</div>
     </div>
   </div>
-  <div class="header-banner">
-
+  <div class="header-banner-wrapper">
+    <div class="header-banner">
+      <!-- <video autoplay loop class="videotest">
+        <source src="https://fast.wistia.net/embed/iframe/p395oq5xs1" type="video">
+      </video> -->
+      <div class="header-contact-wrapper">
+        <div class="header-contact">
+          <div class="call-now">call today: 555-555-5555</div>
+          <div class="social">
+            <div class="social-link" ng-repeat="sociallink in sociallinks">
+              <img id="{{sociallink.id}}" ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-logo-wrapper">
+        <img src="./img/demo-logo2.png" alt="demo-logo" />
+      </div>
+    </div>
   </div>
-</div>
 </header>
