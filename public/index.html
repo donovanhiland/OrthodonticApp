@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html ng-app="orthoApp">
   <head>
+    <link rel="icon" type="image/png" href="img/icons/bracetooth.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Orthodontist Website</title>
-    <link rel="stylesheet" href="./styles/normalize.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="./styles/reset.css" media="screen" title="no title" charset="utf-8">
+    <title>Bridger Valley Orthodontics</title>
     <link rel="stylesheet" href="./styles/styles.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="./styles/fonts.css" media="screen" title="no title" charset="utf-8">
 
   </head>
   <body ng-controller="mainCtrl">
 
     <ui-view></ui-view>
+
 
     <!-- =========== CDNs =========== -->
     <!-- Angular -->
@@ -25,6 +24,7 @@
     <script src="./js/app.js" charset="utf-8"></script>
     <script src="./js/mainCtrl.js" charset="utf-8"></script>
     <script src="./js/mainService.js" charset="utf-8"></script>
-    <script src="./directives/navHeader.js" charset="utf-8"></script>
+    <script src="./directives/header/headerdir.js" charset="utf-8"></script>
+    <script src="./directives/footer/footerdir.js" charset="utf-8"></script>
   </body>
 </html>

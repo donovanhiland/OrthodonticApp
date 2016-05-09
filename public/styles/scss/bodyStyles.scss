@@ -2,64 +2,104 @@
 
 .mid-page-links-container {
   width: 100%;
-  height: 25vh;
-  margin-top: 400px;
+  margin-top: 50px;
   margin-bottom: 50px;
   text-align: center;
 
   p {
     font-family: 'PT Sans', sans-serif;
     font-size: 44px;
-    margin-bottom: 40px;
     color: #333333;
   }
 }
 
-.mid-page-links-wrapper {
-  width: 80%;
-  height: 80%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
+.page-link-button {
+  height: 50px;
+  width: 49%;
+  min-width: 130px;
+  display: inline-block;
+  padding-left: .5em;
+  padding-right: .5em;
+  padding-top: 1em;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
-.mid-page-links {
-  width: 20%;
-  height: 40px;
-  border: 1px solid black;
+.main-page-link-button {
+  @extend .page-link-button;
+  width: 240px;
+  margin: 5px;
+}
 
-  p {
-    @extend .vertical-center;
-    font-family: 'Lato', sans-serif;
-    font-size: 18px;
-    text-transform: uppercase;
-  }
+.page-link-button:hover {
+  background-color: $blue;
+  color: white;
+  border: 1px solid $blue;
+}
+
+.toggle-hidden-button {
+  z-index: -2;
+}
+
+.title {
+  font-family: 'Lato', sans-serif;
+  font-size: 2em;
+  margin-bottom: 40px;
+  text-transform: uppercase;
 }
 
 .home-practice-info-container {
   width: 100%;
-  height: 320px;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px 0;
   background-color: $blue;
+  text-align: center;
+  color: white;
 
   img {
-    @extend .vertical-center;
+    margin-bottom: 15px;
   }
 }
 
-.company-info {
-  width: 50%;
-  height: 100px;
-  margin: auto;
-  font-size: 18px;
-  line-height: 22px;
-  color: white;
+.map {
+  width: 100%;
+  height: 350px;
+  background-color: #F0EDE5;
+  border: 2px solid grey;
   text-align: center;
 }
 
+.sign-up-contact-container {
+  padding-top: 3em;
+  padding-bottom: 3em;
+  background-color: white;
+  text-align: center;
+  color: $textblack;
 
+  .contact-info-wrapper {
+    width: 80%;
+    margin: auto;
+  }
+
+  h3 {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    margin-bottom: .75em;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 29px;
+    text-align: left;
+    margin-bottom: .75em;
+  }
+}
+
+
+@media (min-width: 860px) {
+  .mid-page-links-container {
+    margin-top: 400px;
+  }
+}
 
 // end body styles

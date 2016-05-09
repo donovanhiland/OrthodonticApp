@@ -1,0 +1,65 @@
+<header class="header">
+  <div class="nav-bar">
+    <div class="mobile-menu-button">
+      <img src="img/icons/squarehamburger-white-transparent.png" alt="menu button" />
+    </div>
+    <div href="tel:9284200056" class="mobile-call-button">
+      <img src="img/icons/phone-white-transparent.png" alt="call now button" />
+    </div>
+  </div>
+  <!-- <ul>
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="#">Patient Information</a>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">About Orthodontics</a>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </li>
+    <li>
+      <a href="#">Services</a>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </li>
+    <li>
+      <a href="#">Meet Us</a>
+    </li>
+    <li>
+      <a href="#">Register</a>
+    </li>
+    <li>
+      <a href="#">Sign In</a>
+    </li>
+    <li>
+      <a href="#">Dashboard</a>
+    </li>
+  </ul> -->
+  <div class="header-contact-container">
+    <p>
+      Call Today: 555-555-5555
+    </p>
+    <div class="header-social-link" id="{{sociallink.id}}" ng-repeat="sociallink in sociallinks">
+      <img ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
+    </div>
+  </div>
+  <div class="header-banner-container">
+    <video class="main-video" src="img/naturetimelapse.mp4" autoplay loop>
+    </video>
+    <div class="main-logo">
+      <img src="img/demo-logo2.png" alt="logo" />
+    </div>
+  </div>
+</header>

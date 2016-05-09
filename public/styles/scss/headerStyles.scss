@@ -1,123 +1,88 @@
-// start header styles
-
-.header {
-  margin-bottom: 50px;
-}
-
 .nav-bar {
   width: 100%;
-  height: 50px;
-  position: fixed;
-  top: 0;
-  background-color: $black;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  z-index: 30;
-}
-
-.nav-links-wrapper {
-  width: 80%;
-  height: 100%;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.nav-link {
-  margin: auto;
-}
-
-.header-banner-wrapper {
-  width: 100%;
-  height: 50px;
-  position: relative;
-  margin-top: 50px;
-}
-
-.header-banner {
-  width: 100%;
-  height: 400px;
-  background:
-  linear-gradient(
-      rgba(87, 82, 189, 0.2),
-      rgba(87, 82, 189, 0.2)
-  ),
-  url('../img/girlsmile.png') no-repeat;
-  background-position: center;;
-  background-size: cover;
-}
-.videotest {
-  width: 100%;
-}
-
-.header-contact-wrapper {
-  width: 100%;
-  height: 50px;
-  background-color: rgba(19,19,19,.4);
-}
-
-.header-contact {
-  width: 80%;
-  height: 100%;
-  margin: auto;
-}
-
-.call-now {
+  padding: 15px 10px;
+  margin-bottom: -7px;
   display: inline-block;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-transform: uppercase;
-  font-size: 22px;
-  color: white;
-  text-align: center;
+  border-bottom: 1px solid $grey;
+  background-color: black;
 }
 
-.social {
-  height: 50px;
+.mobile-menu-button {
+  display: inline-block;
+  float: left;
+
+  img {
+    height: 20px;
+    margin: auto;
+    cursor: pointer;
+  }
+}
+
+.mobile-call-button {
   display: inline-block;
   float: right;
+
+  img {
+    height: 20px;
+    margin: auto;
+    cursor: pointer;
+  }
 }
 
-.social-link {
-  width: 50px;
-  height: 50px;
+.header-contact-container {
+  width: 100%;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  background: $black;
+  text-align: center;
+
+  p {
+    width: auto;
+    margin: auto;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    cursor: pointer;
+  }
+}
+
+.header-social-link {
+  width: 45px;
+  height: 45px;
   display: inline-block;
-  float: right;
   background-color: $blue;
-  text-align: center;
+  cursor: pointer;
+  transition: background-color .5s ease;
 
   img {
     @extend .vertical-center;
-  }
-
-  #fb{
-    height: 30px;
-    width: 30px;
-  }
-  #tt {
     height: 20px;
-    width: 20px;
-  }
-  #ig {
-    height: 20px;
-    width: 20px;
   }
 }
 
-.demo-logo-wrapper {
-  width: 340px;
-  height: 280px;
-  margin: auto;
-  margin-top: 20px;
+.main-logo {
+    height: 400px;
+    margin: auto;
+    text-align: center;
+    background-color: rgba(199, 228, 246, 0.2);
 
-  img {
+    img {
+      @extend .vertical-center;
+    }
+}
+
+.main-video {
+  height: 400px;
+  position: absolute;
+  z-index: -1;
+}
+
+@media (min-width: 720px) {
+  .main-video {
+    height: auto;
     width: 100%;
-    height: 100%;
+    margin-top: -20%;
   }
 }
-
-// end header styles
