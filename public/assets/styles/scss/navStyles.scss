@@ -1,0 +1,88 @@
+.nav-bar {
+  width: 100%;
+  padding: 15px 10px;
+  margin-bottom: -3px;
+  display: inline-block;
+  border-bottom: 1px solid $grey;
+  background-color: black;
+}
+
+.mobile-menu-button {
+  display: inline-block;
+  float: left;
+
+  img {
+    height: 20px;
+    margin: auto;
+    cursor: pointer;
+  }
+}
+
+.mobile-call-button {
+  display: inline-block;
+  float: right;
+
+  img {
+    height: 20px;
+    margin: auto;
+    cursor: pointer;
+  }
+}
+
+.mobile-menu {
+  width: 100vw;
+  position: fixed;
+  top: 54px;
+  z-index: 10;
+  background-color: #2D2D2D;
+  font-size: 12px;
+  font-family: 'PT Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+.mobile-menu-link-container {
+  width: 100%;
+  border-bottom: 1px solid $grey;
+  cursor: pointer;
+}
+
+.mobile-menu-link {
+  width: 97%;
+  padding: 10px;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  div {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    float: right;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+#list-arrow {
+  transition: transform .5s ease;
+}
+
+.list-arrow-toggle {
+  transform: rotate(-180deg)
+}
+
+.mobile-menu-sublink-container {
+  margin-right: 35px;
+}
+
+.mobile-menu-sublink {
+  color: white;
+  border-top: 1px solid $grey;
+  padding: 10px;
+  padding-left: 30px;
+}

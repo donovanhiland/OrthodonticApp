@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="orthoApp">
   <head>
-    <link rel="icon" type="image/png" href="img/icons/bracetooth.png">
+    <link rel="icon" type="image/png" href="./assets/img/icons/bracetooth.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bridger Valley Orthodontics</title>
-    <link rel="stylesheet" href="./styles/styles.css" media="screen" title="no title" charset="utf-8">
+    <title>West Street Specialists</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css" media="screen" title="no title" charset="utf-8">
 
   </head>
   <body ng-controller="mainCtrl">
@@ -18,13 +18,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js" charset="utf-8"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"   integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI="   crossorigin="anonymous"></script>
     <!-- ui-router -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js" charset="utf-8"></script>
     <!-- =========== SCRIPTS =========== -->
-    <script src="./js/app.js" charset="utf-8"></script>
-    <script src="./js/mainCtrl.js" charset="utf-8"></script>
-    <script src="./js/mainService.js" charset="utf-8"></script>
-    <script src="./directives/header/headerdir.js" charset="utf-8"></script>
-    <script src="./directives/footer/footerdir.js" charset="utf-8"></script>
+    <script src="./app/app.module.js" charset="utf-8"></script>
+    <script src="./app/app.routes.js" charset="utf-8"></script>
+    <script src="./app/components/main/mainCtrl.js" charset="utf-8"></script>
+    <script src="./app/components/main/mainService.js" charset="utf-8"></script>
+    <script src="./app/components/header/headerdir.js" charset="utf-8"></script>
+    <script src="./app/shared/footer/footerdir.js" charset="utf-8"></script>
+    <script src="./app/shared/navbar/navbardir.js" charset="utf-8"></script>
   </body>
 </html>

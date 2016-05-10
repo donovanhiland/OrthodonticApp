@@ -1,0 +1,57 @@
+// color variables
+$black: #131313;
+$textblack: #333333;
+$blue: #5292BD;
+$grey: #717171;
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: url('../img/white-abstract.png');
+  background-attachment: fixed;
+  width: 100%;
+  height: 150vh;
+  z-index: -30;
+}
+
+.main {
+  @extend html;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+// global classes to @extend
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left {
+  display: inline-block;
+  float: left;
+}
+// end global classes
+
+.bluehover {
+  background-color: $blue;
+  color: white;
+  transition: all .5s ease;
+}
+
+@import 'fonts';
+@import 'reset';
+@import 'normalize';
+@import 'navStyles';
+@import 'headerStyles';
+@import 'footerStyles';
+@import 'bodyStyles';
