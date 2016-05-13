@@ -1,19 +1,18 @@
 <footer class="footer">
   <div class="footer-nav-links-container">
-    <div class="footer-nav-link">Home</div>
-    <div class="footer-nav-link">Patient Information</div>
-    <div class="footer-nav-link">About Orthodontics</div>
-    <div class="footer-nav-link">Services</div>
-    <div class="footer-nav-link">Meet Us</div>
-    <div class="footer-nav-link">Contact Us</div>
-    <div class="footer-nav-link" ng-show="true">Register</div>
-    <div class="footer-nav-link" ng-show="true">Sign In</div>
-    <div class="footer-nav-link" ng-show="false">Dashboard</div>
+    <div class="footer-nav-link" ui-sref="home">Home</div>
+    <div class="footer-nav-link" ui-sref="patientinformation.introduction">Patient Information</div>
+    <div class="footer-nav-link" ui-sref="aboutorthodontics.orthodontictreatment">About Orthodontics</div>
+    <div class="footer-nav-link" ui-sref="services.braces">Services</div>
+    <div class="footer-nav-link" ui-sref="meetus">Meet Us</div>
+    <div class="footer-nav-link" ng-show="true" ui-sref="register">Register</div>
+    <div class="footer-nav-link" ng-show="true" ui-sref="signin">Sign In</div>
+    <div class="footer-nav-link" ng-show="false" ui-sref="dashboard">Dashboard</div>
   </div>
   <div class="footer-social-links-container">
 
-      <div class="footer-social-link" ng-repeat="sociallink in sociallinks">
-        <img id="{{sociallink.id}}" ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
+      <div class="footer-social-link" id="{{sociallink.id}}" ng-repeat="sociallink in sociallinks">
+        <img ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
       </div>
     <div class="legal">
       Copyright (c) 2016 West Street Orthodontics

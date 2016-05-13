@@ -17,11 +17,11 @@
   color: white;
   font-family: 'PT Sans', sans-serif;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .footer-social-links-container {
   width: 100%;
-  height: 80px;
   border-top: 1px solid $grey;
   text-align: center;
 }
@@ -38,6 +38,8 @@
   height: 70px;
   display: inline-block;
   background-color: $black;
+  cursor: pointer;
+  transition: background-color .7s ease;
 
   img {
     @extend .vertical-center;
@@ -47,8 +49,8 @@
 
 .legal {
   width: 100%;
-  height: 50px;
   padding-top: 15px;
+  padding-bottom: 10px;
   background-color: $black;
   border-top: 1px solid $grey;
   font-family: 'PT Sans', sans-serif;

@@ -16,6 +16,9 @@ angular.module('orthoApp')
           }
         };
 
+      },
+      link: function(scope, elements, attributes) {
+
         $(document).ready(function() {
 
           var mobileMenu = $('.mobile-menu');
@@ -27,13 +30,27 @@ angular.module('orthoApp')
 
           $('.mobile-menu-button').click(function() {
             mobileMenu.toggle('slide');
-            $('body').toggleClass('fixed');
+            $('.main').toggleClass('fixed');
             $('.mobile-call-button').toggleClass('hidden');
+          });
+
+          $('main').click(function() {
+            mobileMenu.hide('slide');
+            $('body').removeClass('fixed');
           });
 
           menuLink.click(function() {
             $(this).siblings('.mobile-menu-sublink-list').slideToggle();
-            $(this).children().children('#list-arrow').toggleClass('list-arrow-toggle');
+            $(this).children().children('.list-arrow').toggleClass('list-arrow-toggle');
+            subLink.not($(this).siblings()).slideUp();
+            $('.list-arrow').not($(this).children('div').children('.list-arrow')).removeClass('list-arrow-toggle');
+          });
+
+          subLink.click(function() {
+            $('body').removeClass('fixed');
+            mobileMenu.toggle('slide');
+            $(this).slideToggle();
+            $('.list-arrow').removeClass('list-arrow-toggle');
           });
 
         });

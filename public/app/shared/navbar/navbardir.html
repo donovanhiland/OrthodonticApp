@@ -9,69 +9,50 @@
 <ul class="mobile-menu">
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">Home</a>
+      <a ui-sref="home" name="infosection">Home</a>
     </div>
   </li>
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">Patient Information</a>
+      <a>Patient Information</a>
       <div>
-        <img src="./assets/img/icons/white-down-arrow.png" id="list-arrow"/>
+        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
       </div>
     </div>
     <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink">Introduction</li>
-      <li class="mobile-menu-sublink">Why Choose Our Practice</li>
-      <li class="mobile-menu-sublink">Patient Registration</li>
-      <li class="mobile-menu-sublink">Payment and Insurance</li>
+      <li class="mobile-menu-sublink" ng-repeat="link in patientinfosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
     </ul>
   </li>
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">About Orthodontics</a>
+      <a>About Orthodontics</a>
       <div>
-        <img src="./assets/img/icons/white-down-arrow.png" id="list-arrow"/>
+        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
       </div>
     </div>
     <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink">Orthodontic Treatment</li>
-      <li class="mobile-menu-sublink">l2</li>
-      <li class="mobile-menu-sublink">l3</li>
-      <li class="mobile-menu-sublink">l4</li>
+      <li class="mobile-menu-sublink" ng-repeat="link in aboutorthosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
     </ul>
   </li>
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">Services</a>
+      <a>Services</a>
       <div>
-        <img src="./assets/img/icons/white-down-arrow.png" id="list-arrow"/>
+        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
       </div>
     </div>
     <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink">l1</li>
-      <li class="mobile-menu-sublink">l2</li>
-      <li class="mobile-menu-sublink">l3</li>
-      <li class="mobile-menu-sublink">l4</li>
+      <li class="mobile-menu-sublink" ng-repeat="link in servicessectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
     </ul>
   </li>
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">Meet Us</a>
+      <a ui-sref="meetus" name="infosection">Meet Us</a>
     </div>
   </li>
   <li class="mobile-menu-link-container">
     <div class="mobile-menu-link">
-      <a href="#">Register</a>
-    </div>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a href="#">Sign In</a
-    </div>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a href="#">Dashboard</a>
+      <a ng-click="verifyAuth()">Patient Dashboard</a>
     </div>
   </li>
 </ul>

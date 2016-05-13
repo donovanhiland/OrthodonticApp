@@ -1,0 +1,28 @@
+<navbardir></navbardir>
+<main class="main parallax">
+  <header class="header">
+    <div class="header-contact-container">
+      <p>
+        Call Today: 555-555-5555
+      </p>
+      <div class="header-social-link" id="{{sociallink.id}}" ng-repeat="sociallink in sociallinks">
+        <img ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
+      </div>
+    </div>
+    <div class="header-banner-container not-home">
+      <div class="main-logo">
+        <img src="./assets/img/demo-logo2.png" alt="logo" />
+      </div>
+    </div>
+  </header>
+  <div class="mid-page-links-container">
+    <div class="title">About Orthodontics</div>
+    <div class="main-page-link-button toggle-hidden-button" ng-repeat="sectionlink in aboutorthosectionlinks" ui-sref="{{sectionlink.route}}">
+      {{sectionlink.title}}
+    </div>
+  </div>
+
+  <ui-view></ui-view>
+
+  <footerdir></footerdir>
+</main>

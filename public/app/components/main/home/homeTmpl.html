@@ -1,11 +1,27 @@
 <navbardir></navbardir>
-<main class="main">
-  <headerdir></headerdir>
+<main class="main parallax">
+  <header class="header">
+    <div class="header-contact-container">
+      <p>
+        Call Today: 555-555-5555
+      </p>
+      <div class="header-social-link" id="{{sociallink.id}}" ng-repeat="sociallink in sociallinks">
+        <img ng-src="{{sociallink.path}}" alt="{{sociallink.alt}}" />
+      </div>
+    </div>
+    <div class="header-banner-container">
+      <video class="main-video" src="./assets/img/naturetimelapse.mp4" type="video/mp4" autoplay loop muted>
+      </video>
+      <!-- <div class="main-logo">
+        <img src="./assets/img/demo-logo2.  png" alt="logo" />
+      </div> -->
+    </div>
+  </header>
 
   <div class="mid-page-links-container">
     <div class="title">West Street Specialists</div>
-    <div class="main-page-link-button toggle-hidden-button" ng-repeat="sectionlink in homesectionlinks">
-      {{sectionlink}}
+    <div class="main-page-link-button toggle-hidden-button" ng-repeat="sectionlink in homesectionlinks" ui-sref="{{sectionlink.route}}">
+      {{sectionlink.title}}
     </div>
   </div>
 
@@ -25,17 +41,10 @@
         The first step towards a beautiful, healthy smile is to schedule an appointment. Sign in with Facebook or register an account to schedule a consultation online, or contact us by phone to speak with with one of our receptionists directly.
       </p>
       <div class="page-links-wrapper">
-        <div class="page-link-button" ng-click="toggleRegisterForm()">Register Online</div>
+        <div class="page-link-button" ui-sref="account.dashboard">Register Online</div>
         <div class="page-link-button"><a href="tel:9284200056"></a>Call Us</div>
       </div>
     </div>
-    <div class="register-form-container">
-      <div class="facebook-register"></div>
-      <form class="" action="index.html" method="post">
-
-      </form>
-    </div>
-
   </div>
 
   <footerdir></footerdir>

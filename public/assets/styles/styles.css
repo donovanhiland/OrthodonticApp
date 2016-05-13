@@ -1,10 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
 @import url(https://fonts.googleapis.com/css?family=Lato);
+.vertical-center, .header-social-link img, .footer-social-links-wrapper, .footer-social-link img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.left {
+  display: inline-block;
+  float: left; }
+
 html, .main {
   width: 100%;
   height: 100%; }
 
-body {
+h1, h2, h3, h4, h5 {
+  font-family: 'PT Sans', sans-serif; }
+
+.parallax {
   background: url("../img/white-abstract.png");
   background-attachment: fixed;
   width: 100%;
@@ -17,22 +29,33 @@ body {
 .hidden {
   visibility: hidden; }
 
-.vertical-center, .header-social-link img, .footer-social-links-wrapper, .footer-social-link img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%); }
-
-.left {
-  display: inline-block;
-  float: left; }
-
 .bluehover {
   background-color: #5292BD;
   color: white;
   transition: all .5s ease; }
 
+#fb:hover {
+  background-color: #3C5A99; }
+
+#tt:hover {
+  background-color: #54A6E3; }
+
+#gp:hover {
+  background-color: #DD4B39; }
+
+#ig:hover {
+  background-color: #A97C5F; }
+
+#li:hover {
+  background-color: #2e4474; }
+
 html, .main {
-  font-family: 'Lato', sans-serif; }
+  font-family: 'Lato', sans-serif;
+  color: #333333;
+  font-size: 18px; }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'PT Sans', sans-serif; }
 
 header {
   font-family: 'PT Sans', sans-serif; }
@@ -487,6 +510,8 @@ textarea {
   width: 97%;
   padding: 10px; }
   .mobile-menu-link a {
+    width: 100%;
+    height: 100%;
     color: white;
     text-decoration: none; }
   .mobile-menu-link div {
@@ -498,7 +523,7 @@ textarea {
       width: 100%;
       height: 100%; }
 
-#list-arrow {
+.list-arrow {
   transition: transform .5s ease; }
 
 .list-arrow-toggle {
@@ -535,12 +560,14 @@ textarea {
   display: inline-block;
   background-color: #5292BD;
   cursor: pointer;
-  transition: background-color .5s ease; }
+  transition: background-color .7s ease; }
   .header-social-link img {
     height: 20px; }
 
 .main-logo {
+  width: 100%;
   margin: auto;
+  padding: 10px;
   text-align: center;
   background-color: rgba(199, 228, 246, 0.2); }
   .main-logo img {
@@ -552,13 +579,11 @@ textarea {
 
 .main-video {
   width: 100%;
-  position: absolute;
-  z-index: -1; }
+  max-height: 90vh; }
 
-@media (min-width: 720px) {
-  .main-video {
-    height: auto;
-    width: 100%; } }
+.not-home {
+  background-color: #5292BD; }
+
 .footer {
   width: 100%;
   background-color: #131313; }
@@ -575,11 +600,11 @@ textarea {
   margin: 5px;
   color: white;
   font-family: 'PT Sans', sans-serif;
-  font-size: 18px; }
+  font-size: 18px;
+  cursor: pointer; }
 
 .footer-social-links-container {
   width: 100%;
-  height: 80px;
   border-top: 1px solid #717171;
   text-align: center; }
 
@@ -592,14 +617,16 @@ textarea {
   width: 70px;
   height: 70px;
   display: inline-block;
-  background-color: #131313; }
+  background-color: #131313;
+  cursor: pointer;
+  transition: background-color .7s ease; }
   .footer-social-link img {
     height: 30px; }
 
 .legal {
   width: 100%;
-  height: 50px;
   padding-top: 15px;
+  padding-bottom: 10px;
   background-color: #131313;
   border-top: 1px solid #717171;
   font-family: 'PT Sans', sans-serif;
@@ -621,6 +648,7 @@ textarea {
   height: 50px;
   width: 49%;
   min-width: 130px;
+  max-width: 240px;
   display: inline-block;
   padding-left: .5em;
   padding-right: .5em;
@@ -682,8 +710,131 @@ textarea {
     text-align: left;
     margin-bottom: .75em; }
 
-@media (min-width: 860px) {
-  .mid-page-links-container {
-    margin-top: 400px; } }
+.information-container {
+  width: 100%;
+  padding: 40px 0;
+  background-color: white;
+  border-top: 1px solid #717171;
+  text-align: center; }
+  .information-container .information-wrapper {
+    width: 85%;
+    margin: auto; }
+    .information-container .information-wrapper h2 {
+      font-size: 44px; }
+    .information-container .information-wrapper h3 {
+      margin: 25px 0;
+      font-size: 30px; }
+    .information-container .information-wrapper p {
+      margin: 25px 0;
+      text-align: left;
+      line-height: 24px; }
+    .information-container .information-wrapper ul {
+      list-style: disc;
+      text-align: left; }
+      .information-container .information-wrapper ul li {
+        margin: 20px 0; }
+
+.bottom-page-info {
+  padding: 20px;
+  background-color: #5292BD;
+  color: white;
+  text-align: center; }
+
+.signin-container {
+  width: 300px;
+  margin: 50px auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21); }
+
+.form-selector {
+  width: 100%; }
+  .form-selector .selector-button {
+    display: inline-block;
+    width: 49%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .5s ease, color .5s ease; }
+  .form-selector .active {
+    color: rgba(73, 165, 227, 0.74); }
+  .form-selector .inactive {
+    color: gray; }
+  .form-selector .btn-underline-full {
+    width: 100%;
+    height: 3px;
+    margin-bottom: -3px;
+    background-color: #999; }
+  .form-selector .btn-underline-half {
+    width: 50%;
+    height: 3px;
+    background-color: rgba(73, 165, 227, 0.74);
+    float: left;
+    transition: float .5s ease; }
+
+.local-signin {
+  padding: 30px;
+  text-align: center; }
+  .local-signin .facebook-signin {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #3C5A99;
+    color: white;
+    cursor: pointer; }
+  .local-signin .signin-form p {
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 5px; }
+  .local-signin .signin-form input {
+    width: 100%;
+    height: 22px;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+    outline: none; }
+  .local-signin .signin-form a {
+    color: #999;
+    font-size: 13px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px; }
+  .local-signin .signin-form .signup-field {
+    opacity: 0; }
+  .local-signin .signin-form .underline {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 30px;
+    background-color: #999;
+    transition: background-color .5s ease; }
+  .local-signin .signin-form .field-active {
+    background-color: rgba(73, 165, 227, 0.74); }
+  .local-signin .signin-form .sign-btn {
+    width: 105px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(73, 165, 227, 0.74);
+    box-shadow: 0px 2px 20px 2px rgba(73, 165, 227, 0.3);
+    color: white;
+    font-size: 14px; }
+
+.dashboard-main {
+  width: 100%;
+  height: 90vh;
+  background-color: #F0F0F0; }
+
+.dashboard-links {
+  background-color: white; }
+  .dashboard-links li {
+    display: inline-block;
+    float: left;
+    padding: 15px;
+    max-width: 100px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 1px solid #a9a9a9; }
 
 /*# sourceMappingURL=styles.css.map */

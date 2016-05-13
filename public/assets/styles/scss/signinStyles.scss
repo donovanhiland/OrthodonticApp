@@ -1,0 +1,113 @@
+.signin-container {
+  width: 300px;
+  margin: 50px auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+}
+
+.form-selector {
+  width: 100%;
+
+  .selector-button {
+    display: inline-block;;
+    width: 49%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .5s ease,
+                color .5s ease;
+  }
+
+  .active {
+    color: rgba(#49a5e3, 0.74);
+  }
+
+  .inactive {
+    color: darken(#999, 10%);
+  }
+
+  .btn-underline-full {
+    width: 100%;
+    height: 3px;
+    margin-bottom: -3px;
+    background-color: #999;
+  }
+
+  .btn-underline-half {
+    width: 50%;
+    height: 3px;
+    background-color: rgba(#49a5e3, 0.74);
+    float: left;
+    transition: float .5s ease;
+  }
+}
+
+.local-signin {
+  padding: 30px;
+  text-align: center;
+
+  .facebook-signin {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: $facebook;
+    color: white;
+    cursor: pointer;
+  }
+
+  .signin-form {
+    p {
+      font-size: 12px;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      height: 22px;
+      border-radius: 3px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+    }
+
+    a {
+      color: #999;
+      font-size: 13px;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .signup-field {
+      opacity: 0;
+      // margin-top: -20px;
+    }
+
+    .underline {
+      width: 100%;
+      height: 1px;
+      margin-bottom: 30px;
+      background-color: #999;
+      transition: background-color .5s ease;
+    }
+
+    .field-active {
+      background-color: rgba(#49a5e3, 0.74);
+    }
+
+    .sign-btn {
+      width: 105px;
+      height: 50px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(#49a5e3, 0.74);
+      box-shadow: 0px 2px 20px 2px rgba(#49a5e3, 0.3);
+      color: white;
+      font-size: 14px;
+    }
+  }
+}

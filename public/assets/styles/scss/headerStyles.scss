@@ -23,7 +23,7 @@
   display: inline-block;
   background-color: $blue;
   cursor: pointer;
-  transition: background-color .5s ease;
+  transition: background-color .7s ease;
 
   img {
     @extend .vertical-center;
@@ -32,12 +32,13 @@
 }
 
 .main-logo {
+    width: 100%;
     margin: auto;
+    padding: 10px;
     text-align: center;
     background-color: rgba(199, 228, 246, 0.2);
 
     img {
-      // @extend .vertical-center;
       height: 90%;
       width: auto;
     }
@@ -49,13 +50,9 @@
 
 .main-video {
   width: 100%;
-  position: absolute;
-  z-index: -1;
+  max-height: 90vh;
 }
 
-@media (min-width: 720px) {
-  .main-video {
-    height: auto;
-    width: 100%;
-  }
+.not-home {
+  background-color: $blue;
 }

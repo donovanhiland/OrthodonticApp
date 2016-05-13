@@ -5,7 +5,5 @@ angular.module('orthoApp')
       restrict: 'AE',
       templateUrl: 'app/shared/footer/footerdir.html'
     };
-
-
-
+    
   });
