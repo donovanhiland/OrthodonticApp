@@ -1,0 +1,16 @@
+// color variables
+$black: #131313;
+$textblack: #333333;
+$blue: #5292BD;
+$grey: #717171;
+$facebook: #3C5A99;
+$twitter: #54A6E3;
+$google: #DD4B39;
+$instagram: #A97C5F;
+
+// classes to @extend
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

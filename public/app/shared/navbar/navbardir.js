@@ -19,24 +19,26 @@ angular.module('orthoApp')
       },
       link: function(scope, elements, attributes) {
 
-        $(document).ready(function() {
-
           var mobileMenu = $('.mobile-menu');
           var menuLink = $('.mobile-menu-link');
           var subLink = $('.mobile-menu-sublink-list');
+          var main = $('.main');
 
           mobileMenu.hide();
           subLink.hide();
 
+          // $scope.scrollLock = '{position: fixed}';
+
           $('.mobile-menu-button').click(function() {
             mobileMenu.toggle('slide');
-            $('.main').toggleClass('fixed');
             $('.mobile-call-button').toggleClass('hidden');
           });
 
-          $('main').click(function() {
+          main.click(function() {
             mobileMenu.hide('slide');
-            $('body').removeClass('fixed');
+            if($('.mobile-call-button').hasClass('hidden')) {
+              $('.mobile-call-button').removeClass('hidden');
+            }
           });
 
           menuLink.click(function() {
@@ -52,13 +54,6 @@ angular.module('orthoApp')
             $(this).slideToggle();
             $('.list-arrow').removeClass('list-arrow-toggle');
           });
-
-        });
-
-
       }
     };
-
-
-
   });

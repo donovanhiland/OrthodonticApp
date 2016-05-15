@@ -91,9 +91,9 @@ angular.module('orthoApp')
         templateUrl: 'app/components/account/account.signin.html',
         controller: 'signInCtrl'
       })
-      .state('account.dashboard', {
+      .state('account.patientdashboard', {
         url: '/dashboard',
-        templateUrl: 'app/components/account/account.dashboard.html',
+        templateUrl: 'app/components/account/patientdashboard/account.patientdashboard.html',
+        controller: 'dashboardCtrl',
       });
-
   });

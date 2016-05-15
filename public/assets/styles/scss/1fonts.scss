@@ -1,8 +1,9 @@
+@import 'gvariables';
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
-@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);
 
 html {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   color: $textblack;
   font-size: 18px;
 }
@@ -13,4 +14,8 @@ h1,h2,h3,h4,h5 {
 
 header {
   font-family: 'PT Sans', sans-serif;
+}
+
+strong {
+  font-weight: 700;
 }

@@ -1,0 +1,18 @@
+<section class="dashboard">
+    <div class="dashboard-container">
+
+        <p class="greeting">
+            Welcome,
+            <strong>Johnny Johnny</strong>{{patient.name}}!
+        </p>
+        <ul class="dashboard-tabs-list">
+            <li class="dashboard-tab selected" ng-click="showMain()">Main</li>
+            <li class="dashboard-tab blurred" ng-click="showPayment()">Payment</li>
+            <li class="dashboard-tab blurred" ng-click="showSettings()">Settings</li>
+        </ul>
+
+        <db-main-dir ng-show="mainTab"></db-main-dir>
+        <db-payment-dir ng-show="paymentTab"></db-payment-dir>
+        <db-settings-dir ng-show="settingsTab"></db-settings-dir>
+    </div>
+</section>

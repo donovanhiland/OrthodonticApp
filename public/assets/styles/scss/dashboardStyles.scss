@@ -1,18 +1,169 @@
-.dashboard-main {
+@import 'gvariables';
+@import '1fonts';
+
+.seperator-horizontal {
+  width: 90%;
+  height: 2px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.dashboard {
   width: 100%;
-  height: 90vh;
+  padding: 30px 0 30px 0;
+  position: relative;
   background-color: #F0F0F0;
 }
 
-.dashboard-links {
+.greeting {
+  margin-bottom: 25px;
+}
+
+.selected {
+  background-color: $blue;
+  color: white;
+  z-index: 4;
+}
+.blurred {
   background-color: white;
-  li {
+  color: $textblack;
+}
+
+.dashboard-container {
+  width: 95%;
+  margin: auto;
+}
+
+.dashboard-tabs-list {
+  display: inline-block;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+  .dashboard-tab {
     display: inline-block;
-    float: left;
     padding: 15px;
     max-width: 100px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border: 1px solid #a9a9a9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    position: relative;
+  }
+}
+
+// to @extend
+.dashboard-content-container {
+  padding: 7px 15px 7px 15px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+// end
+
+.dashboard-info-container {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  margin-top: -1px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: $blue;;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+  .dashboard-section-wrapper {
+    padding: 25px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+    font-size: 18px;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  .dashboard-button-container {
+    text-align: center;
+    .dashboard-button {
+      display: inline-block;
+      margin: auto;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background-color: rgba(255, 0, 0, 0.55);
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+  //pt dashboard main styles
+  .next-appointment-container {
+    @extend .dashboard-content-container;
+    padding: 20px;
+    text-align: center;
+    h2, h3 {
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 40px;
+    }
+    h3 {
+      font-size: 30px;
+    }
+    h4 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  .report-card-container {
+    @extend .dashboard-content-container;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .report-card-entry {
+      padding: 15px 7px 15px 7px;
+      line-height: 22px;
+      .entry-date {
+        width: 30%;
+        float: left;
+      }
+      .entry-text {
+        width: 70%;
+        padding-left: 15px;
+        display: inline-block;
+        font-weight: 300;
+      }
+    }
+  }
+  //pt dashboard payment styles
+  .line-item {
+    line-height: 40px;
+  }
+  .balance-title {
+    display: inline-block;
+    margin: 0;
+  }
+  .balance-due {
+    margin-top: 20px;
+
+  }
+  .account-balance-info {
+    display: inline-block;
+    float: right;
+  }
+  .payment-history-container {
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    color: $textblack;
+    text-align: left;
+    tr {
+      border-top: 1px solid $textblack;
+      th {
+        cursor: pointer;
+      }
+      th, td {
+        padding: 10px;
+      }
+    }
+    .table-header {
+      border-top: none;
+    }
   }
 }
