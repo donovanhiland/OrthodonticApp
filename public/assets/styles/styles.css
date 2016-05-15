@@ -563,19 +563,21 @@ strong {
     display: inline-block;
     float: right; }
   .dashboard-info-container .payment-history-container {
-    background: white;
-    border-radius: 5px;
     text-align: center; }
   .dashboard-info-container table {
-    width: 100%;
+    display: inline-block;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0 20px;
     color: #333333;
-    text-align: left; }
+    text-align: center; }
     .dashboard-info-container table tr {
       border-top: 1px solid #333333; }
       .dashboard-info-container table tr th {
         cursor: pointer; }
       .dashboard-info-container table tr th, .dashboard-info-container table tr td {
-        padding: 10px; }
+        padding: 10px;
+        vertical-align: middle; }
     .dashboard-info-container table .table-header {
       border-top: none; }
 

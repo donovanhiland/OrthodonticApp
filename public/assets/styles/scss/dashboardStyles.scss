@@ -145,14 +145,15 @@
     float: right;
   }
   .payment-history-container {
-    background: white;
-    border-radius: 5px;
     text-align: center;
   }
   table {
-    width: 100%;
+    display: inline-block;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0 20px;
     color: $textblack;
-    text-align: left;
+    text-align: center;
     tr {
       border-top: 1px solid $textblack;
       th {
@@ -160,6 +161,7 @@
       }
       th, td {
         padding: 10px;
+        vertical-align: middle;
       }
     }
     .table-header {
