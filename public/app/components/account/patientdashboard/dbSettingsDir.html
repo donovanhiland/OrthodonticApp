@@ -1,13 +1,33 @@
 <div class="dashboard-info-container">
-    <div class="dashboard-section-wrapper">
+    <div class="dashboard-section-wrapper settings">
 
-    </div>
-    <div class="seperator-horizontal"></div>
-    <div class="dashboard-section-wrapper">
+      <div class="account-info">
+        <p>
+          EMAIL
+        </p>
+        <div class="contact-info-container">
+          <div class="contact-info" id="email-info" ng-show="!updateEmailBool">
+            {{contactEmail}}
+          </div>
+          <input class="update-info-field" id="email-update" type="phone" ng-model="contactEmail" ng-show="updateEmailBool">
+          <div class="dashboard-button" ng-show="!updateEmailBool" ng-click=" updateContactEmail()">edit</div>
+          <div class="dashboard-button" ng-show="updateEmailBool" ng-click="updateContactEmail()">save</div>
+        </div>
+      </div>
 
-    </div>
-    <div class="seperator-horizontal"></div>
-    <div class="dashboard-section-wrapper">
+      <div class="account-info">
+        <p>
+          PHONE
+        </p>
+        <div class="contact-info-container">
+          <div class="contact-info" id="phone-info" ng-show="!updateNumberBool">
+            {{contactNumber}}
+          </div>
+          <input class="update-info-field" id="phone-update" type="text" ng-model="contactNumber" ng-show="updateNumberBool">
+          <div class="dashboard-button" ng-show="!updateNumberBool" ng-click=" updateContactNumber()">edit</div>
+          <div class="dashboard-button" ng-show="updateNumberBool" ng-click="updateContactNumber()">save</div>
+        </div>
+      </div>
 
     </div>
 </div>

@@ -481,8 +481,7 @@ strong {
   margin: auto; }
 
 .dashboard-tabs-list {
-  display: inline-block;
-  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21); }
+  display: inline-block; }
   .dashboard-tabs-list .dashboard-tab {
     display: inline-block;
     padding: 15px;
@@ -490,7 +489,9 @@ strong {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     cursor: pointer;
-    position: relative; }
+    position: relative;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21);
+    z-index: 0; }
 
 .dashboard-content-container, .dashboard-info-container .next-appointment-container, .dashboard-info-container .report-card-container {
   padding: 7px 15px 7px 15px;
@@ -516,14 +517,15 @@ strong {
     margin-bottom: 15px; }
   .dashboard-info-container .dashboard-button-container {
     text-align: center; }
-    .dashboard-info-container .dashboard-button-container .dashboard-button {
-      display: inline-block;
-      margin: auto;
-      padding: 5px 10px;
-      border-radius: 5px;
-      background-color: rgba(255, 0, 0, 0.55);
-      vertical-align: middle;
-      cursor: pointer; }
+  .dashboard-info-container .dashboard-button {
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #F8891C;
+    vertical-align: middle;
+    cursor: pointer; }
   .dashboard-info-container .next-appointment-container {
     padding: 20px;
     text-align: center; }
@@ -562,7 +564,7 @@ strong {
   .dashboard-info-container .account-balance-info {
     display: inline-block;
     float: right; }
-  .dashboard-info-container .payment-history-container {
+  .dashboard-info-container .table-container {
     text-align: center; }
   .dashboard-info-container table {
     display: inline-block;
@@ -580,6 +582,48 @@ strong {
         vertical-align: middle; }
     .dashboard-info-container table .table-header {
       border-top: none; }
+  .dashboard-info-container .settings {
+    padding-top: 0;
+    padding-bottom: 20px; }
+  .dashboard-info-container .account-info {
+    padding-top: 20px; }
+    .dashboard-info-container .account-info p {
+      margin-bottom: 20px;
+      text-align: center; }
+    .dashboard-info-container .account-info .contact-info-container {
+      height: 28px;
+      vertical-align: middle; }
+      .dashboard-info-container .account-info .contact-info-container .dashboard-button {
+        display: inline-block;
+        float: right; }
+      .dashboard-info-container .account-info .contact-info-container .contact-info {
+        display: inline-block; }
+      .dashboard-info-container .account-info .contact-info-container .update-info-field {
+        transform: translateY(-5px);
+        transform: translateX(-5px); }
+  .dashboard-info-container .center-table {
+    text-align: center; }
+    .dashboard-info-container .center-table p {
+      text-align: left; }
+  .dashboard-info-container .table-container {
+    display: inline-block; }
+  .dashboard-info-container .recent-prospects-table {
+    width: 100%;
+    display: block;
+    padding: 0;
+    border-radius: none;
+    border: 1px solid grey; }
+    .dashboard-info-container .recent-prospects-table th, .dashboard-info-container .recent-prospects-table td {
+      padding: none;
+      border: 1px solid grey; }
+  .dashboard-info-container .patient-search-container {
+    text-align: center; }
+  .dashboard-info-container .patient-search-field {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 10px; }
+  .dashboard-info-container .patient-search-results {
+    padding-top: 20px; }
 
 .vertical-center, .footer-social-links-wrapper, .footer-social-link img {
   position: relative;

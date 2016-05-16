@@ -1,0 +1,72 @@
+<div class="dashboard-info-container">
+    <div class="dashboard-section-wrapper center-table">
+      <p>
+        Recent Prospects
+      </p>
+      <div class="table-container">
+        <table class="recent-prospects-table">
+          <tr class="table-header">
+            <th><strong>Last</strong></th>
+            <th><strong>First</strong></th>
+            <th><strong>Birthdate</strong></th>
+            <th><strong>Application Date</strong></th>
+          </tr>
+          <tr>
+            <td>Johnny</td>
+            <td>Johnny</td>
+            <td>5/16/2000</td>
+            <td>5/17/2016</td>
+          </tr>
+          <!-- <tr ng-repeat="prospect in newProspects">
+              <tr>{{patient.lastname}}</tr>
+              <tr>{{patient.firstname}}</tr>
+              <tr>{{patient.birthdate}}</tr>
+              <tr>{{patient.applicationdate}}</tr>
+          </tr> -->
+        </table>
+      </div>
+    </div>
+    <div class="seperator-horizontal"></div>
+    <div class="dashboard-section-wrapper center-table">
+      <p>
+        Patient Search
+      </p>
+      <div class="patient-search-container">
+        <input class="patient-search-field" type="text" placeholder="last name">
+        <input class="patient-search-field" type="text" placeholder="first name">
+        <input class="patient-search-field" type="text" placeholder="birthdate">
+        <input class="patient-search-field" type="text" placeholder="application date">
+        <div class="dashboard-button">
+          search
+        </div>
+      </div>
+      <div class="patient-search-results">
+        <div class="table-container">
+          <table class="recent-prospects-table">
+            <tr class="table-header">
+              <th><strong>Last</strong></th>
+              <th><strong>First</strong></th>
+              <th><strong>Birthdate</strong></th>
+              <th><strong>Application Date</strong></th>
+            </tr>
+            <tr>
+              <td>Johnny</td>
+              <td>Johnny</td>
+              <td>5/16/2000</td>
+              <td>5/17/2016</td>
+            </tr>
+            <!-- <tr ng-repeat="prospect in newProspects">
+                <tr>{{patient.lastname}}</tr>
+                <tr>{{patient.firstname}}</tr>
+                <tr>{{patient.birthdate}}</tr>
+                <tr>{{patient.applicationdate}}</tr>
+            </tr> -->
+          </table>
+        </div>
+        </table>
+      </div>
+      <div class="dashboard-button" ng-click="showPatient()">
+        test
+      </div>
+    </div>
+</div>

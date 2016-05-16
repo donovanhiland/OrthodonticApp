@@ -37,7 +37,6 @@
 
 .dashboard-tabs-list {
   display: inline-block;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
   .dashboard-tab {
     display: inline-block;
     padding: 15px;
@@ -46,6 +45,8 @@
     border-top-right-radius: 5px;
     cursor: pointer;
     position: relative;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21);
+    z-index: 0;
   }
 }
 
@@ -78,15 +79,16 @@
   }
   .dashboard-button-container {
     text-align: center;
-    .dashboard-button {
-      display: inline-block;
-      margin: auto;
-      padding: 5px 10px;
-      border-radius: 5px;
-      background-color: rgba(255, 0, 0, 0.55);
-      vertical-align: middle;
-      cursor: pointer;
-    }
+  }
+  .dashboard-button {
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #F8891C;
+    vertical-align: middle;
+    cursor: pointer;
   }
   //pt dashboard main styles
   .next-appointment-container {
@@ -144,7 +146,7 @@
     display: inline-block;
     float: right;
   }
-  .payment-history-container {
+  .table-container {
     text-align: center;
   }
   table {
@@ -168,4 +170,65 @@
       border-top: none;
     }
   }
+  //patient settings styles
+  .settings {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+  .account-info {
+    padding-top: 20px;
+    p {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .contact-info-container {
+      height: 28px;
+      vertical-align: middle;
+      .dashboard-button {
+        display: inline-block;
+        float: right;
+      }
+      .contact-info {
+        display: inline-block;
+      }
+      .update-info-field {
+        transform: translateY(-5px);
+        transform: translateX(-5px);
+      }
+    }
+  }
+
+  // doctor dashboard
+  .center-table {
+    text-align: center;
+    p {
+      text-align: left;
+    }
+  }
+  .table-container {
+    display: inline-block;
+  }
+  .recent-prospects-table {
+    width: 100%;
+    display: block;
+    padding: 0;
+    border-radius: none;
+    border: 1px solid grey;
+    th, td {
+      padding: none;
+      border: 1px solid grey;
+    }
+  }
+  .patient-search-container {
+    text-align: center;
+  }
+  .patient-search-field {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 10px;
+  }
+  .patient-search-results {
+    padding-top: 20px;
+  }
+
 }

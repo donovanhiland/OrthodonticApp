@@ -1,22 +1,36 @@
 angular.module('orthoApp')
     .controller('dashboardCtrl', function($scope) {
 
-      $scope.mainTab = true;
+      // tab views
+      $scope.homeTab = true;
       $scope.paymentTab = false;
       $scope.settingsTab = false;
+      // dr only
+      $scope.patientTab = false;
+      $scope.patientTabTab = false;
 
-      $scope.showMain = function() {
-        $scope.mainTab = true;
+      $scope.showHome = function() {
+        $scope.homeTab = true;
         $scope.paymentTab = false;
         $scope.settingsTab = false;
       };
+      $scope.showPatient = function() {
+        $scope.homeTab = false;
+        $scope.patientTab = true;
+        $scope.patientTabTab = true;
+      };
+      $scope.closePatient = function() {
+        $scope.homeTab = true;
+        $scope.patientTab = false;
+        $scope.patientTabTab = false;
+      };
       $scope.showPayment = function() {
-        $scope.mainTab = false;
+        $scope.homeTab = false;
         $scope.paymentTab = true;
         $scope.settingsTab = false;
       };
       $scope.showSettings = function() {
-        $scope.mainTab = false;
+        $scope.homeTab = false;
         $scope.paymentTab = false;
         $scope.settingsTab = true;
       };
@@ -33,4 +47,5 @@ angular.module('orthoApp')
                 $(this).addClass('selected').removeClass('blurred');
             }
         });
+        
     });
