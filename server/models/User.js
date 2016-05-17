@@ -37,7 +37,10 @@ var userSchema = new Schema({
         paymentfrequency: {
             type: Number
         },
-
+    },
+    status: {
+      type: String,
+      default: 'pending'
     }
 });
 

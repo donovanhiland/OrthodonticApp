@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var notesSchema = new Schema({
+var noteSchema = new Schema({
     user: [{
         type: String,
         ref: "User"
@@ -22,4 +22,4 @@ var notesSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model("Notes", notesSchema);
+module.exports = mongoose.model("Note", noteSchema);
