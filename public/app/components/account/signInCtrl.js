@@ -37,27 +37,40 @@ angular.module('orthoApp')
       //animate fields
 
       setTimeout(function() {
-        $('.name-field').
+        $('.firstname-field').
           slideUp('slow');
         $('.name-field').
-          animate({opacity: '0'}, 500);
+          animate({opacity: '0'}, 400);
       }, 200);
+      setTimeout(function() {
+        $('.lastname-field').
+          slideUp('slow');
+        $('.lastname-field').
+          animate({opacity: '0'}, 400);
+      }, 800);
+      setTimeout(function() {
+        $('.confirm-email-field').
+        slideUp('slow');
+        $('.confirm-email-field').
+        animate({opacity: '0'}, 400);
+      }, 1400);
       setTimeout(function() {
         $('.confirm-field').
           slideUp('slow');
         $('.confirm-field').
-          animate({opacity: '0'}, 500);
-      }, 800);
+          animate({opacity: '0'}, 400);
+      }, 2000);
 
       // show forgot password
 
       setTimeout(function() {
         forgotPassword.
-          animate({opacity: '1'}, 500).
+          animate({opacity: '1'}, 400).
           delay(250).
           slideDown();
-      }, 900);
+      }, 2100);
     });
+
 
     $('#signupbtn').click(function() {
 
@@ -73,24 +86,36 @@ angular.module('orthoApp')
       // hide forgot password
 
       forgotPassword.
-        animate({opacity: '0'}, 500).
+        animate({opacity: '0'}, 400).
         delay(250).
         slideUp();
 
       // animate fields
 
       setTimeout(function() {
-        $('.name-field').
+        $('.firstname-field').
           slideDown('slow');
-        $('.name-field').
-          animate({opacity: '1'}, 500);
-      }, 1300);
+        $('.firstname-field').
+          animate({opacity: '1'}, 400);
+      }, 1100);
+      setTimeout(function() {
+        $('.lastname-field').
+          slideDown('slow');
+        $('.lastname-field').
+          animate({opacity: '1'}, 400);
+      }, 1600);
+      setTimeout(function() {
+        $('.confirm-email-field').
+          slideDown('slow');
+        $('.confirm-email-field').
+          animate({opacity: '1'}, 400);
+      }, 2100);
       setTimeout(function() {
         $('.confirm-field').
           slideDown('slow');
         $('.confirm-field').
-          animate({opacity: '1'}, 500);
-      }, 1800);
+          animate({opacity: '1'}, 400);
+      }, 2600);
     });
 
     // highlight underline of selected field

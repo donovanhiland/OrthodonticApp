@@ -5,65 +5,93 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var keys = require('./keys.js');
 
 var app = express();
 var port = 9001;
 
 app.use(express.static(__dirname + '/public'));
-app.use(session({secret: "session secret words"}));
+app.use(session({
+    secret: "session secret words"
+}));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-var checkAuth = function(req, res, next) {
-  if(!req.isAuthenticated()) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    res.redirect('/#/account/signin');
-  }
-  else {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    res.redirect('/#/account/dashboard');
-  }
-  return next();
-};
+//local auth -->
+passport.use(new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        session: false
+    },
+    function(username, password, done) {
+        /// ...
+    }));
+//<-- local auth
 
 
-passport.use(new FacebookStrategy({
-  clientID: keys.facebookKey,
-  clientSecret: keys.facebookSecret,
-  callbackURL: 'http://localhost:'+ port +'/auth/facebook/callback'
-}, function(token, tokenSecret, userProfile, done) {
-  return done(null, userProfile);
-}));
+// GET
+app.get('/users', function(req, res, next) {
+    res.status(200).json('/users');
+    // get all users (doctor page?)
 
-// start
+});
+app.get('/users/:id', function(req, res, next) {
+    // get user account and account information. all documents and contact info, initial balance, balance due, frequency
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+});
+app.get('/appointments', function(req, res, next) {
+    // get all appointments
 
-// callback for facebook
+});
+app.get('/payments', function(req, res, next) {
+    // get payments based on user
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/#/account/dashboard',
-  failureRedirect: '/auth/facebook'
-}));
+});
+app.get('/notes', function(req, res, next) {
+    // get all notes based on user
 
-passport.serializeUser(function(user, done) {
-  // go to mongo get _id for user, put that on session
-  done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-  // get data off of session (see serializeUser)
-  done(null, obj);
-  // put it on req.user in EVERY ENDPOINT
+
+// POST
+app.post('/users', function(req, res, next) {
+    // save user information on signup
+
+});
+app.post('/users/:id', function(req, res, next) {
+    // save paperwork upon completion and after account creation
+
+});
+app.post('/appointments', function(req, res, next) {
+    // schedule an appointment
+    // reschedule appointment
+
+});
+app.post('/payments', function(req, res, next) {
+    // make a payment
+
 });
 
-// app.get('/account/dashboard', checkAuth);
+
+// PUT
+app.put('/users/:id', function() {
+    // update information on user account
+
+});
+app.put('/appointments/:id', function(req, res, next) {
+    // schedule, reschedule (delete appt, schedule appt), cancel appt
+
+});
+app.put('/notes/:id', function() {
+    // update note
+
+});
+
+
 
 app.listen(port, function() {
-  console.log('server started succesfully on port ' + port);
+    console.log('server started succesfully on port ' + port);
 });
