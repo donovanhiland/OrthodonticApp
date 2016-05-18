@@ -18,7 +18,7 @@ var PaymentsCtrl = require('./controllers/PaymentsCtrl');
 var NotesCtrl = require('./controllers/NotesCtrl');
 
 // POLICIES //
-var isAuthed = function() {
+var isAuthed = function(req, res, next) {
     if (!req.isAuthenticated()) {
         return res.status(401).json();
     } else {
@@ -42,26 +42,26 @@ app.use(passport.session());
 
 // GET
 app.get('/logout', UserCtrl.logout);
-app.get('/orthoApp/users', isAuthed, UserCtrl.getAllUsers);
-app.get('/orthoApp/users/:id', isAuthed, UserCtrl.getUser);
-app.get('/orthoApp/appointments', isAuthed, ApptsCtrl.getAppointments);
-app.get('/orthoApp/payments', isAuthed, PaymentsCtrl.getPayments);
-app.get('/orthoApp/notes', isAuthed, NotesCtrl.getNotes);
+app.get('/me', UserCtrl.me);
+app.get('/users', isAuthed, UserCtrl.getAllUsers);
+app.get('/users/:id', isAuthed, UserCtrl.getUser);
+app.get('/appointments', isAuthed, ApptsCtrl.getAppointments);
+app.get('/payments', isAuthed, PaymentsCtrl.getPayments);
+app.get('/notes', isAuthed, NotesCtrl.getNotes);
 
 // POST
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/#/dashboard/patient',
-    failureRedirect: '/#/signin'
+    successRedirect: '/me'
 }));
 app.post('/orthoApp/users', UserCtrl.register);
-app.post('/orthoApp/appointments', isAuthed, ApptsCtrl.createAppointments);
-app.post('/orthoApp/payments', isAuthed, PaymentsCtrl.makePayment);
-app.post('/orthoApp/notes', isAuthed, NotesCtrl.createNote);
+app.post('/appointments', isAuthed, ApptsCtrl.createAppointments);
+app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
+app.post('/notes', isAuthed, NotesCtrl.createNote);
 
 // PUT
-app.put('/orthoApp/users/:id', isAuthed, UserCtrl.update);
-app.put('/orthoApp/appointments/:id', isAuthed, ApptsCtrl.updateAppointment);
-app.put('/orthoApp/notes/:id', isAuthed, NotesCtrl.updateNote);
+app.put('/users/:id', isAuthed, UserCtrl.update);
+app.put('/appointments/:id', isAuthed, ApptsCtrl.updateAppointment);
+app.put('/notes/:id', isAuthed, NotesCtrl.updateNote);
 
 // CONNECTIONS //
 var mongoURI = config.MONGOURI;

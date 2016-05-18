@@ -3,6 +3,10 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
 var userSchema = new Schema({
+    type: {
+      type: String,
+      default: 'user'
+    },
     name: {
         firstname: {
             type: String,
@@ -25,6 +29,9 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    phoneNumber: {
+      type: String
+    },
     documents: {
         type: Array
     },
@@ -38,6 +45,9 @@ var userSchema = new Schema({
         paymentfrequency: {
             type: Number
         },
+    },
+    ett: {
+      type: Number
     },
     status: {
         type: String,

@@ -1,18 +1,27 @@
 angular.module('orthoApp')
-  .controller('signInCtrl', function($scope, signInService) {
+  .controller('signInCtrl', function($scope, accountService, $state) {
 
-    $scope.name = {
-      firstname: $scope.firstname,
-      lastname: $scope.lastname
-    };
-    $scope.name.lastname   = $scope.name.lastname;
-    $scope.email           = $scope.email;
-    $scope.confirmEmail    = $scope.confirmEmail;
-    $scope.password        = $scope.password;
-    $scope.confirmPassword = $scope.confirmPassword;
+    // $scope.name = {
+    //   firstname: $scope.firstname,
+    //   lastname: $scope.lastname
+    // };
+    // $scope.email
+    // $scope.confirmEmail
+    // $scope.password
+    // $scope.confirmPassword
 
     $scope.userLogin = function() {
 
+      var userLoginInfo = {
+        email: $scope.user.email,
+        password: $scope.user.password
+      };
+      accountService.login(userLoginInfo)
+        .then(function(response) {
+          $state.go('account.patientdashboard');
+        }).catch(function(error) {
+          console.log(error, 'user could not login signinctrl23');
+        });
     };
     $scope.register = function() {
 

@@ -1,10 +1,13 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var User = require('./../models/UserModel');
+
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, function(email, password, done) {
+  console.log(email, password, ' login attempt passport.js line 10');
     User.findOne({
             email: email
         })

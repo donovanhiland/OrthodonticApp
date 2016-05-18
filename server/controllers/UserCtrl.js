@@ -8,9 +8,13 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                res.redirect('/#/dashboard/patient');
+                res.send(dbRes);
             }
         });
+    },
+
+    me: function(req, res, next) {
+      res.send(req.user);
     },
 
     getUser: function(req, res, next) {
@@ -43,8 +47,8 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                console.log(dbRes);
-                res.status(200).json(dbRes);
+                
+                res.status(200).json('user updated');
             }
         });
     },

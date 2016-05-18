@@ -6,30 +6,33 @@
     <div class="btn-underline-full"></div>
     <div class="btn-underline-half"></div>
   </div>
+  <div class="error-message-field">
+    <p></p>
+  </div>
   <div class="local-signin">
-    <form class="signin-form" action="index.html" method="post">
+    <form class="signin-form">
       <div class="signup-field firstname-field">
-        <input class="input" type="text" placeholder="FIRST NAME" ng-model="name.firstname">
+        <input class="input" type="text" placeholder="FIRST NAME" ng-model="user.name.firstname">
         <div class="underline"></div>
       </div>
       <div class="signup-field lastname-field">
-        <input class="input" type="text" placeholder="LAST NAME" ng-model="name.lastname">
+        <input class="input" type="text" placeholder="LAST NAME" ng-model="user.name.lastname">
         <div class="underline"></div>
       </div>
       <div>
-        <input class="input" type="text" placeholder="EMAIL" ng-model="email">
+        <input class="input" type="text" placeholder="EMAIL" ng-model="user.email">
         <div class="underline"></div>
       </div>
       <div class="signup-field confirm-email-field">
-        <input class="input" type="text" placeholder="CONFIRM EMAIL" ng-model="confirmEmail">
+        <input class="input" type="text" placeholder="CONFIRM EMAIL" ng-model="user.confirmEmail">
         <div class="underline"></div>
       </div>
       <div>
-        <input class="input" type="password" placeholder="PASSWORD" ng-model="password">
+        <input class="input" type="password" placeholder="PASSWORD" ng-model="user.password">
         <div class="underline"></div>
       </div>
       <div class="signup-field confirm-field">
-        <input class="input" type="text" placeholder="CONFIRM PASSWORD" ng-model="confirmPassword">
+        <input class="input" type="text" placeholder="CONFIRM PASSWORD" ng-model="user.confirmPassword">
         <div class="underline"></div>
       </div>
       <a href="#" class="forgot-password">Forgot Passsword ?</a>

@@ -19,9 +19,9 @@ gulp.task('styles', function() {
 
 gulp.task('frontend-scripts', function() {
   return gulp.src(appJsPath)
-  .pipe(ngmin())
-  .pipe(concat('all.min.js'))
-  .pipe(uglify())
+  // .pipe(ngmin())
+  .pipe(concat('all.js'))
+  // .pipe(uglify())
   .pipe(gulp.dest(appJsDest));
 });
 
