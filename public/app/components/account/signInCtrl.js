@@ -1,6 +1,23 @@
 angular.module('orthoApp')
   .controller('signInCtrl', function($scope, signInService) {
 
+    $scope.name = {
+      firstname: $scope.firstname,
+      lastname: $scope.lastname
+    };
+    $scope.name.lastname   = $scope.name.lastname;
+    $scope.email           = $scope.email;
+    $scope.confirmEmail    = $scope.confirmEmail;
+    $scope.password        = $scope.password;
+    $scope.confirmPassword = $scope.confirmPassword;
+
+    $scope.userLogin = function() {
+
+    };
+    $scope.register = function() {
+
+    };
+
 
     /***** signin jquery start *****/
 
@@ -30,45 +47,41 @@ angular.module('orthoApp')
       $('.btn-underline-half').
         animate({marginLeft: '0'}, 800);
 
-      // change submit button text
-
-      $('.sign-btn').html('SIGN IN');
-
       //animate fields
 
       setTimeout(function() {
         $('.firstname-field').
-          slideUp('slow');
+          slideUp(500);
         $('.name-field').
-          animate({opacity: '0'}, 400);
+          animate({opacity: '0'}, 300);
       }, 200);
       setTimeout(function() {
         $('.lastname-field').
-          slideUp('slow');
+          slideUp(500);
         $('.lastname-field').
-          animate({opacity: '0'}, 400);
-      }, 800);
+          animate({opacity: '0'}, 300);
+      }, 200);
       setTimeout(function() {
         $('.confirm-email-field').
-        slideUp('slow');
+        slideUp(500);
         $('.confirm-email-field').
-        animate({opacity: '0'}, 400);
-      }, 1400);
+        animate({opacity: '0'}, 300);
+      }, 200);
       setTimeout(function() {
         $('.confirm-field').
-          slideUp('slow');
+          slideUp(500);
         $('.confirm-field').
-          animate({opacity: '0'}, 400);
-      }, 2000);
+          animate({opacity: '0'}, 300);
+      }, 200);
 
       // show forgot password
 
       setTimeout(function() {
         forgotPassword.
-          animate({opacity: '1'}, 400).
+          animate({opacity: '1'}, 300).
           delay(250).
-          slideDown();
-      }, 2100);
+          slideDown(300);
+      }, 100);
     });
 
 
@@ -79,43 +92,34 @@ angular.module('orthoApp')
       $('.btn-underline-half').
         animate({marginLeft: '50%'}, 800);
 
-      // change submit button text
-
-      $('.sign-btn').html('SIGN UP');
-
       // hide forgot password
 
       forgotPassword.
-        animate({opacity: '0'}, 400).
-        delay(250).
-        slideUp();
+        animate({opacity: '0'}, 200)
+        .slideUp(200);
 
       // animate fields
 
       setTimeout(function() {
-        $('.firstname-field').
-          slideDown('slow');
-        $('.firstname-field').
-          animate({opacity: '1'}, 400);
-      }, 1100);
+        $('.firstname-field')
+        .slideDown(400)
+        .css({ opacity: 1, transition: 'opacity .30s' });
+      }, 400);
       setTimeout(function() {
-        $('.lastname-field').
-          slideDown('slow');
-        $('.lastname-field').
-          animate({opacity: '1'}, 400);
-      }, 1600);
+        $('.lastname-field')
+        .slideDown(400)
+        .css({ opacity: 1, transition: 'opacity .30s' });
+      }, 600);
       setTimeout(function() {
-        $('.confirm-email-field').
-          slideDown('slow');
-        $('.confirm-email-field').
-          animate({opacity: '1'}, 400);
-      }, 2100);
+        $('.confirm-email-field')
+        .slideDown(400)
+        .css({ opacity: 1, transition: 'opacity .30s' });
+      }, 800);
       setTimeout(function() {
-        $('.confirm-field').
-          slideDown('slow');
-        $('.confirm-field').
-          animate({opacity: '1'}, 400);
-      }, 2600);
+        $('.confirm-field')
+        .slideDown(400)
+        .css({ opacity: 1, transition: 'opacity .30s' });
+      }, 1000);
     });
 
     // highlight underline of selected field

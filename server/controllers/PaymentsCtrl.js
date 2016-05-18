@@ -1,4 +1,4 @@
-var Payments = require('../models/Payments');
+var Payments = require('../models/PaymentsModel');
 
 module.exports = {
 

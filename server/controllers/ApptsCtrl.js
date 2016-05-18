@@ -1,4 +1,4 @@
-var Appointments = require('../models/Appointments');
+var Appointments = require('../models/AppointmentsModel');
 
 module.exports = {
   getAppointments: function(req, res, next) {

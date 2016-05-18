@@ -1,39 +1,40 @@
 
 <section class="signin-container">
   <div class="form-selector">
-    <div class="selector-button active" id="signinbtn">SIGN IN</div>
-    <div class="selector-button inactive" id="signupbtn">SIGN UP</div>
+    <div class="selector-button active" id="signinbtn" ng-click="signUpBool = false">SIGN IN</div>
+    <div class="selector-button inactive" id="signupbtn" ng-click="signUpBool = true">SIGN UP</div>
     <div class="btn-underline-full"></div>
     <div class="btn-underline-half"></div>
   </div>
   <div class="local-signin">
     <form class="signin-form" action="index.html" method="post">
       <div class="signup-field firstname-field">
-        <input class="input" type="text" placeholder="FIRST NAME">
+        <input class="input" type="text" placeholder="FIRST NAME" ng-model="name.firstname">
         <div class="underline"></div>
       </div>
       <div class="signup-field lastname-field">
-        <input class="input" type="text" placeholder="LAST NAME">
+        <input class="input" type="text" placeholder="LAST NAME" ng-model="name.lastname">
         <div class="underline"></div>
       </div>
       <div>
-        <input class="input" type="text" placeholder="EMAIL">
+        <input class="input" type="text" placeholder="EMAIL" ng-model="email">
         <div class="underline"></div>
       </div>
       <div class="signup-field confirm-email-field">
-        <input class="input" type="text" placeholder="CONFIRM EMAIL">
+        <input class="input" type="text" placeholder="CONFIRM EMAIL" ng-model="confirmEmail">
         <div class="underline"></div>
       </div>
       <div>
-        <input class="input" type="password" placeholder="PASSWORD">
+        <input class="input" type="password" placeholder="PASSWORD" ng-model="password">
         <div class="underline"></div>
       </div>
       <div class="signup-field confirm-field">
-        <input class="input" type="text" placeholder="CONFIRM PASSWORD">
+        <input class="input" type="text" placeholder="CONFIRM PASSWORD" ng-model="confirmPassword">
         <div class="underline"></div>
       </div>
       <a href="#" class="forgot-password">Forgot Passsword ?</a>
-      <button class="sign-btn">SIGN IN</button>
+      <button class="sign-btn" ng-show="!signUpBool" ng-click="userLogin()">SIGN IN</button>
+      <button class="sign-btn" ng-show="signUpBool" ng-click="register()">SIGN UP</button>
     </form>
   </div>
 </section>
