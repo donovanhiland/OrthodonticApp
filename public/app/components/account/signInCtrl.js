@@ -77,10 +77,10 @@ angular.module('orthoApp')
       // show forgot password
 
       setTimeout(function() {
-        forgotPassword.
-          animate({opacity: '1'}, 300).
-          delay(250).
-          slideDown(300);
+        forgotPassword
+          .animate({opacity: '1'}, 300)
+          .delay(250)
+          .slideDown(300);
       }, 100);
     });
 
@@ -95,31 +95,32 @@ angular.module('orthoApp')
       // hide forgot password
 
       forgotPassword.
-        animate({opacity: '0'}, 200)
-        .slideUp(200);
+        animate({opacity: '0'}, 300)
+        // .delay(250)
+        .slideUp(300);
 
       // animate fields
 
       setTimeout(function() {
         $('.firstname-field')
-        .slideDown(400)
+        .slideDown(500)
         .css({ opacity: 1, transition: 'opacity .30s' });
-      }, 400);
+      }, 600);
       setTimeout(function() {
         $('.lastname-field')
-        .slideDown(400)
+        .slideDown(500)
         .css({ opacity: 1, transition: 'opacity .30s' });
       }, 600);
       setTimeout(function() {
         $('.confirm-email-field')
-        .slideDown(400)
+        .slideDown(500)
         .css({ opacity: 1, transition: 'opacity .30s' });
-      }, 800);
+      }, 600);
       setTimeout(function() {
         $('.confirm-field')
-        .slideDown(400)
+        .slideDown(500)
         .css({ opacity: 1, transition: 'opacity .30s' });
-      }, 1000);
+      }, 600);
     });
 
     // highlight underline of selected field
