@@ -1,9 +1,22 @@
 <div class="dashboard-info-container">
-    <div class="dashboard-section-wrapper">
+    <div class="dashboard-section-wrapper" ng-show="!userStatus">
+      <p class="pcenter">
+        WELCOME TO THE PATIENT DASHBOARD
+      </p>
+      <div class="dashboard-button-container">
+        <div class="dashboard-button">
+          Schedule Free Consultation
+        </div>
+        <div class="dashboard-button">
+          Download New Patient Paperwork
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-section-wrapper" ng-show="userStatus">
         <canvas id="ett-graph" width="300" height="300"></canvas>
     </div>
-    <div class="seperator-horizontal"></div>
-    <div class="dashboard-section-wrapper">
+    <div class="seperator-horizontal" ng-show="userStatus"></div>
+    <div class="dashboard-section-wrapper" ng-show="userStatus">
         <p>
             NEXT APPOINTMENT
         </p>
@@ -18,8 +31,8 @@
             </div>
         </div>
     </div>
-    <div class="seperator-horizontal"></div>
-    <div class="dashboard-section-wrapper">
+    <div class="seperator-horizontal" ng-show="userStatus"></div>
+    <div class="dashboard-section-wrapper" ng-show="userStatus">
         <p>
             Notes
         </p>

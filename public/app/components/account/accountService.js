@@ -14,7 +14,22 @@ angular.module('orthoApp')
     };
 
     this.register = function(newUser) {
+      return $http ({
+        method: 'POST',
+        url: '/users',
+        data: newUser
+      }).then(function(response) {
+        return response;
+      });
+    };
 
+    this.getUsers = function () {
+      return $http ({
+        method: 'GET',
+        url: '/users'
+      }).then(function(response) {
+        return response;
+      });
     };
 
     this.getCurrentUser = function() {

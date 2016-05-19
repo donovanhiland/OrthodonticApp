@@ -32,12 +32,12 @@
         <div class="underline"></div>
       </div>
       <div class="signup-field confirm-field">
-        <input class="input" type="text" placeholder="CONFIRM PASSWORD" ng-model="user.confirmPassword">
+        <input class="input" type="password" placeholder="CONFIRM PASSWORD" ng-model="user.confirmPassword">
         <div class="underline"></div>
       </div>
       <a href="#" class="forgot-password">Forgot Passsword ?</a>
       <button class="sign-btn" ng-show="!signUpBool" ng-click="userLogin()">SIGN IN</button>
-      <button class="sign-btn" ng-show="signUpBool" ng-click="register()">SIGN UP</button>
+      <button class="sign-btn" ng-show="signUpBool" ng-click="register(user)">SIGN UP</button>
     </form>
   </div>
 </section>

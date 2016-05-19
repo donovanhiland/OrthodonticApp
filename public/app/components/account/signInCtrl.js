@@ -1,17 +1,11 @@
 angular.module('orthoApp')
   .controller('signInCtrl', function($scope, accountService, $state) {
 
-    // $scope.name = {
-    //   firstname: $scope.firstname,
-    //   lastname: $scope.lastname
-    // };
-    // $scope.email
-    // $scope.confirmEmail
-    // $scope.password
-    // $scope.confirmPassword
+    String.prototype.capitalizeFirstLetter = function() {
+      return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+    };
 
     $scope.userLogin = function() {
-
       var userLoginInfo = {
         email: $scope.user.email,
         password: $scope.user.password
@@ -23,8 +17,42 @@ angular.module('orthoApp')
           console.log(error, 'user could not login signinctrl23');
         });
     };
-    $scope.register = function() {
 
+    $scope.register = function(userInfo) {
+      if($scope.user.password !== $scope.user.confirmPassword) {
+        //alert password don't match
+        console.log('passwords do not match');
+        return null;
+      }
+      if($scope.user.email !== $scope.user.confirmEmail) {
+        // show error box that says email does not match
+        console.log('email does not match');
+        return null;
+      }
+      else {
+        var newUserInfo = {
+          name: {
+            firstname: $scope.user.name.firstname,
+            lastname: $scope.user.name.lastname
+          },
+          email: $scope.user.email,
+          password: $scope.user.password
+        };
+        var userLoginInfo = {
+          email: $scope.user.email,
+          password: $scope.user.password
+        };
+        accountService.register(newUserInfo)
+          .then(function(response) {
+            console.log(response.data);
+            accountService.login(userLoginInfo)
+              .then(function(response) {
+                $state.go('account.patientdashboard');
+              }).catch(function(error) {
+                console.log(error, 'user could not login signinctrl23');
+              });
+          });
+      }
     };
 
 

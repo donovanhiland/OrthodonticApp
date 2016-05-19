@@ -35,12 +35,27 @@ angular.module('orthoApp')
             $scope.settingsTab = true;
         };
 
+        $scope.getUsers = function() {
+
+        };
+
+        $scope.userStatus = true;
         $scope.getCurrentUser = function() {
             accountService.getCurrentUser()
                 .then(function(response) {
                     $scope.user = response.data;
                     $scope.pendingEmailChange = $scope.user.email;
                     $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
+
+                    var status = $scope.user.status;
+                    if(status === 'pending' || status === 'prospect') {
+                      $scope.userStatus = false;
+                      $scope.showPaperwork = true;
+                    }
+                    if(status === 'active' || status === 'graduated') {
+                      $scope.userStatus = true;
+                      $scope.showPaperwork = false;
+                    }
                 });
         };
         $scope.getCurrentUser();

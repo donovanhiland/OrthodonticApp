@@ -8,12 +8,14 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                res.send(dbRes);
+              console.log('account creation successful');
+                res.json(dbRes);
             }
         });
     },
 
     me: function(req, res, next) {
+      console.log(req.user);
       res.send(req.user);
     },
 
@@ -47,7 +49,7 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                
+
                 res.status(200).json('user updated');
             }
         });

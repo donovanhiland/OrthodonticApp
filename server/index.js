@@ -26,6 +26,15 @@ var isAuthed = function(req, res, next) {
     }
 };
 
+var isAdmin = function(req, res, next) {
+  if(req.user.type !== 'admin') {
+    return res.status(401);
+  }
+  else {
+    return next();
+  }
+};
+
 // EXPRESS //
 var app = express();
 
@@ -42,8 +51,8 @@ app.use(passport.session());
 
 // GET
 app.get('/logout', UserCtrl.logout);
-app.get('/me', UserCtrl.me);
-app.get('/users', isAuthed, UserCtrl.getAllUsers);
+app.get('/me', isAuthed, UserCtrl.me);
+app.get('/users', isAuthed, isAdmin, UserCtrl.getAllUsers);
 app.get('/users/:id', isAuthed, UserCtrl.getUser);
 app.get('/appointments', isAuthed, ApptsCtrl.getAppointments);
 app.get('/payments', isAuthed, PaymentsCtrl.getPayments);
@@ -53,7 +62,7 @@ app.get('/notes', isAuthed, NotesCtrl.getNotes);
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/me'
 }));
-app.post('/orthoApp/users', UserCtrl.register);
+app.post('/users', UserCtrl.register);
 app.post('/appointments', isAuthed, ApptsCtrl.createAppointments);
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote);
