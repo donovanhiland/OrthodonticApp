@@ -63,9 +63,10 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/me'
 }));
 app.post('/users', UserCtrl.register);
-app.post('/appointments', isAuthed, ApptsCtrl.createAppointments);
+// app.post('/appointments', isAuthed, ApptsCtrl.CHANGETOSOMETHING);
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote);
+app.post('/createAppointments', ApptsCtrl.createAppointments)
 
 // PUT
 app.put('/users/:id', isAuthed, UserCtrl.update);

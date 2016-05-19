@@ -10,12 +10,8 @@ var appointmentsSchema = new Schema({
         type: Date,
         required: true
     },
-    time: {
+    duration: {
         type: Number,
-        required: true
-    },
-    appointmenttype: {
-        type: String,
         required: true
     }
 });
