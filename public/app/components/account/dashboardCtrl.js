@@ -34,9 +34,26 @@ angular.module('orthoApp')
             $scope.paymentTab = false;
             $scope.settingsTab = true;
         };
+        $scope.updateEmailBool = false;
+        $scope.updateNumberBool = false;
+        $scope.editEmail = function() {
+            $scope.updateEmailBool = true;
+            $scope.updateNumberBool = false;
+            $('#email-update').css({
+                width: $('#email-info').width() + 'px'
+            });
+        };
+        $scope.editPhoneNumber = function() {
+            $scope.updateNumberBool = true;
+            $scope.updateEmailBool = false;
+            $('#phone-update').css({
+                width: $('#phone-info').width() + 'px',
+                maxWidth: '200px'
+            });
+        };
 
         $scope.getUsers = function() {
-
+          //get pending users for doctor
         };
 
         $scope.userStatus = true;
@@ -60,27 +77,6 @@ angular.module('orthoApp')
         };
         $scope.getCurrentUser();
 
-        $scope.updateEmailBool = false;
-        $scope.updateNumberBool = false;
-        $scope.editEmail = function() {
-            $scope.updateEmailBool = true;
-            $scope.updateNumberBool = false;
-            $('#email-update').css({
-                width: $('#email-info').width() + 'px'
-            });
-        };
-        $scope.editPhoneNumber = function() {
-            $scope.updateNumberBool = true;
-            $scope.updateEmailBool = false;
-            $('#phone-update').css({
-                width: $('#phone-info').width() + 'px',
-                maxWidth: '200px'
-            });
-        };
-
-        // $scope.pendingEmailChange = $scope.user.email;
-        // $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
-
         $scope.updateUser = function(field, info) {
           console.log($scope.user);
             if(info === $scope.user.phoneNumber || info === $scope.user.email) {
@@ -100,6 +96,13 @@ angular.module('orthoApp')
                     $scope.updateEmailBool = false;
                     $scope.updateNumberBool = false;
                 });
+        };
+
+        $scope.getAppointments = function(dateRange) {
+          accountService.getAppointments(dateRange)
+            .then(function(response) {
+              //ng repeat over appointments
+            });
         };
 
         /*** Dashbaord Jquery ***/

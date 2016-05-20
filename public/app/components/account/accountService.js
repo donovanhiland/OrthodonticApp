@@ -51,4 +51,13 @@ angular.module('orthoApp')
       });
     };
 
+    this.getAppointments = function(query) {
+      return $http ({
+        method: 'GET',
+        url: '/appointments?' + query
+      }).then(function(response) {
+        return response;
+      });
+    };
+
   });

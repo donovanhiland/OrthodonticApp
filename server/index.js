@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var schedule = require('node-schedule');
 
 // PASSPORT //
 var passport = require('./services/passport');
@@ -27,12 +28,11 @@ var isAuthed = function(req, res, next) {
 };
 
 var isAdmin = function(req, res, next) {
-  if(req.user.type !== 'admin') {
-    return res.status(401);
-  }
-  else {
-    return next();
-  }
+    if (req.user.type !== 'admin') {
+        return res.status(401);
+    } else {
+        return next();
+    }
 };
 
 // EXPRESS //
@@ -54,7 +54,7 @@ app.get('/logout', UserCtrl.logout);
 app.get('/me', isAuthed, UserCtrl.me);
 app.get('/users', isAuthed, isAdmin, UserCtrl.getAllUsers);
 app.get('/users/:id', isAuthed, UserCtrl.getUser);
-app.get('/appointments', isAuthed, ApptsCtrl.getAppointments);
+app.get('/appointments', /*isAuthed,*/ ApptsCtrl.getAppointments);
 app.get('/payments', isAuthed, PaymentsCtrl.getPayments);
 app.get('/notes', isAuthed, NotesCtrl.getNotes);
 
@@ -63,15 +63,26 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/me'
 }));
 app.post('/users', UserCtrl.register);
-// app.post('/appointments', isAuthed, ApptsCtrl.CHANGETOSOMETHING);
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote);
-app.post('/createAppointments', ApptsCtrl.createAppointments)
 
 // PUT
 app.put('/users/:id', isAuthed, UserCtrl.update);
 app.put('/appointments/:id', isAuthed, ApptsCtrl.updateAppointment);
 app.put('/notes/:id', isAuthed, NotesCtrl.updateNote);
+
+// SCHEDULED TASKS
+// var rule = new schedule.RecurrenceRule();
+// rule.hour = 00;
+// rule.minute = 01;
+
+var createAppointmentsScheduler = schedule.scheduleJob({
+    hour: 00,
+    minute: 01
+}, function() {
+    console.log('time to update');
+    ApptsCtrl.createAppointments();
+});
 
 // CONNECTIONS //
 var mongoURI = config.MONGOURI;

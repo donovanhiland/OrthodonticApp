@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var appointmentsSchema = new Schema({
-    user: [{
+    user: {
         type: String,
         ref: "User"
-    }],
+    },
     date: {
         type: Date,
         required: true
