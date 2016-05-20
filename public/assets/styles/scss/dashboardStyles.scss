@@ -16,7 +16,8 @@
 
 .dashboard {
   width: 100%;
-  padding: 30px 0 30px 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
   background-color: #F0F0F0;
 }
@@ -59,7 +60,7 @@
 .dashboard-content-container {
   padding: 7px 15px 7px 15px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: $transpWhite;
 }
 // end
 
@@ -87,7 +88,6 @@
   }
   .dashboard-button {
     display: inline-block;
-    margin: auto;
     margin-bottom: 10px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -235,5 +235,76 @@
   .patient-search-results {
     padding-top: 20px;
   }
+}
 
+.schedule-appointment {
+  width: 100%;
+  // display: flex;
+  // justify-content: space-around;
+  text-align: center;
+  .dashboard-button {
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .appointment-table {
+    padding-top: 20px;
+  }
+  .appointment-row {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+    display: flex;
+  }
+  .appointment-cell {
+    width: 33%;
+    margin: auto;
+    float: left;
+  }
+  .schedule-button {
+    width: 20px;
+    height: 20px;
+    background-color: $blue;
+  }
+}
+//date picker styles
+md-datepicker {
+  height: auto;
+  margin: auto;
+  display: inline-block;
+  // float: left;
+}
+.md-datepicker-calendar {
+    position: relative;
+}
+.md-button {
+  min-height: 8px;
+}
+.md-button:not([disabled]).md-focused {
+  background: trasparent;
+}
+.md-datepicker-input-container {
+  padding-bottom: 5px;
+  padding-top: 3px;
+  margin: 0;
+  margin-right: 12px;
+}
+
+.md-calendar-day-header th {
+  background-color: #F8891C;
+  vertical-align: middle;
+}
+
+.md-datepicker-input-container {
+  background-color: white;
+}
+
+.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+  background: #105FA8;
+}
+
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
+    fill: #105FA8;
 }

@@ -53,8 +53,9 @@ angular.module('orthoApp')
 
     this.getAppointments = function(query) {
       return $http ({
-        method: 'GET',
-        url: '/appointments?' + query
+        method: 'POST',
+        url: '/appointments',
+        data: query
       }).then(function(response) {
         return response;
       });

@@ -1,5 +1,9 @@
 @import 'gvariables';
 
+*:focus {
+  outline: none;
+}
+
 html {
   width: 100%;
   height: 100%;

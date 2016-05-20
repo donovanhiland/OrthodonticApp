@@ -1,1 +1,1 @@
-angular.module('orthoApp', ['ui.router', 'ngAnimate']);
+angular.module('orthoApp', ['ui.router', 'ngAnimate', 'ngMaterial']);

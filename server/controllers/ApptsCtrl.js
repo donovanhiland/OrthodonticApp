@@ -28,7 +28,6 @@ module.exports = {
                         Appointments.create(appt);
                     }
                 }
-                // res.status(200).send('appointments schedule populated');
                 return;
             }
             if (dbRes[dbRes.length - 1].date < moment().startOf('day').add(43, 'days').add(6, 'hours').add(30, 'minute')) {
@@ -46,40 +45,20 @@ module.exports = {
                     }
                 })(dbRes);
                 console.log('appointments created');
-                // res.status(200).send('appointments created');
             } else {
                 console.log('appointments up to date');
-                // res.status(200).send('appointments up to date');
             }
         });
     },
 
     getAppointments: function(req, res, next) {
-        console.log(req.query);
-        // {date: {$gte: /*startDate*/, $lte: /*endDate*/}, user:{$exists:false}}
-        Appointments.find({date: {$gte: moment().add(40, 'days').toDate()}, user:{$exists:false}}, function(err, dbRes) {
+
+        Appointments.find(req.body, function(err, dbRes) {
             if (err) {
                 res.status(500).json(err);
             } else {
-              // console.log(dbRes);
-              console.log(dbRes.length);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                console.log(dbRes.length);
+                res.status(200).json(dbRes);
             }
         });
     },

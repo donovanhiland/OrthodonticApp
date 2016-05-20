@@ -15,7 +15,6 @@ module.exports = {
     },
 
     me: function(req, res, next) {
-      console.log(req.user);
       res.send(req.user);
     },
 

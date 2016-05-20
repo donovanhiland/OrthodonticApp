@@ -53,8 +53,7 @@ app.use(passport.session());
 app.get('/logout', UserCtrl.logout);
 app.get('/me', isAuthed, UserCtrl.me);
 app.get('/users', isAuthed, isAdmin, UserCtrl.getAllUsers);
-app.get('/users/:id', isAuthed, UserCtrl.getUser);
-app.get('/appointments', /*isAuthed,*/ ApptsCtrl.getAppointments);
+app.get('/users/:id', /*isAuthed,*/ UserCtrl.getUser);
 app.get('/payments', isAuthed, PaymentsCtrl.getPayments);
 app.get('/notes', isAuthed, NotesCtrl.getNotes);
 
@@ -65,6 +64,7 @@ app.post('/login', passport.authenticate('local', {
 app.post('/users', UserCtrl.register);
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote);
+app.post('/appointments', /*isAuthed,*/ ApptsCtrl.getAppointments);
 
 // PUT
 app.put('/users/:id', isAuthed, UserCtrl.update);

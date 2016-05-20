@@ -1,16 +1,16 @@
 <div class="dashboard-info-container">
     <div class="dashboard-section-wrapper" ng-show="!userStatus">
-      <p class="pcenter">
-        WELCOME TO THE PATIENT DASHBOARD
-      </p>
-      <div class="dashboard-button-container">
-        <div class="dashboard-button">
-          Schedule Free Consultation
+        <p class="pcenter">
+            WELCOME TO THE PATIENT DASHBOARD
+        </p>
+        <div class="dashboard-button-container">
+            <div class="dashboard-button">
+                Schedule Free Consultation
+            </div>
+            <div class="dashboard-button">
+                Download New Patient Paperwork
+            </div>
         </div>
-        <div class="dashboard-button">
-          Download New Patient Paperwork
-        </div>
-      </div>
     </div>
     <div class="dashboard-section-wrapper" ng-show="userStatus">
         <canvas id="ett-graph" width="300" height="300"></canvas>
@@ -21,13 +21,32 @@
             NEXT APPOINTMENT
         </p>
         <div class="next-appointment-container">
-            <h2>May 24th</h2>
-            <h3>3:30 PM</h3>
-            <h4>Short Appointment (30mins)</h4>
+            <h3 ng-show="!appointmentExists">No Appointments Scheduled</h3>
+            <h2>{{patientAppointment.date | date : 'MMM d'}}</h2>
+            <h3>{{patientAppointment.date | date : 'shortTime'}}</h3>
+            <h4>{{patientAppointment.type}}</h4>
             <div class="dashboard-button-container">
-                <div class="dashboard-button">Schedule</div>
-                <div class="dashboard-button">Reschedule</div>
-                <div class="dashboard-button">Cancel</div>
+
+                <div class="dashboard-button" ng-show="appointmentExists">Reschedule</div>
+                <div class="dashboard-button" ng-show="appointmentExists">Cancel Appointment</div>
+
+            </div>
+            <div class="schedule-appointment" ng-show="!appointmentExists">
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+
+                <div class="dashboard-button" ng-click="getAppointments(myDate)" ng-show="!appointmentExists">View Appointments</div>
+
+                <div class="appointment-table">
+                    <div class="appointment-row" ng-repeat="appts in appointmentList">
+                        <div class="appointment-cell">
+                            {{appts.date | date : 'MMM d'}}
+                        </div>
+                        <div class="appointment-cell">
+                            {{appts.date | date : 'shortTime'}}
+                        </div>
+                        <div class="appointment-cell schedule-button"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

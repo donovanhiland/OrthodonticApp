@@ -1,10 +1,11 @@
 angular.module('orthoApp')
     .controller('dashboardCtrl', function($scope, accountService) {
-
+        ///// NG SHOW BOOLEANS /////
         // tab views
         $scope.homeTab = true;
         $scope.paymentTab = false;
         $scope.settingsTab = false;
+        $scope.appointmentExists = false;
         // dr only
         $scope.patientTab = false;
         $scope.patientTabTab = false;
@@ -53,7 +54,7 @@ angular.module('orthoApp')
         };
 
         $scope.getUsers = function() {
-          //get pending users for doctor
+            //get pending users for doctor
         };
 
         $scope.userStatus = true;
@@ -65,24 +66,24 @@ angular.module('orthoApp')
                     $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
 
                     var status = $scope.user.status;
-                    if(status === 'pending' || status === 'prospect') {
-                      $scope.userStatus = false;
-                      $scope.showPaperwork = true;
+                    if (status === 'pending' || status === 'prospect') {
+                        $scope.userStatus = false;
+                        $scope.showPaperwork = true;
                     }
-                    if(status === 'active' || status === 'graduated') {
-                      $scope.userStatus = true;
-                      $scope.showPaperwork = false;
+                    if (status === 'active' || status === 'graduated') {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = false;
                     }
                 });
         };
         $scope.getCurrentUser();
 
         $scope.updateUser = function(field, info) {
-          console.log($scope.user);
-            if(info === $scope.user.phoneNumber || info === $scope.user.email) {
-              $scope.updateEmailBool = false;
-              $scope.updateNumberBool = false;
-              return null;
+            console.log($scope.user);
+            if (info === $scope.user.phoneNumber || info === $scope.user.email) {
+                $scope.updateEmailBool = false;
+                $scope.updateNumberBool = false;
+                return null;
             }
             if (field === 'email') {
                 $scope.user.email = info;
@@ -98,12 +99,46 @@ angular.module('orthoApp')
                 });
         };
 
-        $scope.getAppointments = function(dateRange) {
-          accountService.getAppointments(dateRange)
-            .then(function(response) {
-              //ng repeat over appointments
-            });
+        $scope.getAppointments = function(date) {
+            var startDate = date;
+            var endDate = moment(date).add(1, 'days').toDate();
+            var query;
+            if (date) {
+                query = {
+                    date: {
+                        $gte: startDate,
+                        $lte: endDate,
+                    },
+                    user: {
+                        $exists: false
+                    }
+                };
+            } else {
+                query = {
+                    user: {
+                        $exists: false
+                    }
+                };
+            }
+            accountService.getAppointments(query)
+                .then(function(response) {
+                    //ng repeat over appointments
+                    $scope.appointmentList = response.data;
+
+                });
         };
+
+        $scope.getScheduledAppointment = function() {
+            // retrieve currently scheduled apointment for patient.
+            // if none is scheduled hide 'reschedule' and 'cancel appt' and show 'schedule'
+            // if an appt is scheduled, hide 'schedule' and show 'reschedule' and 'cancel appt'
+
+        };
+
+        //date picker
+        $scope.myDate = new Date(moment().toDate());
+        $scope.minDate = new Date(moment().toDate());
+        $scope.maxDate = new Date(moment().add(45, 'days').toDate());
 
         /*** Dashbaord Jquery ***/
 
