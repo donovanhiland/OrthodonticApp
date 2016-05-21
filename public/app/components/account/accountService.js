@@ -61,4 +61,14 @@ angular.module('orthoApp')
       });
     };
 
+    this.scheduleAppointment = function(apptId, userId) {
+      return $http ({
+        method: 'PUT',
+        url: '/appointments/' + apptId,
+        data: userId
+      }).then(function(response) {
+        return response;
+      });
+    };
+
   });

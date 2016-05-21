@@ -57,21 +57,18 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                console.log(dbRes.length);
                 res.status(200).json(dbRes);
             }
         });
     },
 
-    updateAppointment: function(req, res, next) {
+    scheduleAppointment: function(req, res, next) {
         // schedule, reschedule (delete appt, schedule appt), cancel appt
         var appointmentId = req.params.id;
+        req.user.appointment = appointmentId;
         Appointments.findByIdAndUpdate(appointmentId, req.body, function(err, dbRes) {
-            if (err) {
-                res.status(500).json(err);
-            } else {
-                res.status(200).json(dbRes);
-            }
+            if (err) res.status(500).json(err);
+            else res.status(200).json(dbRes);
         });
     },
 

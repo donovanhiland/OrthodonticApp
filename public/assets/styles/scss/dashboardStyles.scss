@@ -250,13 +250,17 @@
   }
   .appointment-table {
     padding-top: 20px;
+    // border: 1px solid $blue;
   }
   .appointment-row {
     width: 80%;
     height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin: auto;
-    margin-bottom: 10px;
     display: flex;
+    color: $textblack;
+    cursor: pointer;
   }
   .appointment-cell {
     width: 33%;
@@ -266,14 +270,16 @@
   .schedule-button {
     width: 20px;
     height: 20px;
+    margin: auto;
     background-color: $blue;
+    float: right;
   }
 }
 //date picker styles
 md-datepicker {
   height: auto;
   margin: auto;
-  display: inline-block;
+  display: block;
   // float: left;
 }
 .md-datepicker-calendar {

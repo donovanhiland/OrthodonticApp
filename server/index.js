@@ -68,13 +68,8 @@ app.post('/appointments', /*isAuthed,*/ ApptsCtrl.getAppointments);
 
 // PUT
 app.put('/users/:id', isAuthed, UserCtrl.update);
-app.put('/appointments/:id', isAuthed, ApptsCtrl.updateAppointment);
+app.put('/appointments/:id', isAuthed, ApptsCtrl.scheduleAppointment);
 app.put('/notes/:id', isAuthed, NotesCtrl.updateNote);
-
-// SCHEDULED TASKS
-// var rule = new schedule.RecurrenceRule();
-// rule.hour = 00;
-// rule.minute = 01;
 
 var createAppointmentsScheduler = schedule.scheduleJob({
     hour: 00,

@@ -8,26 +8,32 @@ module.exports = {
             if (err) {
                 res.status(500).json(err);
             } else {
-              console.log('account creation successful');
+                console.log('account creation successful');
                 res.json(dbRes);
             }
         });
     },
 
     me: function(req, res, next) {
-      res.send(req.user);
+        User.findById(req.user._id)
+            .populate('appointment')
+            // .populate('notes')
+            .exec(function(err, dbRes) {
+                if (err) res.status(500).json(err);
+                res.status(200).json(dbRes);
+            });
     },
 
     getUser: function(req, res, next) {
         // get user account and account information. all documents and contact info, initial balance, balance due, frequency
         var userId = req.params.id;
-        User.findById(userId, function(err, dbRes) {
-            if (err) {
-                res.status(500).json(err);
-            } else {
+        User.findById(userId)
+            .populate('appointment')
+            .exec(function(err, dbRes) {
+                if (err) res.status(500).json(err);
+                console.log(dbRes);
                 res.status(200).json(dbRes);
-            }
-        });
+            });
     },
 
     getAllUsers: function(req, res, next) {

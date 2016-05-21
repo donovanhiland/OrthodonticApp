@@ -169,6 +169,16 @@ angular.module('orthoApp')
       });
     };
 
+    this.scheduleAppointment = function(apptId, userId) {
+      return $http ({
+        method: 'PUT',
+        url: '/appointments/' + apptId,
+        data: userId
+      }).then(function(response) {
+        return response;
+      });
+    };
+
   });
 
 angular.module('orthoApp')
@@ -235,17 +245,31 @@ angular.module('orthoApp')
             accountService.getCurrentUser()
                 .then(function(response) {
                     $scope.user = response.data;
+                    console.log($scope.user);
                     $scope.pendingEmailChange = $scope.user.email;
                     $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
 
                     var status = $scope.user.status;
-                    if (status === 'pending' || status === 'prospect') {
+                    var appointment = $scope.user.appointment;
+                    if (status === 'pending' && !appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = false;
+                    }
+                    if (status === 'pending' && appointment) {
                         $scope.userStatus = false;
                         $scope.showPaperwork = true;
+                        $scope.appointmentExists = true;
                     }
-                    if (status === 'active' || status === 'graduated') {
+                    if (status === 'active' && appointment) {
                         $scope.userStatus = true;
-                        $scope.showPaperwork = false;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = true;
+                    }
+                    if (status === 'active' && !appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = false;
                     }
                 });
         };
@@ -273,19 +297,35 @@ angular.module('orthoApp')
         };
 
         $scope.getAppointments = function(date) {
+            var now = moment().toDate();
             var startDate = date;
-            var endDate = moment(date).add(1, 'days').toDate();
+            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
             var query;
+
             if (date) {
-                query = {
-                    date: {
-                        $gte: startDate,
-                        $lte: endDate,
-                    },
-                    user: {
-                        $exists: false
-                    }
-                };
+                if (startDate < moment().toDate()) {
+                    console.log('dont show earlier appointments');
+                    query = {
+                        date: {
+                            $gte: moment().toDate(),
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
+                if (startDate >= moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: startDate,
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
             } else {
                 query = {
                     user: {
@@ -295,17 +335,23 @@ angular.module('orthoApp')
             }
             accountService.getAppointments(query)
                 .then(function(response) {
-                    //ng repeat over appointments
                     $scope.appointmentList = response.data;
-
                 });
         };
 
-        $scope.getScheduledAppointment = function() {
-            // retrieve currently scheduled apointment for patient.
-            // if none is scheduled hide 'reschedule' and 'cancel appt' and show 'schedule'
-            // if an appt is scheduled, hide 'schedule' and show 'reschedule' and 'cancel appt'
+        $scope.scheduleAppointment = function(index) {
 
+            var apptId = $scope.appointmentList[index]._id;
+            var userId = $scope.user._id;
+
+            accountService.scheduleAppointment(apptId, {
+                    user: userId
+                })
+                .then(function(response) {
+                    $scope.getCurrentUser();
+                    console.log($scope.user);
+                    $scope.appointmentExists = false;
+                });
         };
 
         //date picker
@@ -731,70 +777,83 @@ angular.module('orthoApp')
   });
 
 angular.module('orthoApp')
-  .directive('dbMainDir', function(accountService) {
+    .directive('dbMainDir', function(accountService) {
 
-    return {
-      restrict: 'AE',
-      templateUrl: 'app/components/account/patientdashboard/dbMainDir.html',
-      // controller: 
-      link: function($scope) {
+        return {
+            restrict: 'AE',
+            templateUrl: 'app/components/account/patientdashboard/dbMainDir.html',
+            // controller:
+            link: function($scope) {
 
-        /*** Chart JS ***/
-        accountService.getCurrentUser()
-          .then(function(response) {
-            var treatmentTime = response.data.ett;
-            var daysLeft = treatmentTime;
-            var daysPassed = 0;
+                /*** Chart JS ***/
+                accountService.getCurrentUser()
+                    .then(function(response) {
+                        var treatmentTime = response.data.ett;
+                        var daysLeft = treatmentTime;
+                        var daysPassed = 0;
 
-            var ctx = $('#ett-graph');
-            var ettChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ["Days Left", "Days Passed"],
-                    datasets: [{
-                        label: 'days',
-                        data: [daysLeft, daysPassed],
-                        backgroundColor: ['#98de25','#A8C9DE'],
-                        borderWidth: '10px',
-                        borderColor: ['#98de25','#A8C9DE']
-                    }]
-                },
-                options: {
-                    defaultFontColor: 'white',
-                    cutoutPercentage: 60
-                }
-            });
-            Chart.defaults.global.title.display = true;
-            Chart.defaults.global.title.text = 'Test Text';
-            Chart.defaults.global.title.fontColor = 'white';
-            Chart.defaults.global.title.fontSize = 16;
-            Chart.defaults.global.title.position = 'bottom';
-            Chart.defaults.global.defaultFontColor = 'white';
-            Chart.defaults.global.defaultFontFamily = 'sans-serif';
-            Chart.defaults.global.defaultFontSize = 14;
+                        Chart.defaults.global.title.display = true;
+                        Chart.defaults.global.title.text = 'Estimated Treatment Time Chart';
+                        Chart.defaults.global.title.fontColor = 'white';
+                        Chart.defaults.global.title.fontSize = 16;
+                        Chart.defaults.global.title.position = 'bottom';
+                        Chart.defaults.global.defaultFontColor = 'white';
+                        Chart.defaults.global.defaultFontFamily = 'sans-serif';
+                        Chart.defaults.global.defaultFontSize = 14;
 
-            setTimeout(function() {
-              var updateChart = setInterval(function() {
-                if(daysPassed >= treatmentTime) {
-                  clearInterval(updateChart);
-                }
-                else {
-                  ettChart.data.datasets[0].data[0] -= 1;
-                  daysLeft -= 1;
-                  ettChart.data.datasets[0].data[1] += 1;
-                  daysPassed += 1;
-                  ettChart.update();
-                }
-              }, 200);
-            }, 1000);
-          });
+                        var ctx = $('#ett-graph');
+                        var ettChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ["Days Left", "Days Passed"],
+                                datasets: [{
+                                    label: 'days',
+                                    data: [daysLeft, daysPassed],
+                                    backgroundColor: ['#98de25', '#A8C9DE'],
+                                    borderWidth: '10px',
+                                    borderColor: ['#98de25', '#A8C9DE']
+                                }]
+                            },
+                            options: {
+                                defaultFontColor: 'white',
+                                cutoutPercentage: 60
+                            }
+                        });
+                        // var test = ctx.getContext("2d");
+                        // // horizontally align text around the specified point (cx)
+                        // test.textAlign = 'center';
+                        //
+                        // // vertically align text around the specified point (cy)
+                        // test.textBaseline = 'middle';
+                        //
+                        // // draw the text
+                        // test.font = '14px verdana';
+                        // test.fillStyle = 'black';
+                        // test.fillText(daysLeft + ' days left', cx, cy);
 
 
 
-      }
-    };
+                        setTimeout(function() {
+                            var updateChart = setInterval(function() {
+                                if (daysPassed >= treatmentTime) {
+                                    clearInterval(updateChart);
+                                } else {
+                                    ettChart.data.datasets[0].data[0] -= 1;
+                                    daysLeft -= 1;
+                                    ettChart.data.datasets[0].data[1] += 1;
+                                    daysPassed += 1;
+                                    ettChart.update();
+                                }
+                            }, 200);
+                        }, 1000);
+                    });
 
-  });
+
+
+            }
+        };
+
+    });
 
 angular.module('orthoApp')
   .directive('dbPaymentDir', function() {

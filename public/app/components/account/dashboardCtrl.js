@@ -62,17 +62,31 @@ angular.module('orthoApp')
             accountService.getCurrentUser()
                 .then(function(response) {
                     $scope.user = response.data;
+                    console.log($scope.user);
                     $scope.pendingEmailChange = $scope.user.email;
                     $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
 
                     var status = $scope.user.status;
-                    if (status === 'pending' || status === 'prospect') {
+                    var appointment = $scope.user.appointment;
+                    if (status === 'pending' && !appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = false;
+                    }
+                    if (status === 'pending' && appointment) {
                         $scope.userStatus = false;
                         $scope.showPaperwork = true;
+                        $scope.appointmentExists = true;
                     }
-                    if (status === 'active' || status === 'graduated') {
+                    if (status === 'active' && appointment) {
                         $scope.userStatus = true;
-                        $scope.showPaperwork = false;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = true;
+                    }
+                    if (status === 'active' && !appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.appointmentExists = false;
                     }
                 });
         };
@@ -100,19 +114,35 @@ angular.module('orthoApp')
         };
 
         $scope.getAppointments = function(date) {
+            var now = moment().toDate();
             var startDate = date;
-            var endDate = moment(date).add(1, 'days').toDate();
+            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
             var query;
+
             if (date) {
-                query = {
-                    date: {
-                        $gte: startDate,
-                        $lte: endDate,
-                    },
-                    user: {
-                        $exists: false
-                    }
-                };
+                if (startDate < moment().toDate()) {
+                    console.log('dont show earlier appointments');
+                    query = {
+                        date: {
+                            $gte: moment().toDate(),
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
+                if (startDate >= moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: startDate,
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
             } else {
                 query = {
                     user: {
@@ -122,17 +152,23 @@ angular.module('orthoApp')
             }
             accountService.getAppointments(query)
                 .then(function(response) {
-                    //ng repeat over appointments
                     $scope.appointmentList = response.data;
-
                 });
         };
 
-        $scope.getScheduledAppointment = function() {
-            // retrieve currently scheduled apointment for patient.
-            // if none is scheduled hide 'reschedule' and 'cancel appt' and show 'schedule'
-            // if an appt is scheduled, hide 'schedule' and show 'reschedule' and 'cancel appt'
+        $scope.scheduleAppointment = function(index) {
 
+            var apptId = $scope.appointmentList[index]._id;
+            var userId = $scope.user._id;
+
+            accountService.scheduleAppointment(apptId, {
+                    user: userId
+                })
+                .then(function(response) {
+                    $scope.getCurrentUser();
+                    console.log($scope.user);
+                    $scope.appointmentExists = false;
+                });
         };
 
         //date picker

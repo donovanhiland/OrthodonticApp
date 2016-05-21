@@ -57,6 +57,10 @@ var userSchema = new Schema({
     status: {
         type: String,
         default: 'pending'
+    },
+    appointment: {
+      type: Schema.Types.ObjectId,
+      ref: 'Appointments'
     }
 });
 
