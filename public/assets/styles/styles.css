@@ -458,6 +458,9 @@ strong {
   background-color: white;
   border-radius: 10px; }
 
+.margintop {
+  margin-top: 10px; }
+
 .pcenter {
   text-align: center;
   font-size: 30px; }

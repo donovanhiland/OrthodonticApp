@@ -14,10 +14,9 @@ module.exports = {
         Appointments.find({}, function(err, dbRes) {
             if (err) {
                 res.status(500).json(err);
-                console.log('error');
             }
             if (dbRes.length === 0) {
-                console.log('no appointments scheduled');
+                console.log('no appointments scheduled, apptsCtrl line 19');
 
                 for (var i = 0; i < 45; i++) {
                     var startMoment = moment().startOf('day').add(6, 'hours').add(30, 'minute');
@@ -32,7 +31,6 @@ module.exports = {
                 return;
             }
             if (dbRes[dbRes.length - 1].date < moment().startOf('day').add(43, 'days').add(6, 'hours').add(30, 'minute')) {
-                console.log(dbRes[dbRes.length - 1].date);
                 console.log('creating appointments - ApptsCtrl line 38');
                 (function(dbRes) {
                     if (dbRes[dbRes.length - 1].date < moment().add(45, 'days').toDate()) {
@@ -79,15 +77,12 @@ module.exports = {
     },
 
     cancelAppointment: function(req, res, next) {
-      console.log('appt id', req.params.id);
         Appointments.findByIdAndUpdate(req.params.id, {
             $unset: {
                 user: ''
             }
         }, function(err, dbRes) {
             if (err) res.status(500).json(err);
-            console.log(dbRes);
-            // res.status(200).json(dbRes);
             next();
         });
     }

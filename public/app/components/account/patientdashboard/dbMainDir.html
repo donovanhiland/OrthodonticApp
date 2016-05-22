@@ -4,7 +4,7 @@
             WELCOME TO THE PATIENT DASHBOARD
         </p>
         <div class="dashboard-button-container">
-            <div class="dashboard-button">
+            <div class="dashboard-button" ng-click="startSchedule = !startSchedule" ng-show="showConsult">
                 Schedule Free Consultation
             </div>
             <div class="dashboard-button">
@@ -15,13 +15,13 @@
     <div class="dashboard-section-wrapper" ng-show="userStatus">
         <canvas id="ett-graph" width="300" height="300"></canvas>
     </div>
-    <div class="seperator-horizontal" ng-show="userStatus"></div>
-    <div class="dashboard-section-wrapper" ng-show="userStatus">
+    <div class="seperator-horizontal" ng-show="startSchedule"></div>
+    <div class="dashboard-section-wrapper" ng-show="startSchedule">
         <p>
             NEXT APPOINTMENT
         </p>
         <div class="next-appointment-container">
-            <div class="confirmation-modal" ng-show="showConfirmationBool">
+            <!-- <div class="confirmation-modal" ng-show="showConfirmationBool"> -->
                 <!-- <div class="warning-container">
                     <h3>Are you sure?</h3>
                     <h4>Your previously scheduled appointment time will be put up for grabs</h4>
@@ -30,7 +30,7 @@
                         <div class="dashboard-button" ng-click="notConfirmed()">No</div>
                     </div>
                 </div> -->
-            </div>
+            <!-- </div> -->
             <h3 ng-show="!appointmentExists">No Appointments Scheduled</h3>
             <h2>{{user.appointment.date | date : 'MMM d'}}</h2>
             <h3>{{user.appointment.date | date : 'shortTime'}}</h3>
@@ -43,7 +43,7 @@
                 <div class="dashboard-button" ng-show="appointmentExists" ng-click="cancelAppointment()">cancel appointment</div>
 
             </div>
-            <div class="seperator-horizontal" ng-show="scheduleAppointmentBool"></div>
+            <div class="seperator-horizontal margintop" ng-show="scheduleAppointmentBool"></div>
             <div class="schedule-appointment" ng-show="scheduleAppointmentBool">
                 <h4>Select a date:</h4>
                 <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>

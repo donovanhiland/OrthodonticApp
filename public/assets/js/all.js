@@ -263,28 +263,32 @@ angular.module('orthoApp')
                     var status = $scope.user.status;
                     var appointment = $scope.user.appointment;
                     if (status === 'pending' && !appointment) {
-                        $scope.userStatus = true;
+                        $scope.userStatus = false;
                         $scope.showPaperwork = true;
+                        $scope.showConsult = true;
                         $scope.appointmentExists = false;
                         // $scope.scheduleAppointmentBool = true;
                     }
                     if (status === 'pending' && appointment) {
                         $scope.userStatus = false;
                         $scope.showPaperwork = true;
+                        $scope.showConsult = false;
+                        $scope.startSchedule = true;
                         $scope.appointmentExists = true;
                         $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && appointment) {
                         $scope.userStatus = true;
                         $scope.showPaperwork = true;
+                        $scope.startSchedule = true;
                         $scope.appointmentExists = true;
                         $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && !appointment) {
                         $scope.userStatus = true;
                         $scope.showPaperwork = true;
+                        $scope.startSchedule = true;
                         $scope.appointmentExists = false;
-                        // $scope.scheduleAppointmentBool = true;
                     }
                 });
         };
@@ -361,11 +365,7 @@ angular.module('orthoApp')
             var appointment = $scope.user.appointment;
 
             if (appointment) {
-                if (confirm('Are you sure? Your previously scheduled appointment time will be put up for grabs. Press Ok to continue')) {
-                    console.log('apptId', apptId);
-                    console.log('userId', {
-                        user: userId
-                    });
+                if ($('.warning-container').confirm()) {
                     accountService.cancelAppointment($scope.user.appointment._id, {
                         user: userId
                     }).then(function(response) {
@@ -381,7 +381,6 @@ angular.module('orthoApp')
                 }
             }
             if (!appointment) {
-                console.log('misfire');
                 accountService.scheduleAppointment(apptId, {
                         user: userId
                     })
@@ -442,6 +441,9 @@ angular.module('orthoApp')
             };
             accountService.login(userLoginInfo)
                 .then(function(response) {
+                    if ($scope.user.type === 'admin') {
+                        $state.go('account.doctordashboard');
+                    }
                     $state.go('account.patientdashboard');
                 }).catch(function(error) {
                     console.log(error, 'user could not login signinctrl23');

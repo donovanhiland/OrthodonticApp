@@ -7,7 +7,7 @@
         </p>
         <ul class="dashboard-tabs-list">
             <li class="dashboard-tab selected" ng-click="showHome()">Home</li>
-            <li class="dashboard-tab blurred" ng-click="showPayment()">Payment</li>
+            <li class="dashboard-tab blurred" ng-click="showPayment()" ng-show="userStatus">Payment</li>
             <li class="dashboard-tab blurred" ng-click="showSettings()">Settings</li>
         </ul>
 

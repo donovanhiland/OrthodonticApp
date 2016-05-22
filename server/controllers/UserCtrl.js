@@ -31,7 +31,6 @@ module.exports = {
             .populate('appointment')
             .exec(function(err, dbRes) {
                 if (err) res.status(500).json(err);
-                console.log(dbRes);
                 res.status(200).json(dbRes);
             });
     },
