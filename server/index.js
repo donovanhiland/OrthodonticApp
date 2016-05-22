@@ -64,11 +64,14 @@ app.post('/login', passport.authenticate('local', {
 app.post('/users', UserCtrl.register);
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote);
-app.post('/appointments', /*isAuthed,*/ ApptsCtrl.getAppointments);
+app.post('/appointments', isAuthed, ApptsCtrl.getAppointments);
+//cancel appointment
+app.post('/appointments/:id', isAuthed, ApptsCtrl.cancelAppointment, UserCtrl.cancelAppointment);
 
 // PUT
 app.put('/users/:id', isAuthed, UserCtrl.update);
-app.put('/appointments/:id', isAuthed, ApptsCtrl.scheduleAppointment);
+//schedule appointment
+app.put('/appointments/:id', isAuthed, ApptsCtrl.scheduleAppointment, UserCtrl.me);
 app.put('/notes/:id', isAuthed, NotesCtrl.updateNote);
 
 var createAppointmentsScheduler = schedule.scheduleJob({
@@ -78,6 +81,7 @@ var createAppointmentsScheduler = schedule.scheduleJob({
     console.log('time to update');
     ApptsCtrl.createAppointments();
 });
+// ApptsCtrl.createAppointments();
 
 // CONNECTIONS //
 var mongoURI = config.MONGOURI;

@@ -71,4 +71,14 @@ angular.module('orthoApp')
       });
     };
 
+    this.cancelAppointment = function(apptId, userId) {
+      return $http ({
+        method: 'POST',
+        url: '/appointments/' + apptId,
+        data: userId
+      }).then(function(response) {
+        return response;
+      });
+    };
+
   });

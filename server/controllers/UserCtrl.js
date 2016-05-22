@@ -59,6 +59,16 @@ module.exports = {
         });
     },
 
+    cancelAppointment: function(req, res, next) {
+        User.findByIdAndUpdate(req.body.user, {
+            $unset: {
+                appointment: ''
+            }
+        }, function(err, dbRes) {
+            if (err) res.status(500).json(err);
+            res.status(200).json(dbRes);
+        });
+    },
 
     logout: function(req, res, next) {
         // user logout

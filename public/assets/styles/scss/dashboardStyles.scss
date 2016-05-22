@@ -1,316 +1,337 @@
 @import 'gvariables';
 @import '1fonts';
-
 .seperator-horizontal {
-  width: 90%;
-  height: 2px;
-  margin: auto;
-  background-color: white;
-  border-radius: 10px;
+    width: 90%;
+    height: 2px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
 }
-
 .pcenter {
-  text-align: center;
-  font-size: 30px;
+    text-align: center;
+    font-size: 30px;
 }
-
 .dashboard {
-  width: 100%;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  position: relative;
-  background-color: #F0F0F0;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    background-color: #F0F0F0;
 }
-
 .greeting {
-  margin-bottom: 25px;
+    margin-bottom: 25px;
 }
-
 .selected {
-  background-color: $blue;
-  color: white;
-  z-index: 4;
+    background-color: $blue;
+    color: white;
+    z-index: 4;
 }
 .blurred {
-  background-color: white;
-  color: $textblack;
+    background-color: white;
+    color: $textblack;
 }
-
 .dashboard-container {
-  width: 95%;
-  margin: auto;
+    width: 95%;
+    margin: auto;
 }
-
 .dashboard-tabs-list {
-  display: inline-block;
-  .dashboard-tab {
     display: inline-block;
-    padding: 15px;
-    max-width: 100px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21);
-    z-index: 0;
-  }
+    .dashboard-tab {
+        display: inline-block;
+        padding: 15px;
+        max-width: 100px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.21);
+        z-index: 0;
+    }
 }
-
 // to @extend
 .dashboard-content-container {
-  padding: 7px 15px 7px 15px;
-  border-radius: 5px;
-  background-color: $transpWhite;
+    padding: 7px 15px;
+    border-radius: 5px;
+    background-color: $transpWhite;
 }
 // end
-
 .dashboard-info-container {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  margin-top: -1px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: $blue;;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
-  .dashboard-section-wrapper {
-    padding: 25px;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: white;
-    font-size: 18px;
-  }
-  p {
-    margin-bottom: 15px;
-  }
-  .dashboard-button-container {
-    text-align: center;
-  }
-  .dashboard-button {
-    display: inline-block;
-    margin-bottom: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #F8891C;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-  //pt dashboard main styles
-  .next-appointment-container {
-    @extend .dashboard-content-container;
-    padding: 20px;
-    text-align: center;
-    h2, h3 {
-      margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    margin-top: -1px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: $blue;
+    box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.21);
+    .dashboard-section-wrapper {
+        padding: 25px;
+        font-family: 'Roboto Condensed', sans-serif;
+        color: white;
+        font-size: 18px;
     }
-    h2 {
-      font-size: 40px;
-    }
-    h3 {
-      font-size: 30px;
-    }
-    h4 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-  }
-  .report-card-container {
-    @extend .dashboard-content-container;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    .report-card-entry {
-      padding: 15px 7px 15px 7px;
-      line-height: 22px;
-      .entry-date {
-        width: 30%;
-        float: left;
-      }
-      .entry-text {
-        width: 70%;
-        padding-left: 15px;
-        display: inline-block;
-        font-weight: 300;
-      }
-    }
-  }
-  //pt dashboard payment styles
-  .line-item {
-    line-height: 40px;
-  }
-  .balance-title {
-    display: inline-block;
-    margin: 0;
-  }
-  .balance-due {
-    margin-top: 20px;
-
-  }
-  .account-balance-info {
-    display: inline-block;
-    float: right;
-  }
-  .table-container {
-    text-align: center;
-  }
-  table {
-    display: inline-block;
-    background-color: white;
-    border-radius: 5px;
-    padding: 0 20px;
-    color: $textblack;
-    text-align: center;
-    tr {
-      border-top: 1px solid $textblack;
-      th {
-        cursor: pointer;
-      }
-      th, td {
-        padding: 10px;
-        vertical-align: middle;
-      }
-    }
-    .table-header {
-      border-top: none;
-    }
-  }
-  //patient settings styles
-  .settings {
-    padding-top: 0;
-    padding-bottom: 20px;
-  }
-  .account-info {
-    padding-top: 20px;
     p {
-      margin-bottom: 20px;
-      text-align: center;
+        margin-bottom: 15px;
     }
-    .contact-info-container {
-      height: 28px;
-      vertical-align: middle;
-      .dashboard-button {
+    .dashboard-button-container {
+        text-align: center;
+    }
+    .dashboard-button {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: #F8891C;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    //pt dashboard main styles
+    .next-appointment-container {
+        @extend .dashboard-content-container;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        text-align: center;
+        h2,
+        h3 {
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 40px;
+        }
+        h3 {
+            font-size: 30px;
+        }
+        h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .confirmation-modal {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10;
+            .warning-container {
+                width: 80%;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                margin: auto;
+            }
+            .dashboard-button {
+                width: 50px;
+            }
+        }
+    }
+    .report-card-container {
+        @extend .dashboard-content-container;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        .report-card-entry {
+            padding: 15px 7px;
+            line-height: 22px;
+            .entry-date {
+                width: 30%;
+                float: left;
+            }
+            .entry-text {
+                width: 70%;
+                padding-left: 15px;
+                display: inline-block;
+                font-weight: 300;
+            }
+        }
+    }
+    //pt dashboard payment styles
+    .line-item {
+        line-height: 40px;
+    }
+    .balance-title {
+        display: inline-block;
+        margin: 0;
+    }
+    .balance-due {
+        margin-top: 20px;
+    }
+    .account-balance-info {
         display: inline-block;
         float: right;
-      }
-      .contact-info {
+    }
+    .table-container {
+        text-align: center;
+    }
+    table {
         display: inline-block;
-      }
-      .update-info-field {
-        transform: translateY(-5px);
-        transform: translateX(-5px);
-      }
+        background-color: white;
+        border-radius: 5px;
+        padding: 0 20px;
+        color: $textblack;
+        text-align: center;
+        tr {
+            border-top: 1px solid $textblack;
+            th {
+                cursor: pointer;
+            }
+            td,
+            th {
+                padding: 10px;
+                vertical-align: middle;
+            }
+        }
+        .table-header {
+            border-top: none;
+        }
     }
-  }
-
-  // doctor dashboard
-  .center-table {
-    text-align: center;
-    p {
-      text-align: left;
+    //patient settings styles
+    .settings {
+        padding-top: 0;
+        padding-bottom: 20px;
     }
-  }
-  .table-container {
-    display: inline-block;
-  }
-  .recent-prospects-table {
-    width: 100%;
-    display: block;
-    padding: 0;
-    border-radius: none;
-    border: 1px solid grey;
-    th, td {
-      padding: none;
-      border: 1px solid grey;
+    .account-info {
+        padding-top: 20px;
+        p {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .contact-info-container {
+            height: 28px;
+            vertical-align: middle;
+            .dashboard-button {
+                display: inline-block;
+                float: right;
+            }
+            .contact-info {
+                display: inline-block;
+            }
+            .update-info-field {
+                transform: translateY(-5px);
+                transform: translateX(-5px);
+            }
+        }
     }
-  }
-  .patient-search-container {
-    text-align: center;
-  }
-  .patient-search-field {
-    display: inline-block;
-    width: 48%;
-    margin-bottom: 10px;
-  }
-  .patient-search-results {
-    padding-top: 20px;
-  }
+    // doctor dashboard
+    .center-table {
+        text-align: center;
+        p {
+            text-align: left;
+        }
+    }
+    .table-container {
+        display: inline-block;
+    }
+    .recent-prospects-table {
+        width: 100%;
+        display: block;
+        padding: 0;
+        border-radius: none;
+        border: 1px solid grey;
+        td,
+        th {
+            padding: none;
+            border: 1px solid grey;
+        }
+    }
+    .patient-search-container {
+        text-align: center;
+    }
+    .patient-search-field {
+        display: inline-block;
+        width: 48%;
+        margin-bottom: 10px;
+    }
+    .patient-search-results {
+        padding-top: 20px;
+    }
 }
-
 .schedule-appointment {
-  width: 100%;
-  // display: flex;
-  // justify-content: space-around;
-  text-align: center;
-  .dashboard-button {
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 0;
-    display: inline-block;
-  }
-  .appointment-table {
-    padding-top: 20px;
-    // border: 1px solid $blue;
-  }
-  .appointment-row {
-    width: 80%;
-    height: 100%;
+    width: 100%;
     padding-top: 10px;
-    padding-bottom: 10px;
-    margin: auto;
-    display: flex;
-    color: $textblack;
-    cursor: pointer;
-  }
-  .appointment-cell {
-    width: 33%;
-    margin: auto;
-    float: left;
-  }
-  .schedule-button {
-    width: 20px;
-    height: 20px;
-    margin: auto;
-    background-color: $blue;
-    float: right;
-  }
+    text-align: center;
+    .dashboard-button {
+        height: auto;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    .appointment-table {
+        padding-top: 20px;
+    }
+    .appointment-row {
+        width: 80%;
+        height: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: auto;
+        display: flex;
+        color: $textblack;
+        cursor: pointer;
+        background-color: rgba(255,255,255, 0.5);
+        background-image: linear-gradient( 90deg, #FFD32E 10px, #fff 10px, #fff 11px, transparent 11px);
+        margin-bottom: 3px;
+    }
+    .appointment-row:hover {
+        background: linear-gradient(90deg, #98DE25 10px, #A0C0D4 10px, #A0C0D4 11px, transparent 11px);
+        background-color: rgba(0 ,0 ,0 , 0.05);
+    }
+    .appointment-row-selected {
+        background: linear-gradient(90deg, #98DE25 10px, #A0C0D4 10px, #A0C0D4 11px, transparent 11px);
+        background-color: rgba(0 ,0 ,0 , 0.05);
+    }
+    .appointment-cell {
+        width: 33%;
+        height: 100%;
+        margin: auto;
+        float: left;
+    }
 }
 //date picker styles
 md-datepicker {
-  height: auto;
-  margin: auto;
-  display: block;
-  // float: left;
+    height: auto;
+    margin: auto auto auto -15px;
+    background: transparent;
 }
 .md-datepicker-calendar {
     position: relative;
 }
 .md-button {
-  min-height: 8px;
+    min-height: 8px;
 }
 .md-button:not([disabled]).md-focused {
-  background: trasparent;
+    background: trasparent;
 }
 .md-datepicker-input-container {
-  padding-bottom: 5px;
-  padding-top: 3px;
-  margin: 0;
-  margin-right: 12px;
+    padding: 5px 10px;
+    margin: 0;
+    border-radius: 2px;
 }
-
+.md-datepicker-triangle-button {
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
+    top: 50%;
+    transform: translateY(-50%);
+}
 .md-calendar-day-header th {
-  background-color: #F8891C;
-  vertical-align: middle;
+    background-color: #F8891C;
+    vertical-align: middle;
 }
-
 .md-datepicker-input-container {
-  background-color: white;
+    background-color: white;
 }
-
-.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
-  background: #105FA8;
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
+.md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator,
+.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
+.md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator {
+    background: #105FA8;
 }
-
-.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon {
+.md-datepicker-open .md-datepicker-calendar-icon,
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon {
     fill: #105FA8;
 }

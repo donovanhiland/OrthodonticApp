@@ -1,4 +1,5 @@
 var Appointments = require('../models/AppointmentsModel');
+var User = require('../models/UserModel');
 var moment = require('moment');
 
 module.exports = {
@@ -68,9 +69,28 @@ module.exports = {
         req.user.appointment = appointmentId;
         Appointments.findByIdAndUpdate(appointmentId, req.body, function(err, dbRes) {
             if (err) res.status(500).json(err);
-            else res.status(200).json(dbRes);
+            User.findByIdAndUpdate(req.user._id, {
+                appointment: dbRes._id
+            }, function(err, dbRes) {
+                if (err) res.status(500).json(err);
+                res.status(200).json(dbRes);
+            });
         });
     },
+
+    cancelAppointment: function(req, res, next) {
+      console.log('appt id', req.params.id);
+        Appointments.findByIdAndUpdate(req.params.id, {
+            $unset: {
+                user: ''
+            }
+        }, function(err, dbRes) {
+            if (err) res.status(500).json(err);
+            console.log(dbRes);
+            res.status(200).json(dbRes);
+            // next();
+        });
+    }
 
 
 };

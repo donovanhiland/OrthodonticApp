@@ -15,7 +15,7 @@ angular.module('orthoApp')
                         var daysPassed = 0;
 
                         Chart.defaults.global.title.display = true;
-                        Chart.defaults.global.title.text = 'Estimated Treatment Time Chart';
+                        Chart.defaults.global.title.text = 'Estimated Treatment Time';
                         Chart.defaults.global.title.fontColor = 'white';
                         Chart.defaults.global.title.fontSize = 16;
                         Chart.defaults.global.title.position = 'bottom';
@@ -41,19 +41,6 @@ angular.module('orthoApp')
                                 cutoutPercentage: 60
                             }
                         });
-                        // var test = ctx.getContext("2d");
-                        // // horizontally align text around the specified point (cx)
-                        // test.textAlign = 'center';
-                        //
-                        // // vertically align text around the specified point (cy)
-                        // test.textBaseline = 'middle';
-                        //
-                        // // draw the text
-                        // test.font = '14px verdana';
-                        // test.fillStyle = 'black';
-                        // test.fillText(daysLeft + ' days left', cx, cy);
-
-
 
                         setTimeout(function() {
                             var updateChart = setInterval(function() {
@@ -69,8 +56,6 @@ angular.module('orthoApp')
                             }, 200);
                         }, 1000);
                     });
-
-
 
             }
         };
