@@ -3,11 +3,11 @@
 
         <p class="greeting">
             Welcome,
-            <strong>Dr Doctor</strong>{{staff.name}}!
+            <strong>Dr {{user.name.firstname}} {{user.name.lastname}}</strong>!
         </p>
         <ul class="dashboard-tabs-list">
-            <li class="dashboard-tab selected" ng-click="showHome()">Home</li>
-            <li class="dashboard-tab blurred" id="new-tab" ng-click="showPatient()" ng-show="patientTabTab">Patient</li>
+            <li class="dashboard-tab selected" id="home" ng-click="showHome()">Home</li>
+            <li class="dashboard-tab blurred" id="patient" ng-click="showPatientTab()" ng-show="patientTabTab">Patient</li>
         </ul>
 
         <db-dr-home-dir ng-show="homeTab"></db-dr-home-dir>

@@ -17,7 +17,7 @@ module.exports = {
     me: function(req, res, next) {
         User.findById(req.user._id)
             .populate('appointment')
-            // .populate('notes')
+            .populate('notes')
             .exec(function(err, dbRes) {
                 if (err) res.status(500).json(err);
                 res.status(200).json(dbRes);
@@ -29,6 +29,7 @@ module.exports = {
         var userId = req.params.id;
         User.findById(userId)
             .populate('appointment')
+            .populate('notes')
             .exec(function(err, dbRes) {
                 if (err) res.status(500).json(err);
                 res.status(200).json(dbRes);
@@ -37,7 +38,8 @@ module.exports = {
 
     getAllUsers: function(req, res, next) {
         // get all users (doctor page?)
-        User.find({}, function(err, dbRes) {
+        console.log(req.query);
+        User.find(req.query, function(err, dbRes) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -62,6 +64,17 @@ module.exports = {
         User.findByIdAndUpdate(req.body.user, {
             $unset: {
                 appointment: ''
+            }
+        }, function(err, dbRes) {
+            if (err) res.status(500).json(err);
+            res.status(200).json(dbRes);
+        });
+    },
+
+    createNote: function(req, res, next) {
+        User.findByIdAndUpdate(req.body.user, {
+            $push: {
+                notes: req.noteId
             }
         }, function(err, dbRes) {
             if (err) res.status(500).json(err);

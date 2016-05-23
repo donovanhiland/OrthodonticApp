@@ -1,31 +1,16 @@
 angular.module('orthoApp')
-    .controller('dashboardCtrl', function($scope, accountService) {
+    .controller('patientDashboardCtrl', function($scope, accountService) {
         ///// NG SHOW BOOLEANS /////
         // tab views
         $scope.homeTab = true;
         $scope.paymentTab = false;
         $scope.settingsTab = false;
         $scope.appointmentExists = false;
-        // dr only
-        $scope.patientTab = false;
-        $scope.patientTabTab = false;
-        //hide modals
-        $scope.showConfirmationBool = false;
 
         $scope.showHome = function() {
             $scope.homeTab = true;
             $scope.paymentTab = false;
             $scope.settingsTab = false;
-        };
-        $scope.showPatient = function() {
-            $scope.homeTab = false;
-            $scope.patientTab = true;
-            $scope.patientTabTab = true;
-        };
-        $scope.closePatient = function() {
-            $scope.homeTab = true;
-            $scope.patientTab = false;
-            $scope.patientTabTab = false;
         };
         $scope.showPayment = function() {
             $scope.homeTab = false;
@@ -53,10 +38,6 @@ angular.module('orthoApp')
                 width: $('#phone-info').width() + 'px',
                 maxWidth: '200px'
             });
-        };
-
-        $scope.getUsers = function() {
-            //get pending users for doctor
         };
 
         $scope.userStatus = true;
@@ -101,16 +82,16 @@ angular.module('orthoApp')
         };
         $scope.getCurrentUser();
 
-        $scope.updateUser = function(field, info) {
+        $scope.updateUser = function(infoField, info) {
             if (info === $scope.user.phoneNumber || info === $scope.user.email) {
                 $scope.updateEmailBool = false;
                 $scope.updateNumberBool = false;
                 return null;
             }
-            if (field === 'email') {
+            if (infoField === 'email') {
                 $scope.user.email = info;
             }
-            if (field === 'phone') {
+            if (infoField === 'phone') {
                 $scope.user.phoneNumber = info;
             }
             accountService.updateCurrentUser($scope.user._id, $scope.user)
@@ -172,7 +153,7 @@ angular.module('orthoApp')
             var appointment = $scope.user.appointment;
 
             if (appointment) {
-                if ($('.warning-container').confirm()) {
+                if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
                     accountService.cancelAppointment($scope.user.appointment._id, {
                         user: userId
                     }).then(function(response) {

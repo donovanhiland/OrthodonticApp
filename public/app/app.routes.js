@@ -89,17 +89,30 @@ angular.module('orthoApp')
       .state('account.signin', {
         url: '/signin',
         templateUrl: 'app/components/account/account.signin.html',
-        controller: 'signInCtrl'
+        controller: 'signInCtrl',
+        // resolve:
       })
       .state('account.patientdashboard', {
         url: '/dashboard/patient',
         templateUrl: 'app/components/account/patientDashboard/account.patientdashboard.html',
-        controller: 'dashboardCtrl',
+        controller: 'patientDashboardCtrl',
+        // resolve: function() {
+        //   if($scope.user && $scope.user.type === 'user') {
+        //     $state.go('account.patientdashboard');
+        //   }
+        //   if($scope.user && $scope.user.type === 'admin') {
+        //     $state.go('account.doctordashboard');
+        //   }
+        //   if(!$scope.user) {
+        //     $state.go()
+        //   }
+        // }
       })
       .state('account.doctordashboard', {
         url: '/dashboard/doctor',
         templateUrl: 'app/components/account/doctorDashboard/account.doctordashboard.html',
-        controller: 'dashboardCtrl',
+        controller: 'doctorDashboardCtrl',
+        // resolve:
       });
 
   });

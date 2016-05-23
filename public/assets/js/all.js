@@ -91,339 +91,134 @@ angular.module('orthoApp')
       .state('account.signin', {
         url: '/signin',
         templateUrl: 'app/components/account/account.signin.html',
-        controller: 'signInCtrl'
+        controller: 'signInCtrl',
+        // resolve:
       })
       .state('account.patientdashboard', {
         url: '/dashboard/patient',
         templateUrl: 'app/components/account/patientDashboard/account.patientdashboard.html',
-        controller: 'dashboardCtrl',
+        controller: 'patientDashboardCtrl',
+        // resolve: function() {
+        //   if($scope.user && $scope.user.type === 'user') {
+        //     $state.go('account.patientdashboard');
+        //   }
+        //   if($scope.user && $scope.user.type === 'admin') {
+        //     $state.go('account.doctordashboard');
+        //   }
+        //   if(!$scope.user) {
+        //     $state.go()
+        //   }
+        // }
       })
       .state('account.doctordashboard', {
         url: '/dashboard/doctor',
         templateUrl: 'app/components/account/doctorDashboard/account.doctordashboard.html',
-        controller: 'dashboardCtrl',
+        controller: 'doctorDashboardCtrl',
+        // resolve:
       });
 
   });
 
 angular.module('orthoApp')
-  .service('accountService', function($http) {
+    .service('accountService', function($http) {
 
-    var sitePath = 'http://localhost:9001';
-
-    this.login = function(user) {
-      return $http ({
-        method: 'POST',
-        url: '/login',
-        data: user
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.register = function(newUser) {
-      return $http ({
-        method: 'POST',
-        url: '/users',
-        data: newUser
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.getUsers = function () {
-      return $http ({
-        method: 'GET',
-        url: '/users'
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.getCurrentUser = function() {
-      return $http ({
-        method: 'GET',
-        url: '/me'
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.updateCurrentUser = function(userId, newUserInfo) {
-      return $http ({
-        method: 'PUT',
-        url: '/users/' + userId,
-        data: newUserInfo
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.getAppointments = function(query) {
-      return $http ({
-        method: 'POST',
-        url: '/appointments',
-        data: query
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.scheduleAppointment = function(apptId, userId) {
-      return $http ({
-        method: 'PUT',
-        url: '/appointments/' + apptId,
-        data: userId
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-    this.cancelAppointment = function(apptId, userId) {
-      return $http ({
-        method: 'POST',
-        url: '/appointments/' + apptId,
-        data: userId
-      }).then(function(response) {
-        return response;
-      });
-    };
-
-  });
-
-angular.module('orthoApp')
-    .controller('dashboardCtrl', function($scope, accountService) {
-        ///// NG SHOW BOOLEANS /////
-        // tab views
-        $scope.homeTab = true;
-        $scope.paymentTab = false;
-        $scope.settingsTab = false;
-        $scope.appointmentExists = false;
-        // dr only
-        $scope.patientTab = false;
-        $scope.patientTabTab = false;
-        //hide modals
-        $scope.showConfirmationBool = false;
-
-        $scope.showHome = function() {
-            $scope.homeTab = true;
-            $scope.paymentTab = false;
-            $scope.settingsTab = false;
-        };
-        $scope.showPatient = function() {
-            $scope.homeTab = false;
-            $scope.patientTab = true;
-            $scope.patientTabTab = true;
-        };
-        $scope.closePatient = function() {
-            $scope.homeTab = true;
-            $scope.patientTab = false;
-            $scope.patientTabTab = false;
-        };
-        $scope.showPayment = function() {
-            $scope.homeTab = false;
-            $scope.paymentTab = true;
-            $scope.settingsTab = false;
-        };
-        $scope.showSettings = function() {
-            $scope.homeTab = false;
-            $scope.paymentTab = false;
-            $scope.settingsTab = true;
-        };
-        $scope.updateEmailBool = false;
-        $scope.updateNumberBool = false;
-        $scope.editEmail = function() {
-            $scope.updateEmailBool = true;
-            $scope.updateNumberBool = false;
-            $('#email-update').css({
-                width: $('#email-info').width() + 'px'
-            });
-        };
-        $scope.editPhoneNumber = function() {
-            $scope.updateNumberBool = true;
-            $scope.updateEmailBool = false;
-            $('#phone-update').css({
-                width: $('#phone-info').width() + 'px',
-                maxWidth: '200px'
+        this.login = function(user) {
+            return $http({
+                method: 'POST',
+                url: '/login',
+                data: user
+            }).then(function(response) {
+                return response;
             });
         };
 
-        $scope.getUsers = function() {
-            //get pending users for doctor
+        this.register = function(newUser) {
+            return $http({
+                method: 'POST',
+                url: '/users',
+                data: newUser
+            }).then(function(response) {
+                return response;
+            });
         };
 
-        $scope.userStatus = true;
-        $scope.getCurrentUser = function() {
-            accountService.getCurrentUser()
-                .then(function(response) {
-                    $scope.user = response.data;
-                    $scope.pendingEmailChange = $scope.user.email;
-                    $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
-
-                    var status = $scope.user.status;
-                    var appointment = $scope.user.appointment;
-                    if (status === 'pending' && !appointment) {
-                        $scope.userStatus = false;
-                        $scope.showPaperwork = true;
-                        $scope.showConsult = true;
-                        $scope.appointmentExists = false;
-                        // $scope.scheduleAppointmentBool = true;
-                    }
-                    if (status === 'pending' && appointment) {
-                        $scope.userStatus = false;
-                        $scope.showPaperwork = true;
-                        $scope.showConsult = false;
-                        $scope.startSchedule = true;
-                        $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
-                    }
-                    if (status === 'active' && appointment) {
-                        $scope.userStatus = true;
-                        $scope.showPaperwork = true;
-                        $scope.startSchedule = true;
-                        $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
-                    }
-                    if (status === 'active' && !appointment) {
-                        $scope.userStatus = true;
-                        $scope.showPaperwork = true;
-                        $scope.startSchedule = true;
-                        $scope.appointmentExists = false;
-                    }
-                });
-        };
-        $scope.getCurrentUser();
-
-        $scope.updateUser = function(field, info) {
-            if (info === $scope.user.phoneNumber || info === $scope.user.email) {
-                $scope.updateEmailBool = false;
-                $scope.updateNumberBool = false;
-                return null;
-            }
-            if (field === 'email') {
-                $scope.user.email = info;
-            }
-            if (field === 'phone') {
-                $scope.user.phoneNumber = info;
-            }
-            accountService.updateCurrentUser($scope.user._id, $scope.user)
-                .then(function(response) {
-                    $scope.getCurrentUser();
-                    $scope.updateEmailBool = false;
-                    $scope.updateNumberBool = false;
-                });
+        this.getUsers = function(query) {
+            return $http({
+                method: 'GET',
+                url: '/users' + '?' + query
+            }).then(function(response) {
+                return response.data;
+            });
         };
 
-        $scope.getAppointments = function(date) {
-            $scope.searchAppointmentsBool = true;
-            var now = moment().toDate();
-            var startDate = date;
-            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
-            var query;
-
-            if (date) {
-                if (startDate < moment().toDate()) {
-                    query = {
-                        date: {
-                            $gte: moment().toDate(),
-                            $lte: endDate,
-                        },
-                        user: {
-                            $exists: false
-                        }
-                    };
-                }
-                if (startDate >= moment().toDate()) {
-                    query = {
-                        date: {
-                            $gte: startDate,
-                            $lte: endDate,
-                        },
-                        user: {
-                            $exists: false
-                        }
-                    };
-                }
-            } else {
-                query = {
-                    user: {
-                        $exists: false
-                    }
-                };
-            }
-            accountService.getAppointments(query)
-                .then(function(response) {
-                    $scope.appointmentList = response.data;
-                });
+        this.getCurrentUser = function() {
+            return $http({
+                method: 'GET',
+                url: '/me'
+            }).then(function(response) {
+                $scope.user = response.data;
+                return response;
+            });
         };
 
-        $scope.scheduleAppointment = function(index) {
-
-            $scope.scheduleAppointmentBool = false;
-            var apptId = $scope.appointmentList[index]._id;
-            var userId = $scope.user._id;
-            var appointment = $scope.user.appointment;
-
-            if (appointment) {
-                if ($('.warning-container').confirm()) {
-                    accountService.cancelAppointment($scope.user.appointment._id, {
-                        user: userId
-                    }).then(function(response) {
-                        accountService.scheduleAppointment(apptId, {
-                            user: userId
-                        }).then(function(response) {
-                            $scope.getCurrentUser();
-                            $scope.appointmentExists = true;
-                            $scope.searchAppointmentsBool = false;
-                            $scope.appointmentList = null;
-                        });
-                    });
-                }
-            }
-            if (!appointment) {
-                accountService.scheduleAppointment(apptId, {
-                        user: userId
-                    })
-                    .then(function(response) {
-                        $scope.getCurrentUser();
-                        $scope.appointmentExists = true;
-                    });
-            }
+        this.getUserById = function(userId) {
+            return $http({
+                method: 'GET',
+                url: '/users/' + userId
+            }).then(function(response) {
+                return response.data;
+            });
         };
 
-        $scope.cancelAppointment = function() {
-            var userId = $scope.user._id;
-            var apptId = $scope.user.appointment._id;
-            if (confirm('Are you sure? Your previously scheduled appointment time will be put up for grabs. Press Ok to continue')) {
-                accountService.cancelAppointment(apptId, {
-                        user: userId
-                    })
-                    .then(function(response) {
-                        $scope.getCurrentUser();
-                    });
-            }
+        this.updateCurrentUser = function(userId, newUserInfo) {
+            return $http({
+                method: 'PUT',
+                url: '/users/' + userId,
+                data: newUserInfo
+            }).then(function(response) {
+                return response;
+            });
         };
 
-        //date picker
+        this.getAppointments = function(query) {
+            return $http({
+                method: 'POST',
+                url: '/appointments',
+                data: query
+            }).then(function(response) {
+                return response;
+            });
+        };
 
-        $scope.myDate = new Date(moment().toDate());
-        $scope.minDate = new Date(moment().toDate());
-        $scope.maxDate = new Date(moment().add(44, 'days').toDate());
+        this.scheduleAppointment = function(apptId, userId) {
+            return $http({
+                method: 'PUT',
+                url: '/appointments/' + apptId,
+                data: userId
+            }).then(function(response) {
+                return response;
+            });
+        };
 
-        /*** Dashbaord Jquery ***/
+        this.cancelAppointment = function(apptId, userId) {
+            return $http({
+                method: 'POST',
+                url: '/appointments/' + apptId,
+                data: userId
+            }).then(function(response) {
+                return response;
+            });
+        };
 
-        var tab = $('.dashboard-tab');
-
-        tab.click(function() {
-            if (tab.hasClass('selected')) {
-                tab.removeClass('selected').addClass('blurred');
-            }
-            if (!$(this).hasClass('selected')) {
-                $(this).addClass('selected').removeClass('blurred');
-            }
-        });
-
-
+        this.createNote = function(noteData) {
+            return $http({
+                method: 'POST',
+                url: '/notes',
+                data: noteData
+            }).then(function(response) {
+                return response;
+            });
+        };
 
     });
 
@@ -435,16 +230,18 @@ angular.module('orthoApp')
         };
 
         $scope.userLogin = function() {
-            var userLoginInfo = {
+            accountService.login({
                 email: $scope.user.email,
                 password: $scope.user.password
-            };
-            accountService.login(userLoginInfo)
+            })
                 .then(function(response) {
-                    if ($scope.user.type === 'admin') {
+                    $scope.user.password = null;
+                    if (response.data.type === 'admin') {
                         $state.go('account.doctordashboard');
                     }
-                    $state.go('account.patientdashboard');
+                    if (response.data.type === 'user') {
+                      $state.go('account.patientdashboard');
+                    }
                 }).catch(function(error) {
                     console.log(error, 'user could not login signinctrl23');
                 });
@@ -833,6 +630,111 @@ angular.module('orthoApp')
   });
 
 angular.module('orthoApp')
+    .controller('doctorDashboardCtrl', function($scope, accountService) {
+
+        $scope.homeTab = true;
+        $scope.patientTab = false;
+        $scope.patientTabTab = false;
+        $scope.showHome = function() {
+            $scope.homeTab = true;
+            $scope.patientTab = false;
+        };
+        $scope.showPatient = function(index) {
+            tab.removeClass('selected').addClass('blurred');
+            $('#new-tab').addClass('selected').removeClass('blurred');
+
+            $scope.homeTab = false;
+            $scope.patientTab = true;
+            $scope.patientTabTab = true;
+            var userId = $scope.pendingPatientList[index]._id;
+            accountService.getUserById(userId)
+                .then(function(response) {
+                    $scope.selectedPatient = response;
+                    if ($scope.selectedPatient.status === 'pending') {
+                        $scope.activePatient = false;
+                    } else {
+                        $scope.activePatient = true;
+                    }
+                });
+        };
+        $scope.showPatientTab = function() {
+            $scope.homeTab = false;
+            $scope.patientTab = true;
+            $scope.patientTabTab = true;
+        };
+        $scope.closePatient = function() {
+            $scope.homeTab = true;
+            $scope.patientTab = false;
+            $scope.patientTabTab = false;
+        };
+
+        $scope.getPending = function() {
+            accountService.getUsers('status=pending')
+                .then(function(response) {
+                    $scope.pendingPatientList = response;
+                });
+        };
+        $scope.getPending();
+
+        $scope.updateUser = function(balance, monthlyPaymentAmount, ett) {
+            var userId = $scope.selectedPatient._id;
+            if (balance && monthlyPaymentAmount && ett) {
+                var userInfo = {
+                    financial: {
+                        initialbalance: balance,
+                        monthlypaymentamount: monthlyPaymentAmount
+                    },
+                    ett: ett,
+                    status: 'active'
+                };
+                accountService.updateCurrentUser(userId, userInfo)
+                    .then(function(response) {
+                        accountService.getUserById(userId)
+                            .then(function(response) {
+                                $scope.selectedPatient = response;
+                                if ($scope.selectedPatient.status === 'active') {
+                                    $scope.activePatient = true;
+                                }
+                            });
+                    });
+            }
+        };
+
+        $scope.createNote = function(noteText) {
+            var userId = $scope.selectedPatient._id;
+            if (noteText) {
+                var noteData = {
+                    user: $scope.selectedPatient._id,
+                    date: new Date(),
+                    text: noteText
+                };
+                accountService.createNote(noteData)
+                    .then(function(response) {
+                        accountService.getUserById(userId)
+                            .then(function(response) {
+                                $scope.selectedPatient = response;
+                            });
+                    });
+            }
+        };
+
+
+
+        /*** Dashbaord Jquery ***/
+
+        var tab = $('.dashboard-tab');
+
+        tab.click(function() {
+            if (tab.hasClass('selected')) {
+                tab.removeClass('selected').addClass('blurred');
+            }
+            if (!$(this).hasClass('selected')) {
+                $(this).addClass('selected').removeClass('blurred');
+            }
+        });
+    });
+
+angular.module('orthoApp')
     .directive('dbMainDir', function(accountService) {
 
         return {
@@ -916,6 +818,223 @@ angular.module('orthoApp')
     };
 
   });
+
+angular.module('orthoApp')
+    .controller('patientDashboardCtrl', function($scope, accountService) {
+        ///// NG SHOW BOOLEANS /////
+        // tab views
+        $scope.homeTab = true;
+        $scope.paymentTab = false;
+        $scope.settingsTab = false;
+        $scope.appointmentExists = false;
+
+        $scope.showHome = function() {
+            $scope.homeTab = true;
+            $scope.paymentTab = false;
+            $scope.settingsTab = false;
+        };
+        $scope.showPayment = function() {
+            $scope.homeTab = false;
+            $scope.paymentTab = true;
+            $scope.settingsTab = false;
+        };
+        $scope.showSettings = function() {
+            $scope.homeTab = false;
+            $scope.paymentTab = false;
+            $scope.settingsTab = true;
+        };
+        $scope.updateEmailBool = false;
+        $scope.updateNumberBool = false;
+        $scope.editEmail = function() {
+            $scope.updateEmailBool = true;
+            $scope.updateNumberBool = false;
+            $('#email-update').css({
+                width: $('#email-info').width() + 'px'
+            });
+        };
+        $scope.editPhoneNumber = function() {
+            $scope.updateNumberBool = true;
+            $scope.updateEmailBool = false;
+            $('#phone-update').css({
+                width: $('#phone-info').width() + 'px',
+                maxWidth: '200px'
+            });
+        };
+
+        $scope.userStatus = true;
+        $scope.getCurrentUser = function() {
+            accountService.getCurrentUser()
+                .then(function(response) {
+                    $scope.user = response.data;
+                    $scope.pendingEmailChange = $scope.user.email;
+                    $scope.pendingPhoneNumberChange = $scope.user.phoneNumber;
+
+                    var status = $scope.user.status;
+                    var appointment = $scope.user.appointment;
+                    if (status === 'pending' && !appointment) {
+                        $scope.userStatus = false;
+                        $scope.showPaperwork = true;
+                        $scope.showConsult = true;
+                        $scope.appointmentExists = false;
+                        // $scope.scheduleAppointmentBool = true;
+                    }
+                    if (status === 'pending' && appointment) {
+                        $scope.userStatus = false;
+                        $scope.showPaperwork = true;
+                        $scope.showConsult = false;
+                        $scope.startSchedule = true;
+                        $scope.appointmentExists = true;
+                        $scope.scheduleAppointmentBool = false;
+                    }
+                    if (status === 'active' && appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.startSchedule = true;
+                        $scope.appointmentExists = true;
+                        $scope.scheduleAppointmentBool = false;
+                    }
+                    if (status === 'active' && !appointment) {
+                        $scope.userStatus = true;
+                        $scope.showPaperwork = true;
+                        $scope.startSchedule = true;
+                        $scope.appointmentExists = false;
+                    }
+                });
+        };
+        $scope.getCurrentUser();
+
+        $scope.updateUser = function(infoField, info) {
+            if (info === $scope.user.phoneNumber || info === $scope.user.email) {
+                $scope.updateEmailBool = false;
+                $scope.updateNumberBool = false;
+                return null;
+            }
+            if (infoField === 'email') {
+                $scope.user.email = info;
+            }
+            if (infoField === 'phone') {
+                $scope.user.phoneNumber = info;
+            }
+            accountService.updateCurrentUser($scope.user._id, $scope.user)
+                .then(function(response) {
+                    $scope.getCurrentUser();
+                    $scope.updateEmailBool = false;
+                    $scope.updateNumberBool = false;
+                });
+        };
+
+        $scope.getAppointments = function(date) {
+            $scope.searchAppointmentsBool = true;
+            var now = moment().toDate();
+            var startDate = date;
+            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
+            var query;
+
+            if (date) {
+                if (startDate < moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: moment().toDate(),
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
+                if (startDate >= moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: startDate,
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: false
+                        }
+                    };
+                }
+            } else {
+                query = {
+                    user: {
+                        $exists: false
+                    }
+                };
+            }
+            accountService.getAppointments(query)
+                .then(function(response) {
+                    $scope.appointmentList = response.data;
+                });
+        };
+
+        $scope.scheduleAppointment = function(index) {
+
+            $scope.scheduleAppointmentBool = false;
+            var apptId = $scope.appointmentList[index]._id;
+            var userId = $scope.user._id;
+            var appointment = $scope.user.appointment;
+
+            if (appointment) {
+                if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
+                    accountService.cancelAppointment($scope.user.appointment._id, {
+                        user: userId
+                    }).then(function(response) {
+                        accountService.scheduleAppointment(apptId, {
+                            user: userId
+                        }).then(function(response) {
+                            $scope.getCurrentUser();
+                            $scope.appointmentExists = true;
+                            $scope.searchAppointmentsBool = false;
+                            $scope.appointmentList = null;
+                        });
+                    });
+                }
+            }
+            if (!appointment) {
+                accountService.scheduleAppointment(apptId, {
+                        user: userId
+                    })
+                    .then(function(response) {
+                        $scope.getCurrentUser();
+                        $scope.appointmentExists = true;
+                    });
+            }
+        };
+
+        $scope.cancelAppointment = function() {
+            var userId = $scope.user._id;
+            var apptId = $scope.user.appointment._id;
+            if (confirm('Are you sure? Your previously scheduled appointment time will be put up for grabs. Press Ok to continue')) {
+                accountService.cancelAppointment(apptId, {
+                        user: userId
+                    })
+                    .then(function(response) {
+                        $scope.getCurrentUser();
+                    });
+            }
+        };
+
+        //date picker
+
+        $scope.myDate = new Date(moment().toDate());
+        $scope.minDate = new Date(moment().toDate());
+        $scope.maxDate = new Date(moment().add(44, 'days').toDate());
+
+        /*** Dashbaord Jquery ***/
+
+        var tab = $('.dashboard-tab');
+
+        tab.click(function() {
+            if (tab.hasClass('selected')) {
+                tab.removeClass('selected').addClass('blurred');
+            }
+            if (!$(this).hasClass('selected')) {
+                $(this).addClass('selected').removeClass('blurred');
+            }
+        });
+
+
+
+    });
 
 angular.module('orthoApp')
   .controller('homeCtrl', function($scope, mainService, $state) {

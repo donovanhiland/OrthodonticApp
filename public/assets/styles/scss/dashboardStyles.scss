@@ -8,7 +8,7 @@
     border-radius: 10px;
 }
 .margintop {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 .pcenter {
     text-align: center;
@@ -133,23 +133,26 @@
         }
     }
     .report-card-container {
-        @extend .dashboard-content-container;
-        padding: 0;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
         .report-card-entry {
-            padding: 15px 7px;
-            line-height: 22px;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
             .entry-date {
-                width: 30%;
-                float: left;
+                font-family: 'PT Sans';
+                font-size: 15px;
+                margin-left: 6px;
+                margin-bottom: 5px;
             }
             .entry-text {
-                width: 70%;
-                padding-left: 15px;
                 display: inline-block;
-                font-weight: 300;
+                padding: 5px 10px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.21);
+                font-family: 'PT Sans', sans-serif;
+                font-size: 20px;
+                color: $textblack;
+                line-height: 20px;
             }
         }
     }
@@ -221,25 +224,39 @@
         }
     }
     // doctor dashboard
-    .center-table {
-        text-align: center;
-        p {
-            text-align: left;
-        }
+    .border-mirage {
+        padding-left: 10px;
+        padding-right: 10px;
     }
-    .table-container {
-        display: inline-block;
-    }
-    .recent-prospects-table {
+    .patient-table {
         width: 100%;
         display: block;
-        padding: 0;
-        border-radius: none;
-        border: 1px solid grey;
-        td,
-        th {
-            padding: none;
-            border: 1px solid grey;
+        background-color: white;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border-collapse: collapse;
+        color: $textblack;
+        .patient-row-hr {
+            border-bottom: 1px solid $grey;
+            border-radius: 1px;
+        }
+        .patient-cell-hr {
+            display: inline-block;
+            width: 33.33%;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .patient-row:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        .patient-cell {
+            width: 33.33%;
+            display: inline-block;
+            padding: 10px;
+            border-collapse: collapse;
+            text-align: center;
         }
     }
     .patient-search-container {
@@ -252,6 +269,37 @@
     }
     .patient-search-results {
         padding-top: 20px;
+    }
+    .info-line {
+        height: 28px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+    .info-align-right {
+        text-align: right;
+        display: inline-block;
+        width: 48%;
+        padding-right: 10px;
+    }
+    .info-align-left {
+        text-align: left;
+        display: inline-block;
+        width: 44%;
+        padding-left: 10px;
+    }
+}
+.create-note {
+    textarea {
+        width: 70%;
+    }
+    .dashboard-button {
+        height: 60px;
+        margin-bottom: 0;
+        p {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     }
 }
 .schedule-appointment {

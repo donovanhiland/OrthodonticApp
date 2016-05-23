@@ -1,30 +1,45 @@
 <div class="dashboard-info-container">
     <div class="dashboard-section-wrapper center-table">
       <p>
-        Recent Prospects
+        Pending Patients
       </p>
-      <div class="table-container">
-        <table class="recent-prospects-table">
+
+        <div class="patient-table">
+            <div class="patient-row-hr">
+              <div class="patient-cell-hr">
+                Last Name
+                </div
+                ><div class="patient-cell-hr">
+                  First Name
+                  </div
+                  ><div class="patient-cell-hr">
+                    Status
+                  </div>
+                </div>
+            <div class="patient-row" ng-repeat="patient in pendingPatientList" ng-click="showPatient($index)">
+                <div class="patient-cell">
+                    {{patient.name.lastname}}
+                </div
+                ><div class="patient-cell">
+                    {{patient.name.firstname}}
+                </div
+                ><div class="patient-cell">
+                    {{patient.status}}
+                </div>
+            </div>
+        </div>
+        <!-- <table class="recent-prospects-table">
           <tr class="table-header">
             <th><strong>Last</strong></th>
             <th><strong>First</strong></th>
-            <th><strong>Birthdate</strong></th>
-            <th><strong>Application Date</strong></th>
+            <th><strong>Status</strong></th>
           </tr>
-          <tr>
-            <td>Johnny</td>
-            <td>Johnny</td>
-            <td>5/16/2000</td>
-            <td>5/17/2016</td>
+          <tr ng-repeat="patient in pendingPatientList">
+              <td>{{patient.name.lastname}}</td>
+              <td>{{patient.name.firstname}}</td>
+              <td>{{patient.status}}</td>
           </tr>
-          <tr ng-repeat="prospect in newProspects">
-              <tr>{{prospect.lastname}}</tr>
-              <tr>{{prospect.firstname}}</tr>
-              <tr>{{prospect.birthdate}}</tr>
-              <tr>{{prospect.applicationdate}}</tr>
-          </tr>
-        </table>
-      </div>
+        </table> -->
     </div>
     <div class="seperator-horizontal"></div>
     <div class="dashboard-section-wrapper center-table">
@@ -64,9 +79,6 @@
           </table>
         </div>
         </table>
-      </div>
-      <div class="dashboard-button" ng-click="showPatient()">
-        test
       </div>
     </div>
 </div>

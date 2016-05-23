@@ -72,14 +72,9 @@
             Notes
         </p>
         <div class="report-card-container">
-            <div class="report-card-entry">
-                <div class="entry-date">April 15th 2016</div>
-                <div class="entry-text">Johnny is stinky</div>
-            </div>
-            <div class="report-card-entry">
-                <div class="entry-date">March 1 2016</div>
-                <div class="entry-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                </div>
+            <div class="report-card-entry" ng-repeat="notes in user.notes">
+                <div class="entry-date">{{notes.date | date: 'MMM dd yyyy'}}</div>
+                <div class="entry-text">{{notes.text}}</div>
             </div>
         </div>
     </div>

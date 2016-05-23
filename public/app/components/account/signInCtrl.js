@@ -6,16 +6,18 @@ angular.module('orthoApp')
         };
 
         $scope.userLogin = function() {
-            var userLoginInfo = {
+            accountService.login({
                 email: $scope.user.email,
                 password: $scope.user.password
-            };
-            accountService.login(userLoginInfo)
+            })
                 .then(function(response) {
-                    if ($scope.user.type === 'admin') {
+                    $scope.user.password = null;
+                    if (response.data.type === 'admin') {
                         $state.go('account.doctordashboard');
                     }
-                    $state.go('account.patientdashboard');
+                    if (response.data.type === 'user') {
+                      $state.go('account.patientdashboard');
+                    }
                 }).catch(function(error) {
                     console.log(error, 'user could not login signinctrl23');
                 });

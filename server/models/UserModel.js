@@ -61,7 +61,11 @@ var userSchema = new Schema({
     appointment: {
       type: Schema.Types.ObjectId,
       ref: 'Appointments'
-    }
+    },
+    notes: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Note'
+    }]
 });
 
 userSchema.pre('save', function(next) {

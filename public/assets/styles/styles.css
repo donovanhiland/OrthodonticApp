@@ -501,7 +501,7 @@ strong {
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.21);
     z-index: 0; }
 
-.dashboard-content-container, .dashboard-info-container .next-appointment-container, .dashboard-info-container .report-card-container {
+.dashboard-content-container, .dashboard-info-container .next-appointment-container {
   padding: 7px 15px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5); }
@@ -566,22 +566,25 @@ strong {
         margin: auto; }
       .dashboard-info-container .next-appointment-container .confirmation-modal .dashboard-button {
         width: 50px; }
-  .dashboard-info-container .report-card-container {
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column; }
-    .dashboard-info-container .report-card-container .report-card-entry {
-      padding: 15px 7px;
-      line-height: 22px; }
-      .dashboard-info-container .report-card-container .report-card-entry .entry-date {
-        width: 30%;
-        float: left; }
-      .dashboard-info-container .report-card-container .report-card-entry .entry-text {
-        width: 70%;
-        padding-left: 15px;
-        display: inline-block;
-        font-weight: 300; }
+  .dashboard-info-container .report-card-container .report-card-entry {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .dashboard-info-container .report-card-container .report-card-entry .entry-date {
+      font-family: 'PT Sans';
+      font-size: 15px;
+      margin-left: 6px;
+      margin-bottom: 5px; }
+    .dashboard-info-container .report-card-container .report-card-entry .entry-text {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.21);
+      font-family: 'PT Sans', sans-serif;
+      font-size: 20px;
+      color: #333333;
+      line-height: 20px; }
   .dashboard-info-container .line-item {
     line-height: 40px; }
   .dashboard-info-container .balance-title {
@@ -630,22 +633,35 @@ strong {
       .dashboard-info-container .account-info .contact-info-container .update-info-field {
         transform: translateY(-5px);
         transform: translateX(-5px); }
-  .dashboard-info-container .center-table {
-    text-align: center; }
-    .dashboard-info-container .center-table p {
-      text-align: left; }
-  .dashboard-info-container .table-container {
-    display: inline-block; }
-  .dashboard-info-container .recent-prospects-table {
+  .dashboard-info-container .border-mirage {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .dashboard-info-container .patient-table {
     width: 100%;
     display: block;
-    padding: 0;
-    border-radius: none;
-    border: 1px solid grey; }
-    .dashboard-info-container .recent-prospects-table td,
-    .dashboard-info-container .recent-prospects-table th {
-      padding: none;
-      border: 1px solid grey; }
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-collapse: collapse;
+    color: #333333; }
+    .dashboard-info-container .patient-table .patient-row-hr {
+      border-bottom: 1px solid #717171;
+      border-radius: 1px; }
+    .dashboard-info-container .patient-table .patient-cell-hr {
+      display: inline-block;
+      width: 33.33%;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer; }
+    .dashboard-info-container .patient-table .patient-row:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      cursor: pointer; }
+    .dashboard-info-container .patient-table .patient-cell {
+      width: 33.33%;
+      display: inline-block;
+      padding: 10px;
+      border-collapse: collapse;
+      text-align: center; }
   .dashboard-info-container .patient-search-container {
     text-align: center; }
   .dashboard-info-container .patient-search-field {
@@ -654,6 +670,31 @@ strong {
     margin-bottom: 10px; }
   .dashboard-info-container .patient-search-results {
     padding-top: 20px; }
+  .dashboard-info-container .info-line {
+    height: 28px;
+    line-height: 26px;
+    margin-bottom: 10px; }
+  .dashboard-info-container .info-align-right {
+    text-align: right;
+    display: inline-block;
+    width: 48%;
+    padding-right: 10px; }
+  .dashboard-info-container .info-align-left {
+    text-align: left;
+    display: inline-block;
+    width: 44%;
+    padding-left: 10px; }
+
+.create-note textarea {
+  width: 70%; }
+
+.create-note .dashboard-button {
+  height: 60px;
+  margin-bottom: 0; }
+  .create-note .dashboard-button p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
 
 .schedule-appointment {
   width: 100%;

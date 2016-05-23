@@ -17,13 +17,10 @@ module.exports = {
   createNote: function(req, res, next) {
     // create note on patient account
       Note.create(req.body, function(err, dbRes) {
-        if(err) {
-          console.log(err);
-          res.status(500).json(err);
-        }
-        else {
-          res.json(dbRes);
-        }
+        if(err) res.status(500).json(err);
+        console.log(dbRes);
+        req.noteId = dbRes._id;
+        next();
       });
   },
 
@@ -31,12 +28,8 @@ module.exports = {
       // update note
       var noteId = req.params.id;
       Note.findByIdAndUpdate(noteId, req.body, function(err, dbRes) {
-        if(err) {
-          res.status(500).json(err);
-        }
-        else {
-          res.status(200).json(dbRes);
-        }
+        if(err) res.status(500).json(err);
+        res.status(200).json(dbRes);
       });
   }
 

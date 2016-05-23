@@ -1,10 +1,79 @@
 <div class="dashboard-info-container">
     <div class="dashboard-section-wrapper center-table">
-      <p>
-        Patient Information
-      </p>
-      <div class="dashboard-button" ng-click="closePatient()">
-        Close
-      </div>
+
+        <p class="pcenter">
+            {{selectedPatient.name.firstname}}
+            {{selectedPatient.name.lastname}}
+        </p>
+
+        <div class="patient-information-container">
+            <div class="info-line">
+                <div class="info-align-right">Email:</div>
+                <div class="info-align-left">{{selectedPatient.email}}</div>
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">Phone Number:</div>
+                <div class="info-align-left">{{selectedPatient.phoneNumber}}</div>
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">Next Appointment:</div>
+                <div class="info-align-left">{{selectedPatient.appointment.date | date : 'MMM d'}}
+                    {{selectedPatient.appointment.date | date : 'shortTime'}}</div>
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">Status:</div>
+                <div class="info-align-left">{{selectedPatient.status}}</div>
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">Initial Balance:</div>
+                <div class="info-align-left" ng-show="activePatient">{{selectedPatient.financial.initialbalance}}</div>
+                <input type="text" class="info-align-left" placeholder="Initial Balance" ng-show="!activePatient" ng-model="patientInitialBalance">
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">Monthly Payment:</div>
+                <div class="info-align-left" ng-show="activePatient">{{selectedPatient.financial.monthlypaymentamount}}</div>
+                <input type="text" class="info-align-left" placeholder="Monthly Payment" ng-show="!activePatient" ng-model="monthlyPaymentAmount">
+            </div>
+
+            <div class="info-line" ng-show="activePatient">
+                <div class="info-align-right">Remaining Balance:</div>
+                <div class="info-align-left">{{selectedPatient.financial.initialbalance}}</div>
+            </div>
+
+            <div class="info-line">
+                <div class="info-align-right">ETT:</div>
+                <div class="info-align-left" ng-show="activePatient">{{selectedPatient.ett}}</div>
+                <input type="text" class="info-align-left" placeholder="Estimated Treatment Time" ng-show="!activePatient" ng-model="patientEtt">
+            </div>
+
+            <div class="dashboard-button-container">
+                <div class="dashboard-button" ng-show="!activePatient" ng-click="updateUser(patientInitialBalance, monthlyPaymentAmount, patientEtt)">submit</div>
+            </div>
+
+            <div class="seperator-horizontal"></div>
+            <div class="dashboard-section-wrapper">
+                <p>
+                    Notes
+                </p>
+                <div class="create-note">
+                  <textarea name="note" rows="3" ng-model="noteText"></textarea>
+                  <div class="dashboard-button" ng-click="createNote(noteText)"><p>submit</p></div>
+                </div>
+                <div class="report-card-container">
+                    <div class="report-card-entry" ng-repeat="notes in selectedPatient.notes">
+                        <div class="entry-date">{{notes.date | date: 'MMM dd yyyy'}}</div>
+                        <div class="entry-text">{{notes.text}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-button" ng-click="closePatient()">
+            Close
+        </div>
     </div>
-  </div>
+</div>
