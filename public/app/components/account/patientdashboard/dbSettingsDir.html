@@ -1,33 +1,32 @@
 <div class="dashboard-info-container">
-    <div class="dashboard-section-wrapper settings">
-
-      <div class="account-info">
-        <p>
-          EMAIL
-        </p>
-        <div class="contact-info-container">
-          <div class="contact-info" id="email-info" ng-show="!updateEmailBool" ng-dblclick="editEmail()">
-            {{user.email}}
-          </div>
-          <input class="update-info-field" id="email-update" type="phone" ng-model="pendingEmailChange" ng-show="updateEmailBool">
-          <div class="dashboard-button" ng-show="!updateEmailBool" ng-click=" editEmail()">edit</div>
-          <div class="dashboard-button" ng-show="updateEmailBool" ng-click="updateUser('email', pendingEmailChange)">save</div>
+    <div class="dashboard-section-wrapper">
+        <div class="account-info">
+            <div class="account-info-section email-section" >
+                <div class="account-info-section-header">
+                    <p>EMAIL</p>
+                    <p class="change" ng-show="!updateEmailBool" ng-click="editEmail()">change</p>
+                    <p class="change" ng-show="updateEmailBool" ng-click="updateUser('email', pendingEmailChange)">save</p>
+                </div>
+                <div class="account-info">
+                    <div class="contact-info" id="email-info" ng-show="!updateEmailBool" ng-dblclick="editEmail()">
+                        {{user.email}}
+                    </div>
+                    <input class="update-info-field" id="email-update" type="phone" ng-model="pendingEmailChange" ng-show="updateEmailBool">
+                </div>
+            </div>
+            <div class="account-info-section">
+                <div class="account-info-section-header">
+                    <p>PHONE NUMBER</p>
+                    <p class="change" ng-show="!updateNumberBool" ng-click="editPhoneNumber()">change</p>
+                    <p class="change" ng-show="updateNumberBool" ng-click="updateUser('phone', pendingPhoneNumberChange)">save</p>
+                </div>
+                <div class="account-info">
+                    <div class="contact-info" id="phone-info" ng-show="!updateNumberBool" ng-dblclick="editPhoneNumber()">
+                        {{user.phoneNumber}}
+                    </div>
+                    <input class="update-info-field" id="phone-update" type="text" ng-model="pendingPhoneNumberChange" ng-show="updateNumberBool">
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="account-info">
-        <p>
-          PHONE
-        </p>
-        <div class="contact-info-container">
-          <div class="contact-info" id="phone-info" ng-show="!updateNumberBool" ng-dblclick="editPhoneNumber()">
-            {{user.phoneNumber}}
-          </div>
-          <input class="update-info-field" id="phone-update" type="text" ng-model="pendingPhoneNumberChange" ng-show="updateNumberBool">
-          <div class="dashboard-button" ng-show="!updateNumberBool" ng-click="editPhoneNumber()">edit</div>
-          <div class="dashboard-button" ng-show="updateNumberBool" ng-click="updateUser('phone', pendingPhoneNumberChange)">save</div>
-        </div>
-      </div>
-
     </div>
 </div>

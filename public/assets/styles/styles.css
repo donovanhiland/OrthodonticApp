@@ -461,6 +461,9 @@ strong {
 .margintop {
   margin-top: 10px; }
 
+.no-padding-bottom {
+  padding-bottom: 0 !important; }
+
 .pcenter {
   text-align: center;
   font-size: 30px; }
@@ -532,7 +535,12 @@ strong {
     border-radius: 5px;
     background-color: #F8891C;
     vertical-align: middle;
-    cursor: pointer; }
+    cursor: pointer;
+    color: white;
+    border: none; }
+  .dashboard-info-container #ett-graph {
+    max-width: 450px;
+    max-width: 450px; }
   .dashboard-info-container .next-appointment-container {
     padding: 20px;
     width: 100%;
@@ -549,23 +557,8 @@ strong {
     .dashboard-info-container .next-appointment-container h4 {
       font-size: 20px;
       margin-bottom: 20px; }
-    .dashboard-info-container .next-appointment-container .confirmation-modal {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 5px;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 10; }
-      .dashboard-info-container .next-appointment-container .confirmation-modal .warning-container {
-        width: 80%;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: auto; }
-      .dashboard-info-container .next-appointment-container .confirmation-modal .dashboard-button {
-        width: 50px; }
+    .dashboard-info-container .next-appointment-container .dashboard-button {
+      margin-bottom: 0 !important; }
   .dashboard-info-container .report-card-container .report-card-entry {
     width: 100%;
     padding-top: 10px;
@@ -580,7 +573,6 @@ strong {
       padding: 5px 10px;
       background-color: white;
       border-radius: 10px;
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.21);
       font-family: 'PT Sans', sans-serif;
       font-size: 20px;
       color: #333333;
@@ -614,28 +606,35 @@ strong {
         vertical-align: middle; }
     .dashboard-info-container table .table-header {
       border-top: none; }
-  .dashboard-info-container .settings {
-    padding-top: 0;
-    padding-bottom: 20px; }
-  .dashboard-info-container .account-info {
-    padding-top: 20px; }
-    .dashboard-info-container .account-info p {
-      margin-bottom: 20px;
-      text-align: center; }
-    .dashboard-info-container .account-info .contact-info-container {
-      height: 28px;
-      vertical-align: middle; }
-      .dashboard-info-container .account-info .contact-info-container .dashboard-button {
-        display: inline-block;
-        float: right; }
-      .dashboard-info-container .account-info .contact-info-container .contact-info {
-        display: inline-block; }
-      .dashboard-info-container .account-info .contact-info-container .update-info-field {
-        transform: translateY(-5px);
-        transform: translateX(-5px); }
-  .dashboard-info-container .border-mirage {
-    padding-left: 10px;
-    padding-right: 10px; }
+  .dashboard-info-container .email-section {
+    margin-bottom: 40px; }
+  .dashboard-info-container .account-info p {
+    margin: 0 !important; }
+  .dashboard-info-container .account-info .account-info-section {
+    width: 100%; }
+    .dashboard-info-container .account-info .account-info-section .account-info-section-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
+      margin-bottom: 10px; }
+      .dashboard-info-container .account-info .account-info-section .account-info-section-header .change {
+        font-family: 'PT Sans', sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        color: #333333; }
+  .dashboard-info-container .account-info .contact-info {
+    font-family: 'PT Sans', sans-serif;
+    text-align: center; }
+  .dashboard-info-container .account-info .update-info-field {
+    display: block;
+    margin: auto;
+    text-align: center; }
+  .dashboard-info-container #close-patient {
+    width: 60px;
+    display: block;
+    margin: auto;
+    margin-top: 20px; }
   .dashboard-info-container .patient-table {
     width: 100%;
     display: block;
@@ -649,7 +648,7 @@ strong {
       border-radius: 1px; }
     .dashboard-info-container .patient-table .patient-cell-hr {
       display: inline-block;
-      width: 33.33%;
+      width: 32%;
       text-align: center;
       padding: 10px;
       cursor: pointer; }
@@ -657,7 +656,7 @@ strong {
       background-color: rgba(0, 0, 0, 0.05);
       cursor: pointer; }
     .dashboard-info-container .patient-table .patient-cell {
-      width: 33.33%;
+      width: 32%;
       display: inline-block;
       padding: 10px;
       border-collapse: collapse;
@@ -685,16 +684,17 @@ strong {
     width: 44%;
     padding-left: 10px; }
 
-.create-note textarea {
-  width: 70%; }
-
-.create-note .dashboard-button {
-  height: 60px;
-  margin-bottom: 0; }
-  .create-note .dashboard-button p {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); }
+.create-note {
+  text-align: center; }
+  .create-note textarea {
+    width: 70%; }
+  .create-note .dashboard-button {
+    height: 60px;
+    margin-bottom: 0; }
+    .create-note .dashboard-button p {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%); }
 
 .schedule-appointment {
   width: 100%;
@@ -1076,6 +1076,17 @@ h1, h2, h3, h4, h5 {
     height: 20px;
     margin: auto;
     cursor: pointer; }
+
+.logout {
+  color: #333333;
+  cursor: pointer;
+  position: absolute;
+  top: 75px;
+  right: 10px;
+  z-index: 2;
+  height: 30px; }
+  .logout img {
+    height: 25px; }
 
 .mobile-menu {
   width: 100vw;

@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="dashboard-section-wrapper" ng-show="userStatus">
-        <canvas id="ett-graph" width="300" height="300"></canvas>
+        <canvas id="ett-graph" width="300" height="300" max-width="450" max-height="450"></canvas>
     </div>
     <div class="seperator-horizontal" ng-show="startSchedule"></div>
     <div class="dashboard-section-wrapper" ng-show="startSchedule">
@@ -21,16 +21,6 @@
             NEXT APPOINTMENT
         </p>
         <div class="next-appointment-container">
-            <!-- <div class="confirmation-modal" ng-show="showConfirmationBool"> -->
-                <!-- <div class="warning-container">
-                    <h3>Are you sure?</h3>
-                    <h4>Your previously scheduled appointment time will be put up for grabs</h4>
-                    <div class="dashboard-button-container">
-                        <div class="dashboard-button" ng-click="scheduleAppointment()">Yes</div>
-                        <div class="dashboard-button" ng-click="notConfirmed()">No</div>
-                    </div>
-                </div> -->
-            <!-- </div> -->
             <h3 ng-show="!appointmentExists">No Appointments Scheduled</h3>
             <h2>{{user.appointment.date | date : 'MMM d'}}</h2>
             <h3>{{user.appointment.date | date : 'shortTime'}}</h3>

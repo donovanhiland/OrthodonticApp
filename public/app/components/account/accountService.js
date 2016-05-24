@@ -11,6 +11,24 @@ angular.module('orthoApp')
             });
         };
 
+        this.logout = function() {
+          return $http({
+            method: 'GET',
+            url: '/logout'
+          }).then(function(response) {
+            return response;
+          })
+        }
+
+        this.checkAuth = function() {
+          return $http ({
+            method: 'GET',
+            url: '/checkAuth'
+          }).then(function(response) {{
+            return response.data;
+          }})
+        }
+
         this.register = function(newUser) {
             return $http({
                 method: 'POST',
@@ -21,21 +39,30 @@ angular.module('orthoApp')
             });
         };
 
-        this.getUsers = function(query) {
+        this.getPending = function(query) {
             return $http({
                 method: 'GET',
-                url: '/users' + '?' + query
+                url: '/users/pending?' + query
             }).then(function(response) {
                 return response.data;
             });
         };
+
+        this.searchUsers = function(search) {
+          return $http ({
+            method: 'POST',
+            url: '/users/search',
+            data: search
+          }).then(function(response) {
+            return response.data;
+          })
+        }
 
         this.getCurrentUser = function() {
             return $http({
                 method: 'GET',
                 url: '/me'
             }).then(function(response) {
-                $scope.user = response.data;
                 return response;
             });
         };

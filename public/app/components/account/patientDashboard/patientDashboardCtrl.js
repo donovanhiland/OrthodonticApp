@@ -27,17 +27,10 @@ angular.module('orthoApp')
         $scope.editEmail = function() {
             $scope.updateEmailBool = true;
             $scope.updateNumberBool = false;
-            $('#email-update').css({
-                width: $('#email-info').width() + 'px'
-            });
         };
         $scope.editPhoneNumber = function() {
             $scope.updateNumberBool = true;
             $scope.updateEmailBool = false;
-            $('#phone-update').css({
-                width: $('#phone-info').width() + 'px',
-                maxWidth: '200px'
-            });
         };
 
         $scope.userStatus = true;
@@ -55,7 +48,6 @@ angular.module('orthoApp')
                         $scope.showPaperwork = true;
                         $scope.showConsult = true;
                         $scope.appointmentExists = false;
-                        // $scope.scheduleAppointmentBool = true;
                     }
                     if (status === 'pending' && appointment) {
                         $scope.userStatus = false;
@@ -63,14 +55,14 @@ angular.module('orthoApp')
                         $scope.showConsult = false;
                         $scope.startSchedule = true;
                         $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
+                        // $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && appointment) {
                         $scope.userStatus = true;
                         $scope.showPaperwork = true;
                         $scope.startSchedule = true;
                         $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
+                        // $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && !appointment) {
                         $scope.userStatus = true;
@@ -146,8 +138,10 @@ angular.module('orthoApp')
         };
 
         $scope.scheduleAppointment = function(index) {
-
+            // $('.schedule-appointment').slideUp();
+            // $('.appointment-table').slideUp();
             $scope.scheduleAppointmentBool = false;
+
             var apptId = $scope.appointmentList[index]._id;
             var userId = $scope.user._id;
             var appointment = $scope.user.appointment;
@@ -160,12 +154,17 @@ angular.module('orthoApp')
                         accountService.scheduleAppointment(apptId, {
                             user: userId
                         }).then(function(response) {
+                          $('.schedule-appointment').slideUp('slow');
+                          $('.appointment-table').slideUp('slow');
                             $scope.getCurrentUser();
                             $scope.appointmentExists = true;
-                            $scope.searchAppointmentsBool = false;
+                            // $scope.searchAppointmentsBool = false;
                             $scope.appointmentList = null;
                         });
                     });
+                }
+                else {
+                  $scope.scheduleAppointmentBool = true;
                 }
             }
             if (!appointment) {

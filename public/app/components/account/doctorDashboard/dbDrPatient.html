@@ -1,5 +1,5 @@
 <div class="dashboard-info-container">
-    <div class="dashboard-section-wrapper center-table">
+    <div class="dashboard-section-wrapper no-padding-bottom">
 
         <p class="pcenter">
             {{selectedPatient.name.firstname}}
@@ -70,10 +70,10 @@
                         <div class="entry-text">{{notes.text}}</div>
                     </div>
                 </div>
+                <div class="dashboard-button" id="close-patient" ng-click="closePatient()">
+                  close
+                </div>
             </div>
-        </div>
-        <div class="dashboard-button" ng-click="closePatient()">
-            Close
         </div>
     </div>
 </div>

@@ -31,6 +31,19 @@
   }
 }
 
+.logout {
+  color: $textblack;
+  cursor: pointer;
+  position: absolute;
+  top: 75px;
+  right: 10px;
+  z-index: 2;
+  height: 30px;
+  img {
+    height: 25px;
+  }
+}
+
 .mobile-menu {
   width: 100vw;
   position: absolute;

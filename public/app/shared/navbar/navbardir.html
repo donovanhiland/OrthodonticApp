@@ -1,58 +1,59 @@
 <div class="nav-bar">
-  <div class="mobile-menu-button">
-    <img src="./assets/img/icons/squarehamburger-white-transparent.png" alt="menu button" />
-  </div>
-  <div href="tel:9284200056" class="mobile-call-button">
-    <img src="./assets/img/icons/phone-white-transparent.png" alt="call now button" />
-  </div>
+    <div class="mobile-menu-button">
+        <img src="./assets/img/icons/squarehamburger-white-transparent.png" alt="menu button"/>
+    </div>
+    <div class="logout" ng-show="showLogout" ng-click="logout()"><img src="./assets/img/icons/logout.png" alt="logout" /></div>
+    <div href="tel:9284200056" class="mobile-call-button">
+        <img src="./assets/img/icons/phone-white-transparent.png" alt="call now button"/>
+    </div>
 </div>
 <ul class="mobile-menu">
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a ui-sref="home" name="infosection">Home</a>
-    </div>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a>Patient Information</a>
-      <div>
-        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
-      </div>
-    </div>
-    <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink" ng-repeat="link in patientinfosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
-    </ul>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a>About Orthodontics</a>
-      <div>
-        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
-      </div>
-    </div>
-    <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink" ng-repeat="link in aboutorthosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
-    </ul>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a>Services</a>
-      <div>
-        <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
-      </div>
-    </div>
-    <ul class="mobile-menu-sublink-list">
-      <li class="mobile-menu-sublink" ng-repeat="link in servicessectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
-    </ul>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a ui-sref="meetus" name="infosection">Meet Us</a>
-    </div>
-  </li>
-  <li class="mobile-menu-link-container">
-    <div class="mobile-menu-link">
-      <a ng-click="verifyAuth()">Patient Dashboard</a>
-    </div>
-  </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a ui-sref="home" name="infosection">Home</a>
+        </div>
+    </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a>Patient Information</a>
+            <div>
+                <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
+            </div>
+        </div>
+        <ul class="mobile-menu-sublink-list">
+            <li class="mobile-menu-sublink" ng-repeat="link in patientinfosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
+        </ul>
+    </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a>About Orthodontics</a>
+            <div>
+                <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
+            </div>
+        </div>
+        <ul class="mobile-menu-sublink-list">
+            <li class="mobile-menu-sublink" ng-repeat="link in aboutorthosectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
+        </ul>
+    </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a>Services</a>
+            <div>
+                <img src="./assets/img/icons/white-down-arrow.png" class="list-arrow"/>
+            </div>
+        </div>
+        <ul class="mobile-menu-sublink-list">
+            <li class="mobile-menu-sublink" ng-repeat="link in servicessectionlinks" ui-sref="{{link.route}}" name="infosection">{{link.title}}</li>
+        </ul>
+    </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a ui-sref="meetus" name="infosection">Meet Us</a>
+        </div>
+    </li>
+    <li class="mobile-menu-link-container">
+        <div class="mobile-menu-link">
+            <a ui-sref="account.signin">Patient Dashboard</a>
+        </div>
+    </li>
 </ul>

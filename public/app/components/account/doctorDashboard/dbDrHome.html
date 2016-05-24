@@ -1,84 +1,79 @@
 <div class="dashboard-info-container">
     <div class="dashboard-section-wrapper center-table">
-      <p>
-        Pending Patients
-      </p>
+        <p>
+            Pending Patients
+        </p>
+        <p class="pcenter" ng-show="!pendingPatientsBool">
+            No pending patients
+        </p>
 
-        <div class="patient-table">
+        <div class="patient-table" ng-show="pendingPatientsBool">
             <div class="patient-row-hr">
-              <div class="patient-cell-hr">
-                Last Name
-                </div
-                ><div class="patient-cell-hr">
-                  First Name
-                  </div
-                  ><div class="patient-cell-hr">
+                <div class="patient-cell-hr">
+                    Last Name
+                </div >
+                <div class="patient-cell-hr">
+                    First Name
+                </div >
+                <div class="patient-cell-hr">
                     Status
-                  </div>
                 </div>
-            <div class="patient-row" ng-repeat="patient in pendingPatientList" ng-click="showPatient($index)">
+            </div>
+            <div class="patient-row" ng-repeat="patient in pendingPatientList" ng-click="showPatient($index, 'pending')">
                 <div class="patient-cell">
                     {{patient.name.lastname}}
-                </div
-                ><div class="patient-cell">
+                </div >
+                <div class="patient-cell">
                     {{patient.name.firstname}}
-                </div
-                ><div class="patient-cell">
+                </div >
+                <div class="patient-cell">
                     {{patient.status}}
                 </div>
             </div>
         </div>
-        <!-- <table class="recent-prospects-table">
-          <tr class="table-header">
-            <th><strong>Last</strong></th>
-            <th><strong>First</strong></th>
-            <th><strong>Status</strong></th>
-          </tr>
-          <tr ng-repeat="patient in pendingPatientList">
-              <td>{{patient.name.lastname}}</td>
-              <td>{{patient.name.firstname}}</td>
-              <td>{{patient.status}}</td>
-          </tr>
-        </table> -->
     </div>
     <div class="seperator-horizontal"></div>
     <div class="dashboard-section-wrapper center-table">
-      <p>
-        Patient Search
-      </p>
-      <div class="patient-search-container">
-        <input class="patient-search-field" type="text" placeholder="last name">
-        <input class="patient-search-field" type="text" placeholder="first name">
-        <input class="patient-search-field" type="text" placeholder="birthdate">
-        <input class="patient-search-field" type="text" placeholder="application date">
-        <div class="dashboard-button">
-          search
+        <p>
+            Patient Search
+        </p>
+        <div class="patient-search-container">
+          <form>
+            <input class="patient-search-field" type="text" placeholder="last name" ng-model="queryLastname">
+            <input class="patient-search-field" type="text" placeholder="first name" ng-model="queryFirstname">
+            <button class="dashboard-button" ng-click="searchUsers(queryLastname, queryFirstname)">
+              search
+            </button>
+          </form>
         </div>
-      </div>
-      <div class="patient-search-results">
-        <div class="table-container">
-          <table class="recent-prospects-table">
-            <tr class="table-header">
-              <th><strong>Last</strong></th>
-              <th><strong>First</strong></th>
-              <th><strong>Birthdate</strong></th>
-              <th><strong>Application Date</strong></th>
-            </tr>
-            <tr>
-              <td>Johnny</td>
-              <td>Johnny</td>
-              <td>5/16/2000</td>
-              <td>5/17/2016</td>
-            </tr>
-            <!-- <tr ng-repeat="prospect in newProspects">
-                <tr>{{patient.lastname}}</tr>
-                <tr>{{patient.firstname}}</tr>
-                <tr>{{patient.birthdate}}</tr>
-                <tr>{{patient.applicationdate}}</tr>
-            </tr> -->
-          </table>
-        </div>
+        <div class="patient-search-results" ng-show="searchedPatientsBool">
+            <div class="table-container">
+              <div class="patient-table">
+                  <div class="patient-row-hr">
+                      <div class="patient-cell-hr">
+                          Last Name
+                      </div >
+                      <div class="patient-cell-hr">
+                          First Name
+                      </div >
+                      <div class="patient-cell-hr">
+                          Status
+                      </div>
+                  </div>
+                  <div class="patient-row" ng-repeat="patient in searchedPatientList" ng-click="showPatient($index, 'search')">
+                      <div class="patient-cell">
+                          {{patient.name.lastname}}
+                      </div >
+                      <div class="patient-cell">
+                          {{patient.name.firstname}}
+                      </div >
+                      <div class="patient-cell">
+                          {{patient.status}}
+                      </div>
+                  </div>
+              </div>
+            </div>
         </table>
-      </div>
     </div>
+</div>
 </div>

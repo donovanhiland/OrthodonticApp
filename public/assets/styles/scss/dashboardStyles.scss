@@ -10,6 +10,12 @@
 .margintop {
     margin-top: 10px;
 }
+.no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+.no-margin-bottom {
+
+}
 .pcenter {
     text-align: center;
     font-size: 30px;
@@ -88,6 +94,12 @@
         background-color: #F8891C;
         vertical-align: middle;
         cursor: pointer;
+        color: white;
+        border: none;
+    }
+    #ett-graph {
+      max-width: 450px;
+      max-width: 450px;
     }
     //pt dashboard main styles
     .next-appointment-container {
@@ -111,25 +123,8 @@
             font-size: 20px;
             margin-bottom: 20px;
         }
-        .confirmation-modal {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 10;
-            .warning-container {
-                width: 80%;
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
-                margin: auto;
-            }
-            .dashboard-button {
-                width: 50px;
-            }
+        .dashboard-button {
+          margin-bottom: 0 !important;
         }
     }
     .report-card-container {
@@ -148,7 +143,6 @@
                 padding: 5px 10px;
                 background-color: white;
                 border-radius: 10px;
-                box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.21);
                 font-family: 'PT Sans', sans-serif;
                 font-size: 20px;
                 color: $textblack;
@@ -197,36 +191,45 @@
         }
     }
     //patient settings styles
-    .settings {
-        padding-top: 0;
-        padding-bottom: 20px;
+    .email-section {
+      margin-bottom: 40px;
     }
     .account-info {
-        padding-top: 20px;
-        p {
-            margin-bottom: 20px;
-            text-align: center;
+      p {
+        margin: 0 !important;
+      }
+      .account-info-section {
+        width: 100%;
+        .account-info-section-header {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid white;
+          padding-bottom: 5px;
+          margin-bottom: 10px;
+          .change {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            color: $textblack;
+          }
         }
-        .contact-info-container {
-            height: 28px;
-            vertical-align: middle;
-            .dashboard-button {
-                display: inline-block;
-                float: right;
-            }
-            .contact-info {
-                display: inline-block;
-            }
-            .update-info-field {
-                transform: translateY(-5px);
-                transform: translateX(-5px);
-            }
-        }
+      }
+      .contact-info {
+        font-family: 'PT Sans', sans-serif;
+        text-align: center;
+      }
+      .update-info-field {
+        display: block;
+        margin: auto;
+        text-align: center;
+      }
     }
     // doctor dashboard
-    .border-mirage {
-        padding-left: 10px;
-        padding-right: 10px;
+    #close-patient {
+      width: 60px;
+      display: block;
+      margin: auto;
+      margin-top: 20px;
     }
     .patient-table {
         width: 100%;
@@ -242,7 +245,7 @@
         }
         .patient-cell-hr {
             display: inline-block;
-            width: 33.33%;
+            width: 32%;
             text-align: center;
             padding: 10px;
             cursor: pointer;
@@ -252,7 +255,7 @@
             cursor: pointer;
         }
         .patient-cell {
-            width: 33.33%;
+            width: 32%;
             display: inline-block;
             padding: 10px;
             border-collapse: collapse;
@@ -289,6 +292,7 @@
     }
 }
 .create-note {
+  text-align: center;
     textarea {
         width: 70%;
     }

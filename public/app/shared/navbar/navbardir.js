@@ -1,59 +1,81 @@
 angular.module('orthoApp')
-  .directive('navbardir', function() {
+    .directive('navbardir', function() {
 
-    return {
-      restrict: 'AE',
-      templateUrl: 'app/shared/navbar/navbardir.html',
-      controller: function($scope, $state) {
+        return {
+            restrict: 'AE',
+            templateUrl: 'app/shared/navbar/navbardir.html',
+            controller: function($scope, $state, accountService) {
 
-        $scope.menuBool = false;
-        $scope.menuToggle = function() {
-          if($scope.menuBool === false) {
-            return $scope.menuBool = true;
-          }
-          if($scope.menuBool === true) {
-            return $scope.menuBool = false;
-          }
-        };
+                $scope.logout = function() {
+                    accountService.logout()
+                        .then(function(response) {
+                            $scope.showLogout = false;
+                            $state.go('account.signin');
+                        })
+                }
 
-      },
-      link: function(scope, elements, attributes) {
+                $scope.menuBool = false;
+                $scope.menuToggle = function() {
+                    if ($scope.menuBool === false) {
+                        return $scope.menuBool = true;
+                    }
+                    if ($scope.menuBool === true) {
+                        return $scope.menuBool = false;
+                    }
+                };
 
-          var mobileMenu = $('.mobile-menu');
-          var menuLink = $('.mobile-menu-link');
-          var subLink = $('.mobile-menu-sublink-list');
-          var main = $('.main');
+                $rootScope.$on('$stateChangeStart',
+                    function(event, toState, toParams, fromState, fromParams) {
+                        // do something
+                    })
 
-          mobileMenu.hide();
-          subLink.hide();
+                if ($state.includes('account.patientdashboard') || $state.includes('account.doctordashboard')) {
+                    console.log('showlogout');
+                    $scope.showLogout = true;
+                }
+                if (!$state.includes('account.patientdashboard') && !$state.includes('account.doctordashboard')) {
+                    console.log('hidelogout');
+                    $scope.showLogout = false;
+                }
 
-          // $scope.scrollLock = '{position: fixed}';
+            },
+            link: function(scope, elements, attributes) {
 
-          $('.mobile-menu-button').click(function() {
-            mobileMenu.toggle('slide');
-            $('.mobile-call-button').toggleClass('hidden');
-          });
+                var mobileMenu = $('.mobile-menu');
+                var menuLink = $('.mobile-menu-link');
+                var subLink = $('.mobile-menu-sublink-list');
+                var main = $('.main');
 
-          main.click(function() {
-            mobileMenu.hide('slide');
-            if($('.mobile-call-button').hasClass('hidden')) {
-              $('.mobile-call-button').removeClass('hidden');
+                mobileMenu.hide();
+                subLink.hide();
+
+                // $scope.scrollLock = '{position: fixed}';
+
+                $('.mobile-menu-button').click(function() {
+                    mobileMenu.toggle('slide');
+                    $('.mobile-call-button').toggleClass('hidden');
+                });
+
+                main.click(function() {
+                    mobileMenu.hide('slide');
+                    if ($('.mobile-call-button').hasClass('hidden')) {
+                        $('.mobile-call-button').removeClass('hidden');
+                    }
+                });
+
+                menuLink.click(function() {
+                    $(this).siblings('.mobile-menu-sublink-list').slideToggle();
+                    $(this).children().children('.list-arrow').toggleClass('list-arrow-toggle');
+                    subLink.not($(this).siblings()).slideUp();
+                    $('.list-arrow').not($(this).children('div').children('.list-arrow')).removeClass('list-arrow-toggle');
+                });
+
+                subLink.click(function() {
+                    $('body').removeClass('fixed');
+                    mobileMenu.toggle('slide');
+                    $(this).slideToggle();
+                    $('.list-arrow').removeClass('list-arrow-toggle');
+                });
             }
-          });
-
-          menuLink.click(function() {
-            $(this).siblings('.mobile-menu-sublink-list').slideToggle();
-            $(this).children().children('.list-arrow').toggleClass('list-arrow-toggle');
-            subLink.not($(this).siblings()).slideUp();
-            $('.list-arrow').not($(this).children('div').children('.list-arrow')).removeClass('list-arrow-toggle');
-          });
-
-          subLink.click(function() {
-            $('body').removeClass('fixed');
-            mobileMenu.toggle('slide');
-            $(this).slideToggle();
-            $('.list-arrow').removeClass('list-arrow-toggle');
-          });
-      }
-    };
-  });
+        };
+    });

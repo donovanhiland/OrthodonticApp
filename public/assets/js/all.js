@@ -1,123 +1,158 @@
 angular.module('orthoApp', ['ui.router', 'ngAnimate', 'ngMaterial']);
 
 angular.module('orthoApp')
-  .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    .config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
 
-    // home route
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/components/main/home/homeTmpl.html',
-        controller: 'homeCtrl'
-      })
+        // home route
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: 'app/components/main/home/homeTmpl.html',
+                controller: 'homeCtrl'
+            })
 
-      // patient information routes and subviews
-      .state('patientinformation', {
-        url: '/patientinformation',
-        templateUrl: 'app/components/main/patientinformationviews/patientinformation.html',
-        // controller: 'patientInformationController'
-      })
-      .state('patientinformation.introduction', {
-        url: '/introduction',
-        templateUrl: 'app/components/main/patientinformationviews/patientinformation.introduction.html'
-      })
-      .state('patientinformation.whychooseourpractice', {
-        url: '/whychooseourpractice',
-        templateUrl: 'app/components/main/patientinformationviews/patientinformation.whychooseourpractice.html'
-      })
-      .state('patientinformation.patientregistration', {
-        url: '/patientregistration',
-        templateUrl: 'app/components/main/patientinformationviews/patientinformation.patientregistration.html'
-      })
-      .state('patientinformation.paymentandinsurance', {
-        url: '/paymentandinsurance',
-        templateUrl: 'app/components/main/patientinformationviews/patientinformation.paymentandinsurance.html'
-      })
+        // patient information routes and subviews
+        .state('patientinformation', {
+                url: '/patientinformation',
+                templateUrl: 'app/components/main/patientinformationviews/patientinformation.html',
+                // controller: 'patientInformationController'
+            })
+            .state('patientinformation.introduction', {
+                url: '/introduction',
+                templateUrl: 'app/components/main/patientinformationviews/patientinformation.introduction.html'
+            })
+            .state('patientinformation.whychooseourpractice', {
+                url: '/whychooseourpractice',
+                templateUrl: 'app/components/main/patientinformationviews/patientinformation.whychooseourpractice.html'
+            })
+            .state('patientinformation.patientregistration', {
+                url: '/patientregistration',
+                templateUrl: 'app/components/main/patientinformationviews/patientinformation.patientregistration.html'
+            })
+            .state('patientinformation.paymentandinsurance', {
+                url: '/paymentandinsurance',
+                templateUrl: 'app/components/main/patientinformationviews/patientinformation.paymentandinsurance.html'
+            })
 
-      // about orthodontics routes and subviews
-      .state('aboutorthodontics', {
-        url: '/aboutorthodontics',
-        templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.html',
-        // controller: 'aboutOrthodonticsController'
-      })
-      .state('aboutorthodontics.orthodontictreatment', {
-        url: '/orthodontictreatment',
-        templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.orthodontictreatment.html'
-      })
-      .state('aboutorthodontics.childrenandbraces', {
-        url: '/childrenandbraces',
-        templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.childrenandbraces.html'
-      })
-      .state('aboutorthodontics.adultsandbraces', {
-        url: '/adultsandbraces',
-        templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.adultsandbraces.html'
-      })
+        // about orthodontics routes and subviews
+        .state('aboutorthodontics', {
+                url: '/aboutorthodontics',
+                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.html',
+                // controller: 'aboutOrthodonticsController'
+            })
+            .state('aboutorthodontics.orthodontictreatment', {
+                url: '/orthodontictreatment',
+                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.orthodontictreatment.html'
+            })
+            .state('aboutorthodontics.childrenandbraces', {
+                url: '/childrenandbraces',
+                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.childrenandbraces.html'
+            })
+            .state('aboutorthodontics.adultsandbraces', {
+                url: '/adultsandbraces',
+                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.adultsandbraces.html'
+            })
 
-      // services routes and subviews
-      .state('services', {
-        url: '/services',
-        templateUrl: 'app/components/main/servicesViews/services.html'
-        // controller: 'patientInformationController'
-      })
-      .state('services.braces', {
-        url: '/braces',
-        templateUrl: 'app/components/main/servicesViews/services.braces.html'
-      })
-      .state('services.clearbraces', {
-        url: '/clearbraces',
-        templateUrl: 'app/components/main/servicesViews/services.clearbraces.html'
-      })
-      .state('services.appliances', {
-        url: '/appliances',
-        templateUrl: 'app/components/main/servicesViews/services.appliances.html'
-      })
-      .state('services.invisalign', {
-        url: '/invisalign',
-        templateUrl: 'app/components/main/servicesViews/services.invisalign.html'
-      })
+        // services routes and subviews
+        .state('services', {
+                url: '/services',
+                templateUrl: 'app/components/main/servicesViews/services.html'
+                    // controller: 'patientInformationController'
+            })
+            .state('services.braces', {
+                url: '/braces',
+                templateUrl: 'app/components/main/servicesViews/services.braces.html'
+            })
+            .state('services.clearbraces', {
+                url: '/clearbraces',
+                templateUrl: 'app/components/main/servicesViews/services.clearbraces.html'
+            })
+            .state('services.appliances', {
+                url: '/appliances',
+                templateUrl: 'app/components/main/servicesViews/services.appliances.html'
+            })
+            .state('services.invisalign', {
+                url: '/invisalign',
+                templateUrl: 'app/components/main/servicesViews/services.invisalign.html'
+            })
 
-      // meetus route
-      .state('meetus', {
-        url: '/meetus',
-        templateUrl: 'app/components/main/meetus/meetus.html'
-      })
+        // meetus route
+        .state('meetus', {
+            url: '/meetus',
+            templateUrl: 'app/components/main/meetus/meetus.html'
+        })
 
-      // account routes and subviews
-      .state('account', {
-        url: '/account',
-        templateUrl: 'app/components/account/account.html'
-      })
-      .state('account.signin', {
-        url: '/signin',
-        templateUrl: 'app/components/account/account.signin.html',
-        controller: 'signInCtrl',
-        // resolve:
-      })
-      .state('account.patientdashboard', {
-        url: '/dashboard/patient',
-        templateUrl: 'app/components/account/patientDashboard/account.patientdashboard.html',
-        controller: 'patientDashboardCtrl',
-        // resolve: function() {
-        //   if($scope.user && $scope.user.type === 'user') {
-        //     $state.go('account.patientdashboard');
-        //   }
-        //   if($scope.user && $scope.user.type === 'admin') {
-        //     $state.go('account.doctordashboard');
-        //   }
-        //   if(!$scope.user) {
-        //     $state.go()
-        //   }
-        // }
-      })
-      .state('account.doctordashboard', {
-        url: '/dashboard/doctor',
-        templateUrl: 'app/components/account/doctorDashboard/account.doctordashboard.html',
-        controller: 'doctorDashboardCtrl',
-        // resolve:
-      });
+        // account routes and subviews
+        .state('account', {
+                url: '/account',
+                templateUrl: 'app/components/account/account.html'
+            })
+            .state('account.signin', {
+                url: '/signin',
+                templateUrl: 'app/components/account/account.signin.html',
+                controller: 'signInCtrl',
+                resolve: {
+                    checkAuth: function($state, accountService) {
+                        accountService.checkAuth()
+                            .then(function(response) {
+                                if (response === 'admin') {
+                                    $state.go('account.doctordashboard');
+                                }
+                                if (response === 'user') {
+                                    $state.go('account.patientdashboard');
+                                }
+                                if (response === 'unauthorized') {
+                                    $state.go('account.signin');
+                                }
+                            });
+                    }
+                }
+            })
+            .state('account.patientdashboard', {
+                url: '/dashboard/patient',
+                templateUrl: 'app/components/account/patientDashboard/account.patientdashboard.html',
+                controller: 'patientDashboardCtrl',
+                resolve: {
+                    checkAuth: function($state, accountService) {
+                        accountService.checkAuth()
+                            .then(function(response) {
+                                if (response === 'admin') {
+                                    $state.go('account.doctordashboard');
+                                }
+                                if (response === 'user') {
+                                    $state.go('account.patientdashboard');
+                                }
+                                if (response === 'unauthorized') {
+                                    $state.go('account.signin');
+                                }
+                            });
+                    }
+                }
+            })
+            .state('account.doctordashboard', {
+                url: '/dashboard/doctor',
+                templateUrl: 'app/components/account/doctorDashboard/account.doctordashboard.html',
+                controller: 'doctorDashboardCtrl',
+                resolve: {
+                    checkAuth: function($state, accountService) {
+                        accountService.checkAuth()
+                            .then(function(response) {
+                                if (response === 'admin') {
+                                    $state.go('account.doctordashboard');
+                                }
+                                if (response === 'user') {
+                                    $state.go('account.patientdashboard');
+                                }
+                                if (response === 'unauthorized') {
+                                    $state.go('account.signin');
+                                }
+                            });
+                    }
+                }
+            });
 
-  });
+    });
 
 angular.module('orthoApp')
     .service('accountService', function($http) {
@@ -132,6 +167,24 @@ angular.module('orthoApp')
             });
         };
 
+        this.logout = function() {
+          return $http({
+            method: 'GET',
+            url: '/logout'
+          }).then(function(response) {
+            return response;
+          })
+        }
+
+        this.checkAuth = function() {
+          return $http ({
+            method: 'GET',
+            url: '/checkAuth'
+          }).then(function(response) {{
+            return response.data;
+          }})
+        }
+
         this.register = function(newUser) {
             return $http({
                 method: 'POST',
@@ -142,21 +195,30 @@ angular.module('orthoApp')
             });
         };
 
-        this.getUsers = function(query) {
+        this.getPending = function(query) {
             return $http({
                 method: 'GET',
-                url: '/users' + '?' + query
+                url: '/users/pending?' + query
             }).then(function(response) {
                 return response.data;
             });
         };
+
+        this.searchUsers = function(search) {
+          return $http ({
+            method: 'POST',
+            url: '/users/search',
+            data: search
+          }).then(function(response) {
+            return response.data;
+          })
+        }
 
         this.getCurrentUser = function() {
             return $http({
                 method: 'GET',
                 url: '/me'
             }).then(function(response) {
-                $scope.user = response.data;
                 return response;
             });
         };
@@ -547,64 +609,86 @@ angular.module('orthoApp')
   });
 
 angular.module('orthoApp')
-  .directive('navbardir', function() {
+    .directive('navbardir', function() {
 
-    return {
-      restrict: 'AE',
-      templateUrl: 'app/shared/navbar/navbardir.html',
-      controller: function($scope, $state) {
+        return {
+            restrict: 'AE',
+            templateUrl: 'app/shared/navbar/navbardir.html',
+            controller: function($scope, $state, accountService) {
 
-        $scope.menuBool = false;
-        $scope.menuToggle = function() {
-          if($scope.menuBool === false) {
-            return $scope.menuBool = true;
-          }
-          if($scope.menuBool === true) {
-            return $scope.menuBool = false;
-          }
-        };
+                $scope.logout = function() {
+                    accountService.logout()
+                        .then(function(response) {
+                            $scope.showLogout = false;
+                            $state.go('account.signin');
+                        })
+                }
 
-      },
-      link: function(scope, elements, attributes) {
+                $scope.menuBool = false;
+                $scope.menuToggle = function() {
+                    if ($scope.menuBool === false) {
+                        return $scope.menuBool = true;
+                    }
+                    if ($scope.menuBool === true) {
+                        return $scope.menuBool = false;
+                    }
+                };
 
-          var mobileMenu = $('.mobile-menu');
-          var menuLink = $('.mobile-menu-link');
-          var subLink = $('.mobile-menu-sublink-list');
-          var main = $('.main');
+                $rootScope.$on('$stateChangeStart',
+                    function(event, toState, toParams, fromState, fromParams) {
+                        // do something
+                    })
 
-          mobileMenu.hide();
-          subLink.hide();
+                if ($state.includes('account.patientdashboard') || $state.includes('account.doctordashboard')) {
+                    console.log('showlogout');
+                    $scope.showLogout = true;
+                }
+                if (!$state.includes('account.patientdashboard') && !$state.includes('account.doctordashboard')) {
+                    console.log('hidelogout');
+                    $scope.showLogout = false;
+                }
 
-          // $scope.scrollLock = '{position: fixed}';
+            },
+            link: function(scope, elements, attributes) {
 
-          $('.mobile-menu-button').click(function() {
-            mobileMenu.toggle('slide');
-            $('.mobile-call-button').toggleClass('hidden');
-          });
+                var mobileMenu = $('.mobile-menu');
+                var menuLink = $('.mobile-menu-link');
+                var subLink = $('.mobile-menu-sublink-list');
+                var main = $('.main');
 
-          main.click(function() {
-            mobileMenu.hide('slide');
-            if($('.mobile-call-button').hasClass('hidden')) {
-              $('.mobile-call-button').removeClass('hidden');
+                mobileMenu.hide();
+                subLink.hide();
+
+                // $scope.scrollLock = '{position: fixed}';
+
+                $('.mobile-menu-button').click(function() {
+                    mobileMenu.toggle('slide');
+                    $('.mobile-call-button').toggleClass('hidden');
+                });
+
+                main.click(function() {
+                    mobileMenu.hide('slide');
+                    if ($('.mobile-call-button').hasClass('hidden')) {
+                        $('.mobile-call-button').removeClass('hidden');
+                    }
+                });
+
+                menuLink.click(function() {
+                    $(this).siblings('.mobile-menu-sublink-list').slideToggle();
+                    $(this).children().children('.list-arrow').toggleClass('list-arrow-toggle');
+                    subLink.not($(this).siblings()).slideUp();
+                    $('.list-arrow').not($(this).children('div').children('.list-arrow')).removeClass('list-arrow-toggle');
+                });
+
+                subLink.click(function() {
+                    $('body').removeClass('fixed');
+                    mobileMenu.toggle('slide');
+                    $(this).slideToggle();
+                    $('.list-arrow').removeClass('list-arrow-toggle');
+                });
             }
-          });
-
-          menuLink.click(function() {
-            $(this).siblings('.mobile-menu-sublink-list').slideToggle();
-            $(this).children().children('.list-arrow').toggleClass('list-arrow-toggle');
-            subLink.not($(this).siblings()).slideUp();
-            $('.list-arrow').not($(this).children('div').children('.list-arrow')).removeClass('list-arrow-toggle');
-          });
-
-          subLink.click(function() {
-            $('body').removeClass('fixed');
-            mobileMenu.toggle('slide');
-            $(this).slideToggle();
-            $('.list-arrow').removeClass('list-arrow-toggle');
-          });
-      }
-    };
-  });
+        };
+    });
 
 angular.module('orthoApp')
   .directive('dbDrHomeDir', function() {
@@ -635,18 +719,22 @@ angular.module('orthoApp')
         $scope.homeTab = true;
         $scope.patientTab = false;
         $scope.patientTabTab = false;
+        $scope.searchPatientsBool = false;
         $scope.showHome = function() {
             $scope.homeTab = true;
             $scope.patientTab = false;
         };
-        $scope.showPatient = function(index) {
+        $scope.showPatient = function(index, selection) {
+            // var tab = $('.dashboard-tab');
             tab.removeClass('selected').addClass('blurred');
-            $('#new-tab').addClass('selected').removeClass('blurred');
+            $('#patient').addClass('selected').removeClass('blurred');
 
             $scope.homeTab = false;
             $scope.patientTab = true;
             $scope.patientTabTab = true;
-            var userId = $scope.pendingPatientList[index]._id;
+
+            if (selection === 'search') var userId = $scope.searchedPatientList[index]._id;
+            if (selection === 'pending') var userId = $scope.pendingPatientList[index]._id;
             accountService.getUserById(userId)
                 .then(function(response) {
                     $scope.selectedPatient = response;
@@ -666,12 +754,31 @@ angular.module('orthoApp')
             $scope.homeTab = true;
             $scope.patientTab = false;
             $scope.patientTabTab = false;
+
+            tab.addClass('selected').removeClass('blurred');
+            $('#patient').removeClass('selected').addClass('blurred');
+            
+            $scope.getPending();
         };
 
-        $scope.getPending = function() {
-            accountService.getUsers('status=pending')
+        $scope.getCurrentUser = function() {
+            accountService.getCurrentUser()
                 .then(function(response) {
-                    $scope.pendingPatientList = response;
+                    $scope.user = response.data;
+                });
+        };
+        $scope.getCurrentUser();
+
+        $scope.getPending = function() {
+            accountService.getPending('status=pending')
+                .then(function(response) {
+                    if (response.length === 0) {
+                        $scope.pendingPatientsBool = false;
+                    }
+                    if (response.length > 0) {
+                        $scope.pendingPatientsBool = true;
+                        $scope.pendingPatientList = response;
+                    }
                 });
         };
         $scope.getPending();
@@ -699,6 +806,17 @@ angular.module('orthoApp')
                     });
             }
         };
+
+        $scope.searchUsers = function(lastname, firstname) {
+            $scope.searchedPatientsBool = true;
+            var query = {};
+            if (firstname) query.firstname = firstname;
+            if (lastname) query.lastname = lastname;
+            accountService.searchUsers(query)
+                .then(function(response) {
+                    $scope.searchedPatientList = response;
+                });
+        }
 
         $scope.createNote = function(noteText) {
             var userId = $scope.selectedPatient._id;
@@ -742,6 +860,8 @@ angular.module('orthoApp')
             templateUrl: 'app/components/account/patientdashboard/dbMainDir.html',
             // controller:
             link: function($scope) {
+
+                
 
                 /*** Chart JS ***/
                 accountService.getCurrentUser()
@@ -848,17 +968,10 @@ angular.module('orthoApp')
         $scope.editEmail = function() {
             $scope.updateEmailBool = true;
             $scope.updateNumberBool = false;
-            $('#email-update').css({
-                width: $('#email-info').width() + 'px'
-            });
         };
         $scope.editPhoneNumber = function() {
             $scope.updateNumberBool = true;
             $scope.updateEmailBool = false;
-            $('#phone-update').css({
-                width: $('#phone-info').width() + 'px',
-                maxWidth: '200px'
-            });
         };
 
         $scope.userStatus = true;
@@ -876,7 +989,6 @@ angular.module('orthoApp')
                         $scope.showPaperwork = true;
                         $scope.showConsult = true;
                         $scope.appointmentExists = false;
-                        // $scope.scheduleAppointmentBool = true;
                     }
                     if (status === 'pending' && appointment) {
                         $scope.userStatus = false;
@@ -884,14 +996,14 @@ angular.module('orthoApp')
                         $scope.showConsult = false;
                         $scope.startSchedule = true;
                         $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
+                        // $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && appointment) {
                         $scope.userStatus = true;
                         $scope.showPaperwork = true;
                         $scope.startSchedule = true;
                         $scope.appointmentExists = true;
-                        $scope.scheduleAppointmentBool = false;
+                        // $scope.scheduleAppointmentBool = false;
                     }
                     if (status === 'active' && !appointment) {
                         $scope.userStatus = true;
@@ -967,8 +1079,10 @@ angular.module('orthoApp')
         };
 
         $scope.scheduleAppointment = function(index) {
-
+            // $('.schedule-appointment').slideUp();
+            // $('.appointment-table').slideUp();
             $scope.scheduleAppointmentBool = false;
+
             var apptId = $scope.appointmentList[index]._id;
             var userId = $scope.user._id;
             var appointment = $scope.user.appointment;
@@ -981,12 +1095,17 @@ angular.module('orthoApp')
                         accountService.scheduleAppointment(apptId, {
                             user: userId
                         }).then(function(response) {
+                          $('.schedule-appointment').slideUp('slow');
+                          $('.appointment-table').slideUp('slow');
                             $scope.getCurrentUser();
                             $scope.appointmentExists = true;
-                            $scope.searchAppointmentsBool = false;
+                            // $scope.searchAppointmentsBool = false;
                             $scope.appointmentList = null;
                         });
                     });
+                }
+                else {
+                  $scope.scheduleAppointmentBool = true;
                 }
             }
             if (!appointment) {

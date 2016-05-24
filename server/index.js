@@ -51,8 +51,9 @@ app.use(passport.session());
 
 // GET
 app.get('/logout', UserCtrl.logout);
+app.get('/checkAuth', UserCtrl.checkAuth)
 app.get('/me', isAuthed, UserCtrl.me);
-app.get('/users', isAuthed, UserCtrl.getAllUsers);
+app.get('/users/pending', isAuthed, UserCtrl.getPending);
 app.get('/users/:id', isAdmin, UserCtrl.getUser);
 app.get('/payments', isAuthed, PaymentsCtrl.getPayments);
 app.get('/notes', isAuthed, NotesCtrl.getNotes);
@@ -62,6 +63,7 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/me'
 }));
 app.post('/users', UserCtrl.register);
+app.post('/users/search', UserCtrl.getAllUsers)
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote, UserCtrl.createNote);
 app.post('/appointments', isAuthed, ApptsCtrl.getAppointments);
