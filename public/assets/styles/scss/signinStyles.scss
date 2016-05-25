@@ -4,17 +4,21 @@
     background-color: #F0F0F0;
     width: 100%;
     padding-top: 50px;
-    padding-bottom: 1px;
+    padding-bottom: 50px;
+    position: relative;
 }
 
 .signin-container {
   width: 300px;
-  margin: 50px auto;
+  // margin: 50px auto;
   padding-top: 1px;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 10px;
   background-color: white;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .form-selector {
