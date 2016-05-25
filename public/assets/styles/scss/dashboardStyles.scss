@@ -73,7 +73,7 @@
     background-color: $blue;
     box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.21);
     .center-graph {
-      text-align: center;
+        text-align: center;
     }
     .dashboard-section-wrapper {
         padding: 25px;
@@ -371,8 +371,12 @@
         width: 70%;
     }
     .dashboard-button {
-        height: 60px;
+        height: 36px;
         margin-bottom: 0;
+        max-width: 100px;
+        width: 25%;
+        display: inline;
+        margin: 20px auto auto;
         p {
             position: relative;
             top: 50%;
