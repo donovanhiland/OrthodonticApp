@@ -3,7 +3,7 @@ angular.module('orthoApp')
 
     return {
       restrict: 'AE',
-      templateUrl: 'app/components/account/patientdashboard/dbPaymentDir.html',
+      templateUrl: 'app/components/account/patientDashboard/dbPaymentDir.html',
 
     };
 
