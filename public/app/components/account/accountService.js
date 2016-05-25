@@ -96,6 +96,16 @@ angular.module('orthoApp')
             });
         };
 
+        this.getSchedule = function(query) {
+          return $http ({
+            method: 'POST',
+            url: '/schedule',
+            data: query
+          }).then(function(response) {
+            return response;
+          })
+        }
+
         this.scheduleAppointment = function(apptId, userId) {
             return $http({
                 method: 'PUT',

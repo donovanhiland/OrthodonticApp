@@ -8,11 +8,11 @@
                 Schedule Free Consultation
             </div>
             <div class="dashboard-button">
-                Download New Patient Paperwork
+                <a href="./assets/forms/patient-form.pdf" target="_blank">New Patient Paperwork</a>
             </div>
         </div>
     </div>
-    <div class="dashboard-section-wrapper" ng-show="userStatus">
+    <div class="dashboard-section-wrapper center-graph" ng-show="userStatus">
         <canvas id="ett-graph" width="300" height="300" max-width="450" max-height="450"></canvas>
     </div>
     <div class="seperator-horizontal" ng-show="startSchedule"></div>
@@ -21,12 +21,26 @@
             NEXT APPOINTMENT
         </p>
         <div class="next-appointment-container">
+            <div class="loading-box">
+            </div>
+                <div class="loader">
+                    <div class="container"></div>
+                    <div class="icon">
+                        <span class="check">✓</span>
+                    </div>
+
+                    <div class="curgle">
+                        <svg width="80" height="80">
+                            <circle cx="40" cy="40" r="35" stroke="#000" fill="none"></circle>
+                        </svg>
+                    </div>
+                </div>
             <h3 ng-show="!appointmentExists">No Appointments Scheduled</h3>
             <h2>{{user.appointment.date | date : 'MMM d'}}</h2>
             <h3>{{user.appointment.date | date : 'shortTime'}}</h3>
             <h4 ng-show="appointmentExists">{{user.appointment.type}}
-                Appointment ({{user.appointment.duration}}
-                mins)</h4>
+                Appointment {{user.appointment.duration}}
+                mins</h4>
             <div class="dashboard-button-container">
                 <div class="dashboard-button" ng-show="!appointmentExists" ng-click="scheduleAppointmentBool = !scheduleAppointmentBool">schedule</div>
                 <div class="dashboard-button" ng-show="appointmentExists" ng-click="scheduleAppointmentBool = !scheduleAppointmentBool">reschedule</div>

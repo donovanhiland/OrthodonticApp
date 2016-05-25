@@ -33,6 +33,95 @@ angular.module('orthoApp')
             $scope.updateEmailBool = false;
         };
 
+        $scope.loadAnimation = function() {
+            function load() {
+                TweenMax.killAll();
+                TweenMax.set('.loading-box', {
+                    display: 'block',
+                    opacity: 1
+                })
+                TweenMax.set([".container", '.icon', '.loader'], {
+                    display: 'block',
+                    opacity: 1
+                })
+                TweenMax.set(".curgle", {
+                    display: "block"
+                })
+                TweenMax.set(".check", {
+                    display: "none",
+                    color: "#000"
+                })
+                TweenMax.set(".container", {
+                    backgroundColor: "#ffffff"
+                })
+                setTimeout(function() {
+                    finishLoadingAnimation();
+                }, 800)
+            }
+
+            function finishLoadingAnimation() {
+                TweenMax.set(".curgle", {
+                    display: "none"
+                })
+                TweenMax.fromTo(".container", 1.6, {
+                    rotationX: "0deg"
+                }, {
+                    rotationX: "720deg",
+                    ease: Expo.easeOut
+                })
+                TweenMax.fromTo(".check", .4, {
+                    scale: .2,
+                    rotation: "0deg",
+                    y: 0
+                }, {
+                    y: -160,
+                    scale: 1,
+                    display: "block",
+                    ease: Quad.easeOut
+                })
+                TweenMax.to(".check", .8, {
+                    rotation: "360deg"
+                })
+                TweenMax.to(".check", .4, {
+                    y: 0,
+                    ease: Quad.easeIn,
+                    delay: .4,
+                    onComplete: function() {
+                        TweenMax.set(".container", {
+                            backgroundColor: "#95E511"
+                        })
+                        TweenMax.set(".check", {
+                            color: "#FFFFFF"
+                        })
+
+                        TweenMax.to([".container", ".check"], .08, {
+                            y: 15,
+                            ease: Quad.easeOut
+                        })
+                        TweenMax.to([".container", ".check"], 1.2, {
+                            y: 0,
+                            ease: Elastic.easeOut,
+                            delay: .11
+                        })
+                        TweenMax.fromTo(".container", 1.2, {
+                            scale: .9
+                        }, {
+                            scale: 1,
+                            ease: Elastic.easeOut
+                        })
+                        TweenMax.fromTo(['.loading-box', '.container', '.icon', '.loader'], 1, {
+                            opacity: 1
+                        }, {
+                            delay: .7,
+                            opacity: 0,
+                            display: 'none'
+                        })
+                    }
+                })
+            }
+            load();
+        }
+
         $scope.userStatus = true;
         $scope.getCurrentUser = function() {
             accountService.getCurrentUser()
@@ -138,8 +227,9 @@ angular.module('orthoApp')
         };
 
         $scope.scheduleAppointment = function(index) {
-            // $('.schedule-appointment').slideUp();
-            // $('.appointment-table').slideUp();
+
+            $scope.loadAnimation();
+
             $scope.scheduleAppointmentBool = false;
 
             var apptId = $scope.appointmentList[index]._id;
@@ -147,25 +237,22 @@ angular.module('orthoApp')
             var appointment = $scope.user.appointment;
 
             if (appointment) {
-                if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
-                    accountService.cancelAppointment($scope.user.appointment._id, {
+                // if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
+                accountService.cancelAppointment($scope.user.appointment._id, {
+                    user: userId
+                }).then(function(response) {
+                    accountService.scheduleAppointment(apptId, {
                         user: userId
                     }).then(function(response) {
-                        accountService.scheduleAppointment(apptId, {
-                            user: userId
-                        }).then(function(response) {
-                          $('.schedule-appointment').slideUp('slow');
-                          $('.appointment-table').slideUp('slow');
-                            $scope.getCurrentUser();
-                            $scope.appointmentExists = true;
-                            // $scope.searchAppointmentsBool = false;
-                            $scope.appointmentList = null;
-                        });
+                        $scope.getCurrentUser();
+                        $scope.appointmentExists = true;
+                        // $scope.searchAppointmentsBool = false;
+                        $scope.appointmentList = null;
                     });
-                }
-                else {
-                  $scope.scheduleAppointmentBool = true;
-                }
+                });
+                // } else {
+                //     $scope.scheduleAppointmentBool = true;
+                // }
             }
             if (!appointment) {
                 accountService.scheduleAppointment(apptId, {
@@ -186,6 +273,7 @@ angular.module('orthoApp')
                         user: userId
                     })
                     .then(function(response) {
+                        $scope.loadAnimation();
                         $scope.getCurrentUser();
                     });
             }

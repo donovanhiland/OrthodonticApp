@@ -58,3 +58,15 @@
 .not-home {
   background-color: $blue;
 }
+
+@media (min-width: 768px) {
+  .header-contact-container {
+    position: absolute;
+    top: 50px;
+    padding: 10px 20px;
+    background-color: rgba(black, .8);
+    div {
+      display: inline-block;
+    }
+  }
+}

@@ -38,7 +38,7 @@
   top: 75px;
   right: 10px;
   z-index: 2;
-  height: 30px;
+  height: 25px;
   img {
     height: 25px;
   }
@@ -57,7 +57,8 @@
 
 .mobile-menu-link-container {
   width: 100%;
-  border-bottom: 1px solid $grey;
+  border-bottom: 1px solid #4d4d4d;
+  border-top: 1px solid #1a1a1a;
   cursor: pointer;
 }
 
@@ -99,7 +100,8 @@
 
 .mobile-menu-sublink {
   color: white;
-  border-top: 1px solid $grey;
+  border-bottom: 1px solid #4d4d4d;
+  border-top: 1px solid #1a1a1a;
   padding: 10px;
   padding-left: 30px;
 }

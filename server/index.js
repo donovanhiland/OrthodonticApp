@@ -67,6 +67,7 @@ app.post('/users/search', UserCtrl.getAllUsers)
 app.post('/payments', isAuthed, PaymentsCtrl.makePayment);
 app.post('/notes', isAuthed, NotesCtrl.createNote, UserCtrl.createNote);
 app.post('/appointments', isAuthed, ApptsCtrl.getAppointments);
+app.post('/schedule', isAuthed, isAdmin, ApptsCtrl.getSchedule)
 //cancel appointment
 app.post('/appointments/:id', isAuthed, ApptsCtrl.cancelAppointment, UserCtrl.cancelAppointment);
 
@@ -83,7 +84,7 @@ var createAppointmentsScheduler = schedule.scheduleJob({
     console.log('time to update');
     ApptsCtrl.createAppointments();
 });
-// ApptsCtrl.createAppointments();
+ApptsCtrl.createAppointments();
 
 // CONNECTIONS //
 var mongoURI = config.MONGOURI;

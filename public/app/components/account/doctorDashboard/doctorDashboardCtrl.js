@@ -20,6 +20,7 @@ angular.module('orthoApp')
 
             if (selection === 'search') var userId = $scope.searchedPatientList[index]._id;
             if (selection === 'pending') var userId = $scope.pendingPatientList[index]._id;
+            if(selection === 'schedule') var userId = $scope.schedule[index].user._id;
             accountService.getUserById(userId)
                 .then(function(response) {
                     $scope.selectedPatient = response;
@@ -42,7 +43,7 @@ angular.module('orthoApp')
 
             tab.addClass('selected').removeClass('blurred');
             $('#patient').removeClass('selected').addClass('blurred');
-            
+
             $scope.getPending();
         };
 
@@ -93,14 +94,65 @@ angular.module('orthoApp')
         };
 
         $scope.searchUsers = function(lastname, firstname) {
-            $scope.searchedPatientsBool = true;
             var query = {};
             if (firstname) query.firstname = firstname;
             if (lastname) query.lastname = lastname;
+            if(!firstname && !lastname) return null;
+            $scope.searchedPatientsBool = true;
             accountService.searchUsers(query)
                 .then(function(response) {
                     $scope.searchedPatientList = response;
+                    $scope.queryLastname = '';
+                    $scope.queryFirstname = '';
                 });
+        };
+
+        $scope.getSchedule = function(date) {
+            var now = moment().toDate();
+            var startDate = date;
+            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
+            var query;
+
+            if (date) {
+                if (startDate < moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: moment().toDate(),
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: true
+                        }
+                    };
+                }
+                if (startDate >= moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: startDate,
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: true
+                        }
+                    };
+                }
+            }
+            else {
+              query = {
+                  date: {
+                      $gte: moment().toDate(),
+                      $lte: endDate,
+                  },
+                  user: {
+                      $exists: true
+                  }
+              };
+            }
+            accountService.getSchedule(query)
+            .then(function(response) {
+              $scope.getScheduleBool = true;
+              $scope.schedule = response.data;
+            });
         }
 
         $scope.createNote = function(noteText) {
@@ -116,6 +168,7 @@ angular.module('orthoApp')
                         accountService.getUserById(userId)
                             .then(function(response) {
                                 $scope.selectedPatient = response;
+                                $scope.noteText = '';
                             });
                     });
             }

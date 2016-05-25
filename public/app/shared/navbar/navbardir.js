@@ -4,7 +4,20 @@ angular.module('orthoApp')
         return {
             restrict: 'AE',
             templateUrl: 'app/shared/navbar/navbardir.html',
-            controller: function($scope, $state, accountService) {
+            controller: function($scope, $state, accountService, $rootScope) {
+
+                if ($state.current.name === 'account.patientdashboard' || $state.current.name === 'account.doctordashboard') {
+                    $scope.showLogout = true;
+                }
+                if ($state.current.name !== 'account.patientdashboard' && $state.current.name !== 'account.doctordashboard') {
+                    $scope.showLogout = false;
+                }
+
+                $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+                  if(fromState.name === 'account.signin') {
+                    $scope.showLogout = true;
+                  }
+                });
 
                 $scope.logout = function() {
                     accountService.logout()
@@ -12,7 +25,7 @@ angular.module('orthoApp')
                             $scope.showLogout = false;
                             $state.go('account.signin');
                         })
-                }
+                };
 
                 $scope.menuBool = false;
                 $scope.menuToggle = function() {
@@ -23,21 +36,6 @@ angular.module('orthoApp')
                         return $scope.menuBool = false;
                     }
                 };
-
-                $rootScope.$on('$stateChangeStart',
-                    function(event, toState, toParams, fromState, fromParams) {
-                        // do something
-                    })
-
-                if ($state.includes('account.patientdashboard') || $state.includes('account.doctordashboard')) {
-                    console.log('showlogout');
-                    $scope.showLogout = true;
-                }
-                if (!$state.includes('account.patientdashboard') && !$state.includes('account.doctordashboard')) {
-                    console.log('hidelogout');
-                    $scope.showLogout = false;
-                }
-
             },
             link: function(scope, elements, attributes) {
 
@@ -48,8 +46,6 @@ angular.module('orthoApp')
 
                 mobileMenu.hide();
                 subLink.hide();
-
-                // $scope.scrollLock = '{position: fixed}';
 
                 $('.mobile-menu-button').click(function() {
                     mobileMenu.toggle('slide');

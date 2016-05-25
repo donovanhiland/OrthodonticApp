@@ -85,6 +85,15 @@ module.exports = {
             if (err) res.status(500).json(err);
             next();
         });
+    },
+
+    getSchedule: function(req, res, next) {
+      Appointments.find(req.body)
+      .populate('user')
+      .exec(function(err, dbRes) {
+        if(err) res.status(500).json(err);
+        res.status(200).json(dbRes);
+      });
     }
 
 

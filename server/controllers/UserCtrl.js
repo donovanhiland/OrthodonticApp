@@ -15,7 +15,6 @@ module.exports = {
     },
 
     checkAuth: function(req, res, next) {
-      console.log(req.user);
       if(req.user) {
         res.status(200).json(req.user.type);
       }
@@ -55,7 +54,6 @@ module.exports = {
 
     getAllUsers: function(req, res, next) {
         // get all users (doctor page?)
-        console.log(req.body);
         if (!req.body.firstname) {
             req.body.firstname = '.*';
         }

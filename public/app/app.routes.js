@@ -7,7 +7,8 @@ angular.module('orthoApp')
             .state('home', {
                 url: '/',
                 templateUrl: 'app/components/main/home/homeTmpl.html',
-                controller: 'homeCtrl'
+                controller: 'homeCtrl',
+                resolve: {}
             })
 
         // patient information routes and subviews

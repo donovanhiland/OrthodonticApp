@@ -7,8 +7,6 @@ angular.module('orthoApp')
             // controller:
             link: function($scope) {
 
-                
-
                 /*** Chart JS ***/
                 accountService.getCurrentUser()
                     .then(function(response) {

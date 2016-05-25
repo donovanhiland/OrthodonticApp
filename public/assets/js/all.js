@@ -9,7 +9,8 @@ angular.module('orthoApp')
             .state('home', {
                 url: '/',
                 templateUrl: 'app/components/main/home/homeTmpl.html',
-                controller: 'homeCtrl'
+                controller: 'homeCtrl',
+                resolve: {}
             })
 
         // patient information routes and subviews
@@ -251,6 +252,16 @@ angular.module('orthoApp')
                 return response;
             });
         };
+
+        this.getSchedule = function(query) {
+          return $http ({
+            method: 'POST',
+            url: '/schedule',
+            data: query
+          }).then(function(response) {
+            return response;
+          })
+        }
 
         this.scheduleAppointment = function(apptId, userId) {
             return $http({
@@ -614,7 +625,20 @@ angular.module('orthoApp')
         return {
             restrict: 'AE',
             templateUrl: 'app/shared/navbar/navbardir.html',
-            controller: function($scope, $state, accountService) {
+            controller: function($scope, $state, accountService, $rootScope) {
+
+                if ($state.current.name === 'account.patientdashboard' || $state.current.name === 'account.doctordashboard') {
+                    $scope.showLogout = true;
+                }
+                if ($state.current.name !== 'account.patientdashboard' && $state.current.name !== 'account.doctordashboard') {
+                    $scope.showLogout = false;
+                }
+
+                $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+                  if(fromState.name === 'account.signin') {
+                    $scope.showLogout = true;
+                  }
+                });
 
                 $scope.logout = function() {
                     accountService.logout()
@@ -622,7 +646,7 @@ angular.module('orthoApp')
                             $scope.showLogout = false;
                             $state.go('account.signin');
                         })
-                }
+                };
 
                 $scope.menuBool = false;
                 $scope.menuToggle = function() {
@@ -633,21 +657,6 @@ angular.module('orthoApp')
                         return $scope.menuBool = false;
                     }
                 };
-
-                $rootScope.$on('$stateChangeStart',
-                    function(event, toState, toParams, fromState, fromParams) {
-                        // do something
-                    })
-
-                if ($state.includes('account.patientdashboard') || $state.includes('account.doctordashboard')) {
-                    console.log('showlogout');
-                    $scope.showLogout = true;
-                }
-                if (!$state.includes('account.patientdashboard') && !$state.includes('account.doctordashboard')) {
-                    console.log('hidelogout');
-                    $scope.showLogout = false;
-                }
-
             },
             link: function(scope, elements, attributes) {
 
@@ -658,8 +667,6 @@ angular.module('orthoApp')
 
                 mobileMenu.hide();
                 subLink.hide();
-
-                // $scope.scrollLock = '{position: fixed}';
 
                 $('.mobile-menu-button').click(function() {
                     mobileMenu.toggle('slide');
@@ -735,6 +742,7 @@ angular.module('orthoApp')
 
             if (selection === 'search') var userId = $scope.searchedPatientList[index]._id;
             if (selection === 'pending') var userId = $scope.pendingPatientList[index]._id;
+            if(selection === 'schedule') var userId = $scope.schedule[index].user._id;
             accountService.getUserById(userId)
                 .then(function(response) {
                     $scope.selectedPatient = response;
@@ -757,7 +765,7 @@ angular.module('orthoApp')
 
             tab.addClass('selected').removeClass('blurred');
             $('#patient').removeClass('selected').addClass('blurred');
-            
+
             $scope.getPending();
         };
 
@@ -808,14 +816,65 @@ angular.module('orthoApp')
         };
 
         $scope.searchUsers = function(lastname, firstname) {
-            $scope.searchedPatientsBool = true;
             var query = {};
             if (firstname) query.firstname = firstname;
             if (lastname) query.lastname = lastname;
+            if(!firstname && !lastname) return null;
+            $scope.searchedPatientsBool = true;
             accountService.searchUsers(query)
                 .then(function(response) {
                     $scope.searchedPatientList = response;
+                    $scope.queryLastname = '';
+                    $scope.queryFirstname = '';
                 });
+        };
+
+        $scope.getSchedule = function(date) {
+            var now = moment().toDate();
+            var startDate = date;
+            var endDate = moment(date).add(1, 'days').startOf('day').toDate();
+            var query;
+
+            if (date) {
+                if (startDate < moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: moment().toDate(),
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: true
+                        }
+                    };
+                }
+                if (startDate >= moment().toDate()) {
+                    query = {
+                        date: {
+                            $gte: startDate,
+                            $lte: endDate,
+                        },
+                        user: {
+                            $exists: true
+                        }
+                    };
+                }
+            }
+            else {
+              query = {
+                  date: {
+                      $gte: moment().toDate(),
+                      $lte: endDate,
+                  },
+                  user: {
+                      $exists: true
+                  }
+              };
+            }
+            accountService.getSchedule(query)
+            .then(function(response) {
+              $scope.getScheduleBool = true;
+              $scope.schedule = response.data;
+            });
         }
 
         $scope.createNote = function(noteText) {
@@ -831,6 +890,7 @@ angular.module('orthoApp')
                         accountService.getUserById(userId)
                             .then(function(response) {
                                 $scope.selectedPatient = response;
+                                $scope.noteText = '';
                             });
                     });
             }
@@ -860,8 +920,6 @@ angular.module('orthoApp')
             templateUrl: 'app/components/account/patientdashboard/dbMainDir.html',
             // controller:
             link: function($scope) {
-
-                
 
                 /*** Chart JS ***/
                 accountService.getCurrentUser()
@@ -974,6 +1032,95 @@ angular.module('orthoApp')
             $scope.updateEmailBool = false;
         };
 
+        $scope.loadAnimation = function() {
+            function load() {
+                TweenMax.killAll();
+                TweenMax.set('.loading-box', {
+                    display: 'block',
+                    opacity: 1
+                })
+                TweenMax.set([".container", '.icon', '.loader'], {
+                    display: 'block',
+                    opacity: 1
+                })
+                TweenMax.set(".curgle", {
+                    display: "block"
+                })
+                TweenMax.set(".check", {
+                    display: "none",
+                    color: "#000"
+                })
+                TweenMax.set(".container", {
+                    backgroundColor: "#ffffff"
+                })
+                setTimeout(function() {
+                    finishLoadingAnimation();
+                }, 800)
+            }
+
+            function finishLoadingAnimation() {
+                TweenMax.set(".curgle", {
+                    display: "none"
+                })
+                TweenMax.fromTo(".container", 1.6, {
+                    rotationX: "0deg"
+                }, {
+                    rotationX: "720deg",
+                    ease: Expo.easeOut
+                })
+                TweenMax.fromTo(".check", .4, {
+                    scale: .2,
+                    rotation: "0deg",
+                    y: 0
+                }, {
+                    y: -160,
+                    scale: 1,
+                    display: "block",
+                    ease: Quad.easeOut
+                })
+                TweenMax.to(".check", .8, {
+                    rotation: "360deg"
+                })
+                TweenMax.to(".check", .4, {
+                    y: 0,
+                    ease: Quad.easeIn,
+                    delay: .4,
+                    onComplete: function() {
+                        TweenMax.set(".container", {
+                            backgroundColor: "#95E511"
+                        })
+                        TweenMax.set(".check", {
+                            color: "#FFFFFF"
+                        })
+
+                        TweenMax.to([".container", ".check"], .08, {
+                            y: 15,
+                            ease: Quad.easeOut
+                        })
+                        TweenMax.to([".container", ".check"], 1.2, {
+                            y: 0,
+                            ease: Elastic.easeOut,
+                            delay: .11
+                        })
+                        TweenMax.fromTo(".container", 1.2, {
+                            scale: .9
+                        }, {
+                            scale: 1,
+                            ease: Elastic.easeOut
+                        })
+                        TweenMax.fromTo(['.loading-box', '.container', '.icon', '.loader'], 1, {
+                            opacity: 1
+                        }, {
+                            delay: .7,
+                            opacity: 0,
+                            display: 'none'
+                        })
+                    }
+                })
+            }
+            load();
+        }
+
         $scope.userStatus = true;
         $scope.getCurrentUser = function() {
             accountService.getCurrentUser()
@@ -1079,8 +1226,9 @@ angular.module('orthoApp')
         };
 
         $scope.scheduleAppointment = function(index) {
-            // $('.schedule-appointment').slideUp();
-            // $('.appointment-table').slideUp();
+
+            $scope.loadAnimation();
+
             $scope.scheduleAppointmentBool = false;
 
             var apptId = $scope.appointmentList[index]._id;
@@ -1088,25 +1236,22 @@ angular.module('orthoApp')
             var appointment = $scope.user.appointment;
 
             if (appointment) {
-                if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
-                    accountService.cancelAppointment($scope.user.appointment._id, {
+                // if (confirm("Are you sure? /nYour previously scheduled appointment will be put back up for grabs")) {
+                accountService.cancelAppointment($scope.user.appointment._id, {
+                    user: userId
+                }).then(function(response) {
+                    accountService.scheduleAppointment(apptId, {
                         user: userId
                     }).then(function(response) {
-                        accountService.scheduleAppointment(apptId, {
-                            user: userId
-                        }).then(function(response) {
-                          $('.schedule-appointment').slideUp('slow');
-                          $('.appointment-table').slideUp('slow');
-                            $scope.getCurrentUser();
-                            $scope.appointmentExists = true;
-                            // $scope.searchAppointmentsBool = false;
-                            $scope.appointmentList = null;
-                        });
+                        $scope.getCurrentUser();
+                        $scope.appointmentExists = true;
+                        // $scope.searchAppointmentsBool = false;
+                        $scope.appointmentList = null;
                     });
-                }
-                else {
-                  $scope.scheduleAppointmentBool = true;
-                }
+                });
+                // } else {
+                //     $scope.scheduleAppointmentBool = true;
+                // }
             }
             if (!appointment) {
                 accountService.scheduleAppointment(apptId, {
@@ -1127,6 +1272,7 @@ angular.module('orthoApp')
                         user: userId
                     })
                     .then(function(response) {
+                        $scope.loadAnimation();
                         $scope.getCurrentUser();
                     });
             }
@@ -1156,7 +1302,50 @@ angular.module('orthoApp')
     });
 
 angular.module('orthoApp')
-  .controller('homeCtrl', function($scope, mainService, $state) {
+    .controller('homeCtrl', function($scope, mainService, $state) {
 
+        function initMap() {
+            var lyman = {
+                lat: 41.32,
+                lng: -110.29
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: lyman,
+                scrollwheel: false,
+                zoom: 7
+            });
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map
+            });
 
-  });
+            // HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var request = {
+                        destination: lyman,
+                        origin: pos,
+                        travelMode: google.maps.TravelMode.DRIVING
+                    };
+                    // Pass the directions request to the directions service.
+                    var directionsService = new google.maps.DirectionsService();
+                    directionsService.route(request, function(response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            // Display the route on the map.
+                            directionsDisplay.setDirections(response);
+                        }
+                    });
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+        initMap();
+
+    });

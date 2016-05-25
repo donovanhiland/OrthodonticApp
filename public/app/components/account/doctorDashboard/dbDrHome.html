@@ -11,10 +11,10 @@
             <div class="patient-row-hr">
                 <div class="patient-cell-hr">
                     Last Name
-                </div >
+                </div>
                 <div class="patient-cell-hr">
                     First Name
-                </div >
+                </div>
                 <div class="patient-cell-hr">
                     Status
                 </div>
@@ -22,10 +22,10 @@
             <div class="patient-row" ng-repeat="patient in pendingPatientList" ng-click="showPatient($index, 'pending')">
                 <div class="patient-cell">
                     {{patient.name.lastname}}
-                </div >
+                </div>
                 <div class="patient-cell">
                     {{patient.name.firstname}}
-                </div >
+                </div>
                 <div class="patient-cell">
                     {{patient.status}}
                 </div>
@@ -38,42 +38,67 @@
             Patient Search
         </p>
         <div class="patient-search-container">
-          <form>
-            <input class="patient-search-field" type="text" placeholder="last name" ng-model="queryLastname">
-            <input class="patient-search-field" type="text" placeholder="first name" ng-model="queryFirstname">
-            <button class="dashboard-button" ng-click="searchUsers(queryLastname, queryFirstname)">
-              search
-            </button>
-          </form>
+            <form>
+                <input class="patient-search-field" type="text" placeholder="last name" ng-model="queryLastname">
+                <input class="patient-search-field" type="text" placeholder="first name" ng-model="queryFirstname">
+                <button class="dashboard-button" ng-click="searchUsers(queryLastname, queryFirstname)">
+                    search
+                </button>
+            </form>
         </div>
         <div class="patient-search-results" ng-show="searchedPatientsBool">
             <div class="table-container">
-              <div class="patient-table">
-                  <div class="patient-row-hr">
-                      <div class="patient-cell-hr">
-                          Last Name
-                      </div >
-                      <div class="patient-cell-hr">
-                          First Name
-                      </div >
-                      <div class="patient-cell-hr">
-                          Status
-                      </div>
-                  </div>
-                  <div class="patient-row" ng-repeat="patient in searchedPatientList" ng-click="showPatient($index, 'search')">
-                      <div class="patient-cell">
-                          {{patient.name.lastname}}
-                      </div >
-                      <div class="patient-cell">
-                          {{patient.name.firstname}}
-                      </div >
-                      <div class="patient-cell">
-                          {{patient.status}}
-                      </div>
-                  </div>
-              </div>
+                <div class="patient-table">
+                    <div class="patient-row-hr">
+                        <div class="patient-cell-hr">
+                            Last Name
+                        </div>
+                        <div class="patient-cell-hr">
+                            First Name
+                        </div>
+                        <div class="patient-cell-hr">
+                            Status
+                        </div>
+                    </div>
+                    <div class="patient-row" ng-repeat="patient in searchedPatientList" ng-click="showPatient($index, 'search')">
+                        <div class="patient-cell">
+                            {{patient.name.lastname}}
+                        </div>
+                        <div class="patient-cell">
+                            {{patient.name.firstname}}
+                        </div>
+                        <div class="patient-cell">
+                            {{patient.status}}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </table>
+        </div>
     </div>
-</div>
+    <div class="seperator-horizontal margintop"></div>
+    <div class="dashboard-section-wrapper">
+      <p>
+        View Schedule
+      </p>
+      <div class="schedule-appointment">
+        <h4>Select a date:</h4>
+        <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+
+        <div class="dashboard-button" ng-click="getSchedule(myDate)">submit</div>
+
+        <div class="appointment-table" ng-show="getScheduleBool">
+          <div class="appointment-row" ng-repeat="appt in schedule" ng-click="showPatient($index, 'schedule')">
+            <div class="appointment-cell">
+              {{appt.user.name.firstname}} {{appt.user.name.lastname}}
+            </div>
+            <div class="appointment-cell">
+              {{appt.date | date : 'shortTime'}}
+            </div>
+            <div class="appointment-cell">
+              {{appt.duration}} minutes
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
