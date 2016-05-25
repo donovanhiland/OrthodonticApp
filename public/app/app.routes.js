@@ -14,43 +14,43 @@ angular.module('orthoApp')
         // patient information routes and subviews
         .state('patientinformation', {
                 url: '/patientinformation',
-                templateUrl: 'app/components/main/patientinformationviews/patientinformation.html',
+                templateUrl: 'app/components/main/patientInformationViews/patientinformation.html',
                 // controller: 'patientInformationController'
             })
             .state('patientinformation.introduction', {
                 url: '/introduction',
-                templateUrl: 'app/components/main/patientinformationviews/patientinformation.introduction.html'
+                templateUrl: 'app/components/main/patientInformationViews/patientinformation.introduction.html'
             })
             .state('patientinformation.whychooseourpractice', {
                 url: '/whychooseourpractice',
-                templateUrl: 'app/components/main/patientinformationviews/patientinformation.whychooseourpractice.html'
+                templateUrl: 'app/components/main/patientInformationViews/patientinformation.whychooseourpractice.html'
             })
             .state('patientinformation.patientregistration', {
                 url: '/patientregistration',
-                templateUrl: 'app/components/main/patientinformationviews/patientinformation.patientregistration.html'
+                templateUrl: 'app/components/main/patientInformationViews/patientinformation.patientregistration.html'
             })
             .state('patientinformation.paymentandinsurance', {
                 url: '/paymentandinsurance',
-                templateUrl: 'app/components/main/patientinformationviews/patientinformation.paymentandinsurance.html'
+                templateUrl: 'app/components/main/patientInformationViews/patientinformation.paymentandinsurance.html'
             })
 
         // about orthodontics routes and subviews
         .state('aboutorthodontics', {
                 url: '/aboutorthodontics',
-                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.html',
+                templateUrl: 'app/components/main/aboutOrthodonticsViews/aboutorthodontics.html',
                 // controller: 'aboutOrthodonticsController'
             })
             .state('aboutorthodontics.orthodontictreatment', {
                 url: '/orthodontictreatment',
-                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.orthodontictreatment.html'
+                templateUrl: 'app/components/main/aboutOrthodonticsViews/aboutorthodontics.orthodontictreatment.html'
             })
             .state('aboutorthodontics.childrenandbraces', {
                 url: '/childrenandbraces',
-                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.childrenandbraces.html'
+                templateUrl: 'app/components/main/aboutOrthodonticsViews/aboutorthodontics.childrenandbraces.html'
             })
             .state('aboutorthodontics.adultsandbraces', {
                 url: '/adultsandbraces',
-                templateUrl: 'app/components/main/aboutorthodonticsviews/aboutorthodontics.adultsandbraces.html'
+                templateUrl: 'app/components/main/aboutOrthodonticsViews/aboutorthodontics.adultsandbraces.html'
             })
 
         // services routes and subviews
